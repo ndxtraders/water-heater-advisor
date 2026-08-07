@@ -45,31 +45,45 @@ export function HeroSplit({
         className="absolute -left-32 -top-32 size-[28rem] rounded-full bg-blue/[0.07] blur-3xl"
       />
 
-      <div className="relative mx-auto w-full max-w-6xl px-5 py-14 sm:px-8 sm:py-20">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-          <div>
-            {/* Tagline rather than a short label. It has to do the "right
-                place" work that a hero photograph would normally do, so it says
-                what the site is and where it operates before the headline asks
-                a question. Sentence case, not uppercase — at this length
-                uppercase stops being readable. */}
+      <div className="relative mx-auto w-full max-w-6xl px-5 py-12 sm:px-8 sm:py-20">
+        {/*
+          Three children, placed rather than nested, so the order can differ by
+          breakpoint without duplicating the subheading in the DOM.
+
+          Mobile reads tagline/headline → quiz → subheading. Source order would
+          put the subheading second, and at phone width that is seven lines of
+          prose between the headline and the quiz, which pushed the one thing
+          this hero exists to show completely below the fold.
+
+          Desktop restores the natural reading order: headline and subheading
+          stack in the left column, quiz spans both rows on the right.
+        */}
+        {/* `grid-rows-[auto_1fr]` matters: without it the two left-column rows
+            split the height of the taller quiz card between them and the
+            subheading drifts far below the headline. */}
+        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:grid-rows-[auto_1fr] lg:gap-x-14 lg:gap-y-6">
+          <div className="lg:col-start-1 lg:row-start-1">
+            {/* Tagline rather than a short label. It does the "right place"
+                work a hero photograph would normally do, saying what the site
+                is before the headline asks a question. Sentence case, not
+                uppercase: at this length uppercase stops being readable. */}
             <p className="mb-5 inline-flex items-start gap-2 rounded-full bg-blue/10 px-3.5 py-2 text-[0.8125rem] font-semibold leading-snug text-blue">
               <ShieldCheck aria-hidden className="mt-px size-4 shrink-0" />
               {tagline}
             </p>
 
-            <h1 className="text-4xl leading-[1.08] sm:text-5xl lg:text-[3.25rem]">
+            <h1 className="text-[2.125rem] leading-[1.08] sm:text-5xl lg:text-[3.25rem]">
               {heading}
             </h1>
 
             <div aria-hidden className="mt-5 h-1 w-14 rounded-full bg-blue" />
-
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              {subheading}
-            </p>
           </div>
 
-          <div className="lg:pl-2">{aside}</div>
+          <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:pl-2">{aside}</div>
+
+          <p className="max-w-xl text-[1.0625rem] leading-relaxed text-muted-foreground sm:text-lg lg:col-start-1 lg:row-start-2 lg:self-start">
+            {subheading}
+          </p>
         </div>
       </div>
     </header>
