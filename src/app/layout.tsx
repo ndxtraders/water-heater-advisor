@@ -1,52 +1,43 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
 
-import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { getSite } from "@/lib/content";
+import Header from "@/components/layout/Header";
+import { site } from "@/lib/site";
 
-const site = getSite();
-
-// JSON-LD moved to each page (src/lib/schema/) — different pages need
-// different graphs (only home is a WebSite, only pages with an FAQ section
-// get FAQPage), which a single script in the shared layout could not express.
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-// Site-wide defaults only (defect #9 fixed — every page now exports its own
-// generateMetadata, see src/lib/metadata.ts). A plain string, not a template:
-// content already bakes the "| Business Name" suffix into each page's
-// seo.title, and a title.template would double it on top of a page's own
-// title. This value only surfaces if a future page omits generateMetadata.
+/**
+ * No next/font import. Typography runs on system stacks (DESIGN-SYSTEM.md §4):
+ * no network request at build or runtime, no layout shift, and `ui-serif`
+ * resolves to a genuinely good face on the platforms that matter.
+ */
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: site.business.name,
+  title: {
+    default: `${site.name} — ${site.tagline}`,
+    template: `%s | ${site.name}`,
+  },
+  description:
+    "Independent guidance on water heater replacement, tankless conversion and heat " +
+    "pump water heaters — then an introduction to a local installer who handles that work.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
+    <html lang="en" className="h-full">
+      <body className="flex min-h-full flex-col">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-copper focus:px-4 focus:py-2 focus:text-white"
+        >
+          Skip to content
+        </a>
         <Header />
-
-        <main className="flex-1">{children}</main>
-
+        <main id="main" className="flex-1">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

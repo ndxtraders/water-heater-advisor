@@ -161,7 +161,7 @@ export function RuledOut({ items }: { items: { technology: string; reason: strin
             />
             <p className="text-[0.9375rem] leading-relaxed text-muted-foreground">
               <span className="font-medium text-foreground">{item.technology}</span>
-              {" — "}
+              {". "}
               {item.reason}
             </p>
           </li>
