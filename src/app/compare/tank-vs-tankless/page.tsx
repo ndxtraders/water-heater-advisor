@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function TankVsTanklessPage() {
   return (
     <>
-      <Section className="pb-0 pt-12 sm:pt-16">
+      <Section className="pb-0 pt-12 sm:pb-0 sm:pt-16">
         <Container width="narrow">
           <DecisionPath current="Technology" />
           <div className="mt-8">

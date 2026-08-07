@@ -19,7 +19,7 @@ const CHECKED = "7 Aug 2026";
 export default function ModestoPage() {
   return (
     <>
-      <Section className="pb-0 pt-12 sm:pt-16">
+      <Section className="pb-0 pt-12 sm:pb-0 sm:pt-16">
         <Container width="narrow">
           <DecisionPath current="Local rules" />
           <div className="mt-8">
