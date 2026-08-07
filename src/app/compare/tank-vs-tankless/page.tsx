@@ -156,7 +156,7 @@ export default function TankVsTanklessPage() {
             it is the cheapest option to run, which makes it{" "}
             <Link
               href="/water-heaters/heat-pump"
-              className="text-copper underline underline-offset-4"
+              className="text-blue underline underline-offset-4"
             >
               worth understanding before you commit
             </Link>

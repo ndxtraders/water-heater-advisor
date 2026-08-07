@@ -70,7 +70,7 @@ export function Prose({
         "max-w-measure text-[1.0625rem] leading-[1.7] text-foreground/85",
         "[&_p]:mb-5 [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:text-3xl [&_h3]:mt-9 [&_h3]:mb-3 [&_h3]:text-xl",
         "[&_ul]:mb-5 [&_ul]:space-y-2 [&_ul]:pl-5 [&_li]:list-disc [&_li]:marker:text-muted-foreground",
-        "[&_a]:text-copper [&_a]:underline [&_a]:underline-offset-3 [&_a:hover]:text-copper-bright",
+        "[&_a]:text-blue [&_a]:underline [&_a]:underline-offset-3 [&_a:hover]:text-blue-bright",
         "[&_strong]:font-semibold [&_strong]:text-foreground",
         className,
       )}
@@ -83,7 +83,7 @@ export function Prose({
 /** Small uppercase label. Sets context above a heading without competing with it. */
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.14em] text-copper">
+    <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.14em] text-blue">
       {children}
     </p>
   );

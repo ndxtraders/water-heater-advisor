@@ -31,7 +31,7 @@ export function TechnologyCard({
     // `after:inset-0` overlay to make the whole card clickable, and without a
     // positioned ancestor that overlay escapes to the nearest one and covers
     // the page.
-    <article className="group relative flex flex-col rounded-lg border border-border bg-card p-6 transition-colors hover:border-copper/40">
+    <article className="group relative flex flex-col rounded-lg border border-border bg-card p-6 transition-colors hover:border-blue/40">
       <h3 className="text-xl">
         <Link href={href} className="after:absolute after:inset-0">
           {name}
@@ -46,7 +46,7 @@ export function TechnologyCard({
         <TechList heading="Think twice when" items={cautions} tone="unfit" />
       </div>
 
-      <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-copper">
+      <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-blue">
         Read the full guide
         <ArrowRight
           aria-hidden
@@ -154,7 +154,7 @@ export function DecisionPath({ current }: { current: (typeof PATH)[number] }) {
                 aria-current={active ? "step" : undefined}
                 className={cn(
                   "rounded-full px-2.5 py-1 font-medium whitespace-nowrap",
-                  active && "bg-copper text-white",
+                  active && "bg-blue text-white",
                   done && "bg-muted text-muted-foreground",
                   !done && !active && "text-muted-foreground/60",
                 )}
@@ -225,7 +225,7 @@ export function Callout({
         "my-8 rounded-lg border-l-[3px] py-5 pl-6 pr-6",
         tone === "warn"
           ? "border-l-status-warn bg-status-warn-bg/60"
-          : "border-l-copper bg-muted/50",
+          : "border-l-blue bg-muted/50",
       )}
     >
       <p className="mb-1.5 font-heading text-lg">{title}</p>

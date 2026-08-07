@@ -16,7 +16,7 @@ const VARIANTS: Record<Variant, string> = {
   // Copper, not ink, so the single primary action on a page is the one thing
   // wearing the accent colour. Scarcity is what makes it read as the action.
   primary:
-    "bg-copper text-white hover:bg-copper-bright active:translate-y-px shadow-xs",
+    "bg-blue text-white hover:bg-blue-bright active:translate-y-px shadow-xs",
   secondary:
     "bg-transparent text-foreground border border-input hover:bg-muted active:translate-y-px",
   ghost: "bg-transparent text-muted-foreground hover:text-foreground hover:bg-muted",
@@ -34,7 +34,7 @@ const BASE =
   "inline-flex items-center justify-center rounded-md font-medium tracking-tight " +
   "transition-[background-color,filter,transform] duration-150 ease-out " +
   "disabled:pointer-events-none disabled:opacity-50 " +
-  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper-bright";
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-bright";
 
 interface BaseProps {
   variant?: Variant;

@@ -41,8 +41,10 @@
 
   /* Brand */
   --color-ink: var(--ink);
-  --color-copper: var(--copper);
-  --color-copper-bright: var(--copper-bright);
+  --color-navy: var(--navy);
+  --color-blue: var(--blue);
+  --color-blue-bright: var(--blue-bright);
+  --color-flag-red: var(--flag-red);
 
   /* Verdict scale — the recommendation output. Always paired with icon + label. */
   --color-verdict-fit: var(--verdict-fit);
@@ -69,38 +71,45 @@
 
 :root {
   /* Brand ---------------------------------------------------------------
-     Plumbing sites are blue, efficiency sites are green. Both are taken and
-     both are biased — blue reads gas, green reads electrification. A
-     technology-neutral advisor cannot wear either without tipping its hand
-     before the quiz has asked a single question. Ink stays out of the fight;
-     copper is water-heater adjacent (supply line, burner flame) and belongs to
-     neither camp. */
-  --ink: oklch(0.24 0.02 250);
-  --paper: oklch(0.99 0.004 85);
+     Navy, white and a reserved flag red. Red/white/blue is the category's
+     visual language and the trust cue American homeowners already read, so the
+     site borrows the register — but it borrows it the way a public information
+     source would, not the way a contractor's van does.
 
-  /* Two coppers. The bright one is for decoration, hover and non-text UI; the
-     base one is the text-safe copper. Using a single mid-tone for both fails
-     contrast in one direction or looks muddy in the other.
+     The distinction is where red goes. On a plumber's site red is the primary:
+     the logo, the banner, the CALL NOW button. Here red is rationed to two
+     jobs only, emergency and "not a fit". Navy carries the brand. That single
+     rule is most of what separates this from looking like the companies it
+     refers work to, which matters commercially and under CSLB.
 
-     0.47 rather than the 0.52 this started at: measured against paper, the
-     lighter value came out at 3.61:1 as link text, under the 4.5:1 floor the
-     design system claims. A stated accessibility floor that is not measured is
-     just a nice sentence. */
-  --copper: oklch(0.47 0.12 42);
-  --copper-bright: oklch(0.62 0.14 48);
+     Previous palette was warm cream plus copper. Correctly called out as
+     reading like an AI company rather than a homeowner utility. The cream is
+     gone; paper is now a near-neutral white. */
+  --ink: oklch(0.24 0.03 255);
+  --paper: oklch(0.995 0.001 250);
 
-  /* Neutrals carry a trace of the same blue as ink, so greys never go muddy
-     when they sit next to copper. */
-  --n-50: oklch(0.985 0.003 250);
-  --n-100: oklch(0.965 0.004 250);
-  --n-200: oklch(0.925 0.005 250);
-  --n-300: oklch(0.87 0.006 250);
-  --n-400: oklch(0.72 0.008 250);
-  --n-500: oklch(0.58 0.01 250);
-  --n-600: oklch(0.47 0.012 250);
-  --n-700: oklch(0.38 0.014 250);
-  --n-800: oklch(0.29 0.016 250);
-  --n-900: oklch(0.21 0.018 250);
+  --navy: oklch(0.29 0.07 258);
+
+  /* Interactive blue. Two values: the base is text-safe on white, the bright
+     one is for hover and non-text UI where the 3:1 floor applies. */
+  --blue: oklch(0.47 0.15 258);
+  --blue-bright: oklch(0.58 0.16 256);
+
+  /* Rationed. Emergency and "not a fit". Never a CTA, never decoration. */
+  --flag-red: oklch(0.52 0.20 27);
+
+  /* Neutrals carry a trace of the same blue as ink, so greys sit quietly
+     beside navy instead of going warm against it. */
+  --n-50: oklch(0.985 0.003 255);
+  --n-100: oklch(0.965 0.005 255);
+  --n-200: oklch(0.925 0.007 255);
+  --n-300: oklch(0.87 0.009 255);
+  --n-400: oklch(0.72 0.012 255);
+  --n-500: oklch(0.58 0.015 255);
+  --n-600: oklch(0.47 0.018 255);
+  --n-700: oklch(0.38 0.02 255);
+  --n-800: oklch(0.29 0.025 255);
+  --n-900: oklch(0.21 0.028 255);
 
   /* Verdict scale -------------------------------------------------------
      Deliberately desaturated. Saturated green/red is the palette of a sales
@@ -109,15 +118,20 @@
      "Fit" green means *suits your house*, not *environmentally good*. The
      verdict scale is orthogonal to technology — a gas storage tank can and
      often should come back green. */
-  --verdict-fit: oklch(0.52 0.09 168);
-  --verdict-fit-bg: oklch(0.965 0.02 168);
-  --verdict-alt: oklch(0.52 0.02 250);
-  --verdict-alt-bg: oklch(0.965 0.005 250);
-  --verdict-unfit: oklch(0.54 0.13 25);
-  --verdict-unfit-bg: oklch(0.97 0.015 25);
+  /* Green is a *verdict*, not a brand colour, and it is the answer to "which
+     green should the site use for type": this one, and only here. A green used
+     for headings or links would collide with the one place green has to mean
+     something, and would also start signalling "eco", which a
+     technology-neutral advisor cannot afford. */
+  --verdict-fit: oklch(0.48 0.10 162);
+  --verdict-fit-bg: oklch(0.96 0.025 162);
+  --verdict-alt: oklch(0.50 0.02 255);
+  --verdict-alt-bg: oklch(0.96 0.005 255);
+  --verdict-unfit: var(--flag-red);
+  --verdict-unfit-bg: oklch(0.965 0.02 27);
 
-  --status-warn: oklch(0.55 0.12 70);
-  --status-warn-bg: oklch(0.97 0.03 85);
+  --status-warn: oklch(0.54 0.12 65);
+  --status-warn-bg: oklch(0.965 0.035 80);
 
   /* shadcn surface mapping */
   --background: var(--paper);
@@ -126,21 +140,21 @@
   --card-foreground: var(--ink);
   --popover: oklch(1 0 0);
   --popover-foreground: var(--ink);
-  --primary: var(--ink);
-  --primary-foreground: var(--paper);
+  --primary: var(--navy);
+  --primary-foreground: oklch(1 0 0);
   --secondary: var(--n-100);
   --secondary-foreground: var(--ink);
   --muted: var(--n-100);
   /* 0.46, not 0.52. Secondary text carries most of the explanatory copy on this
      site, so it is body text in every sense that matters and measured 3.81:1 at
      the lighter value. */
-  --muted-foreground: oklch(0.46 0.014 250);
-  --accent: var(--copper);
+  --muted-foreground: oklch(0.46 0.018 255);
+  --accent: var(--blue);
   --accent-foreground: oklch(1 0 0);
-  --destructive: var(--verdict-unfit);
+  --destructive: var(--flag-red);
   --border: var(--n-200);
   --input: var(--n-300);
-  --ring: var(--copper-bright);
+  --ring: var(--blue-bright);
 
   /* Type ----------------------------------------------------------------
      Serif headings are what separate this from every contractor site in the
@@ -176,8 +190,8 @@
   --input: oklch(1 0 0 / 18%);
   --ring: oklch(0.68 0.13 50);
 
-  --copper: oklch(0.72 0.12 52);
-  --copper-bright: oklch(0.78 0.12 55);
+  --blue: oklch(0.72 0.12 52);
+  --blue-bright: oklch(0.78 0.12 55);
 
   --verdict-fit: oklch(0.72 0.11 168);
   --verdict-fit-bg: oklch(0.28 0.04 168);
@@ -224,7 +238,7 @@
 
   :focus-visible {
     @apply outline-2 outline-offset-2;
-    outline-color: var(--copper-bright);
+    outline-color: var(--blue-bright);
   }
 
   @media (prefers-reduced-motion: reduce) {

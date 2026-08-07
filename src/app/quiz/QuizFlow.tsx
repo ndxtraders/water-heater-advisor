@@ -62,7 +62,7 @@ export default function QuizFlow() {
       <Progress step={step} total={total} />
 
       <div className="mt-10">
-        <p className="tabular mb-3 text-sm font-medium text-copper">
+        <p className="tabular mb-3 text-sm font-medium text-blue">
           Question {step + 1} of {total}
         </p>
 
@@ -92,10 +92,10 @@ export default function QuizFlow() {
                 className={cn(
                   "flex w-full min-h-14 flex-col justify-center rounded-lg border px-5 py-3.5 text-left",
                   "transition-colors duration-150",
-                  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper-bright",
+                  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-bright",
                   selected
-                    ? "border-copper bg-copper/5"
-                    : "border-input bg-card hover:border-copper/50 hover:bg-muted/40",
+                    ? "border-blue bg-blue/5"
+                    : "border-input bg-card hover:border-blue/50 hover:bg-muted/40",
                 )}
               >
                 <span className="text-[1.0625rem] font-medium">{opt.label}</span>
@@ -135,7 +135,7 @@ function Progress({ step, total }: { step: number; total: number }) {
         className="h-1 w-full overflow-hidden rounded-full bg-border"
       >
         <div
-          className="h-full rounded-full bg-copper transition-[width] duration-250 ease-out"
+          className="h-full rounded-full bg-blue transition-[width] duration-250 ease-out"
           style={{ width: `${pct}%` }}
         />
       </div>
@@ -162,7 +162,7 @@ function Results({
 
   return (
     <Container width="narrow" className="py-12 sm:py-16">
-      <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.14em] text-copper">
+      <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.14em] text-blue">
         Your result
       </p>
       <h1
@@ -261,7 +261,7 @@ function Results({
         {/* Contact capture comes last and stays optional. The homeowner has
             already received everything above for free, which is the entire
             reason this lead is worth more than a form fill. */}
-        <section className="rounded-lg border border-copper/30 bg-copper/[0.04] p-6 sm:p-8">
+        <section className="rounded-lg border border-blue/30 bg-blue/[0.04] p-6 sm:p-8">
           <h2 className="text-2xl">Want an installer who does this specific work?</h2>
           <p className="mt-3 max-w-measure leading-relaxed text-foreground/80">
             We will introduce you to one local contractor suited to this job. One, not

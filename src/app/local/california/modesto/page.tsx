@@ -222,7 +222,7 @@ export default function ModestoPage() {
           <p className="mt-6 text-sm text-muted-foreground">
             Expanding beyond Modesto? We localise by utility territory rather than by
             city, which is why{" "}
-            <Link href="/local/california" className="text-copper underline underline-offset-4">
+            <Link href="/local/california" className="text-blue underline underline-offset-4">
               nearby markets get their own research
             </Link>{" "}
             rather than a find and replace.

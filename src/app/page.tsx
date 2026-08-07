@@ -137,7 +137,7 @@ export default function HomePage() {
             {STEPS.map((step, i) => (
               <li key={step.title}>
                 <div className="mb-4 flex items-center gap-3">
-                  <span className="tabular inline-flex size-8 items-center justify-center rounded-full bg-copper text-sm font-semibold text-white">
+                  <span className="tabular inline-flex size-8 items-center justify-center rounded-full bg-blue text-sm font-semibold text-white">
                     {i + 1}
                   </span>
                   <step.Icon aria-hidden className="size-5 text-muted-foreground" />
@@ -193,7 +193,7 @@ export default function HomePage() {
           </Callout>
           <Link
             href="/water-heaters/tankless/not-right-for-you"
-            className="inline-flex items-center gap-1.5 font-medium text-copper hover:underline hover:underline-offset-4"
+            className="inline-flex items-center gap-1.5 font-medium text-blue hover:underline hover:underline-offset-4"
           >
             When tankless is the wrong call
             <ArrowRight aria-hidden className="size-4" />
