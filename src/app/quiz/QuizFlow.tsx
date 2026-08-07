@@ -7,6 +7,7 @@ import { RuledOut, VerdictCard } from "@/components/advisor/Verdict";
 import { Callout } from "@/components/advisor/Panels";
 import { Container } from "@/components/common/Layout";
 import { Button, ButtonLink } from "@/components/ui/Button";
+import { recordSession } from "@/lib/leads";
 import { recommend } from "@/lib/quiz/engine";
 import { activeQuestions, type Answers } from "@/lib/quiz/questions";
 import { cn } from "@/lib/utils";
@@ -81,8 +82,11 @@ export default function QuizFlow() {
           {question.why}
         </p>
 
+        {question.kind === "zip" ? (
+          <ZipStep initial={answers.zip ?? ""} onSubmit={choose} />
+        ) : (
         <div className="mt-8 space-y-3">
-          {question.options.map((opt) => {
+          {(question.options ?? []).map((opt) => {
             const selected = answers[question.id] === opt.value;
             return (
               <button
@@ -106,6 +110,7 @@ export default function QuizFlow() {
             );
           })}
         </div>
+        )}
 
         {step > 0 ? (
           <button
@@ -119,6 +124,53 @@ export default function QuizFlow() {
         ) : null}
       </div>
     </Container>
+  );
+}
+
+/**
+ * The one free-text step. Validated to five digits client side because a
+ * malformed postcode silently breaks utility lookup, which is the entire reason
+ * the question exists.
+ */
+function ZipStep({
+  initial,
+  onSubmit,
+}: {
+  initial: string;
+  onSubmit: (v: string) => void;
+}) {
+  const [value, setValue] = useState(initial);
+  const valid = /^\d{5}$/.test(value);
+
+  return (
+    <form
+      className="mt-8"
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (valid) onSubmit(value);
+      }}
+    >
+      <label htmlFor="zip" className="sr-only">
+        ZIP code
+      </label>
+      <input
+        id="zip"
+        name="zip"
+        inputMode="numeric"
+        autoComplete="postal-code"
+        maxLength={5}
+        value={value}
+        onChange={(e) => setValue(e.target.value.replace(/\D/g, ""))}
+        placeholder="95350"
+        className="tabular w-full max-w-[12rem] rounded-lg border border-input bg-card px-5 py-3.5 text-2xl tracking-widest focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-bright"
+      />
+      <div className="mt-6">
+        <Button type="submit" size="lg" disabled={!valid}>
+          Continue
+          <ArrowRight aria-hidden className="size-4" />
+        </Button>
+      </div>
+    </form>
   );
 }
 
@@ -159,6 +211,18 @@ function Results({
 }) {
   const r = recommend(answers);
   const usd = (n: number) => `$${n.toLocaleString("en-US")}`;
+
+  // Record the completed quiz anonymously, once, as the results render. This is
+  // what makes drop-off measurable — how many people reach a recommendation
+  // versus how many go on to ask for an installer. A failure here is swallowed
+  // on purpose: the homeowner came for what is on screen, and it is already
+  // correct whether or not the write succeeded.
+  const recorded = useRef(false);
+  useEffect(() => {
+    if (recorded.current) return;
+    recorded.current = true;
+    void recordSession(answers, r);
+  }, [answers, r]);
 
   return (
     <Container width="narrow" className="py-12 sm:py-16">
@@ -215,6 +279,32 @@ function Results({
         ) : null}
 
         {r.ruledOut.length ? <RuledOut items={r.ruledOut} /> : null}
+
+        {/* Naming the gap rather than quietly downgrading the recommendation.
+            A homeowner who finds out later that the site steered them cheap
+            because of one budget answer has every reason to distrust the rest. */}
+        {r.budgetGap ? (
+          <Callout title="This costs more than the budget you gave" tone="warn">
+            <p>
+              You said up to {usd(r.budgetGap.ceiling)}, and this option realistically
+              starts around {usd(r.budgetGap.floor)}. We are still showing it because it
+              is what suits your home. Two things worth knowing: most installers here
+              offer financing, and the alternative below is the honest cheaper answer if
+              the number is firm.
+            </p>
+          </Callout>
+        ) : null}
+
+        {r.needsOwner ? (
+          <Callout title="You will need the owner involved">
+            <p>
+              A water heater replacement needs a permit pulled by the property owner, so
+              a landlord has to authorise this. Everything above is still worth having.
+              Sending it to them is usually a faster route to a new heater than asking
+              for one without it.
+            </p>
+          </Callout>
+        ) : null}
 
         {r.confidence === "Low" ? (
           <Callout title="We are less certain than usual here" tone="warn">

@@ -1,5 +1,75 @@
 import type { Answers } from "./questions";
-import { isUrgent } from "./questions";
+import { hasAuthority, isUrgent } from "./questions";
+
+/** Upper bound of each budget band, in dollars. `null` means they declined. */
+const BUDGET_CEILING: Record<string, number | null> = {
+  "under-2000": 2000,
+  "2000-3500": 3500,
+  "3500-5000": 5000,
+  "5000-8000": 8000,
+  "over-8000": Number.MAX_SAFE_INTEGER,
+  unsure: null,
+};
+
+/**
+ * Lead quality on the classic BANT axes, 0 to 100.
+ *
+ * This exists because the site is paid a percentage of completed work, not per
+ * lead. Under that model an introduction that never closes costs the contractor
+ * nothing but costs us the relationship, so the scoring is tuned to protect
+ * partner goodwill rather than to maximise introduction volume.
+ *
+ * Weighting reflects what actually predicts a completed job: a dead heater and
+ * a real timeline matter far more than a confident budget answer, because
+ * urgency converts and budgets move once a homeowner has a quote in hand.
+ */
+export function leadScore(answers: Answers): number {
+  let s = 0;
+
+  // Need — 40 points. The strongest single predictor.
+  if (answers.status === "failed" || answers.status === "leaking") s += 40;
+  else if (answers.status === "unreliable") s += 30;
+  else if (answers.status === "aging") s += 20;
+  else if (answers.status === "new") s += 22;
+  else s += 8;
+
+  if (answers.age === "over-12") s += 8;
+  else if (answers.age === "9-12") s += 6;
+  else if (answers.age === "5-8") s += 2;
+
+  // Authority — 20 points. A renter cannot sign for the work.
+  if (answers.owner === "own" || answers.owner === "landlord") s += 20;
+  else if (answers.owner === "own-with") s += 16;
+
+  // Timing — 22 points.
+  if (answers.timeline === "asap") s += 22;
+  else if (answers.timeline === "2-weeks") s += 18;
+  else if (answers.timeline === "month") s += 12;
+  else if (answers.timeline === "1-3-months") s += 6;
+
+  // Budget — 10 points, and declining to answer is barely penalised. Someone
+  // who wants to see options before naming a number is being sensible, not
+  // evasive.
+  if (answers.budget === "over-8000" || answers.budget === "5000-8000") s += 10;
+  else if (answers.budget === "3500-5000") s += 8;
+  else if (answers.budget === "2000-3500") s += 6;
+  else if (answers.budget === "under-2000") s += 4;
+  else s += 5;
+
+  return Math.min(100, s);
+}
+
+/** Which partner category this introduction belongs to. */
+export function routingCategory(answers: Answers, tech: TechId): string {
+  if (!hasAuthority(answers)) return "nurture-renter";
+  if (answers.timeline === "researching") return "nurture-early";
+  if (isUrgent(answers)) return "emergency-replacement";
+  if (tech === "heat-pump") return "heat-pump-electrification";
+  if (tech === "gas-tankless") {
+    return answers.current === "tankless" ? "tankless-replacement" : "tankless-conversion";
+  }
+  return "standard-replacement";
+}
 
 export type TechId = "gas-tank" | "electric-tank" | "gas-tankless" | "heat-pump";
 
@@ -39,6 +109,14 @@ export interface Recommendation {
   installerType: string;
   watchFor: string[];
   questionsToAsk: string[];
+  /** BANT score, 0 to 100. */
+  score: number;
+  /** Partner category this introduction should route to. */
+  category: string;
+  /** Set when the recommendation's floor price exceeds the stated budget. */
+  budgetGap?: { ceiling: number; floor: number };
+  /** Set when the respondent rents and cannot authorise the work. */
+  needsOwner: boolean;
 }
 
 /**
@@ -173,7 +251,27 @@ export function recommend(answers: Answers): Recommendation {
       break;
   }
 
-  // 7. Baseline nudges -------------------------------------------------------
+  // 7. Budget ----------------------------------------------------------------
+  // A stated budget nudges, it does not eliminate. Homeowners routinely revise
+  // upward once they see an itemised quote, and a site that hid the right
+  // answer because someone guessed low in question fifteen would be failing at
+  // the one job it has.
+  const ceiling = answers.budget ? BUDGET_CEILING[answers.budget] : null;
+  if (ceiling !== null && ceiling !== undefined) {
+    for (const t of Object.values(a)) {
+      const floor = TECHNOLOGIES[t.id].cost[0];
+      if (floor > ceiling) t.score -= 3;
+      else if (TECHNOLOGIES[t.id].cost[1] <= ceiling) t.score += 1;
+    }
+  }
+
+  // 8. Age -------------------------------------------------------------------
+  // Past twelve years, repairing a failed unit is usually money spent twice.
+  if (answers.age === "over-12" && urgent) {
+    a["gas-tank"].reasons.push("At this age a repair is usually money spent twice");
+  }
+
+  // 9. Baseline nudges -------------------------------------------------------
   if (hasGas && answers.current === "gas-tank") a["gas-tank"].score += 1;
   if (answers.current === "heat-pump") a["heat-pump"].score += 2;
 
@@ -209,6 +307,13 @@ export function recommend(answers: Answers): Recommendation {
     installerType: installerFor(primary.id, urgent),
     watchFor: watchFor(primary.id, answers),
     questionsToAsk: QUESTIONS_FOR_INSTALLER[primary.id],
+    score: leadScore(answers),
+    category: routingCategory(answers, primary.id),
+    budgetGap:
+      ceiling !== null && ceiling !== undefined && TECHNOLOGIES[primary.id].cost[0] > ceiling
+        ? { ceiling, floor: TECHNOLOGIES[primary.id].cost[0] }
+        : undefined,
+    needsOwner: !hasAuthority(answers),
   };
 }
 
