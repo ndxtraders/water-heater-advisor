@@ -27,7 +27,11 @@ export function TechnologyCard({
   cautions: string[];
 }) {
   return (
-    <article className="group flex flex-col rounded-lg border border-border bg-card p-6 transition-colors hover:border-copper/40">
+    // `relative` is load-bearing: the heading link below stretches an
+    // `after:inset-0` overlay to make the whole card clickable, and without a
+    // positioned ancestor that overlay escapes to the nearest one and covers
+    // the page.
+    <article className="group relative flex flex-col rounded-lg border border-border bg-card p-6 transition-colors hover:border-copper/40">
       <h3 className="text-xl">
         <Link href={href} className="after:absolute after:inset-0">
           {name}
