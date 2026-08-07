@@ -51,16 +51,17 @@ export default function ModestoPage() {
           <div className="space-y-4">
             <IncentiveRow
               name="Turlock Irrigation District, heat pump water heater"
-              detail="Replacing a qualifying electric storage heater with an ENERGY STAR heat pump unit."
+              detail="This is a gas or propane to electric conversion rebate for a qualifying ENERGY STAR heat pump unit. If you already have an electric tank, this specific programme is not the one that applies to you."
               amount="$1,000"
               state="active"
-              source="TID rebate application dated 1 January 2026"
+              source="TID residential gas-to-electric rebate application, 2026"
             />
             <IncentiveRow
               name="Modesto Irrigation District, heat pump water heater"
-              detail="MID runs a residential heat pump programme. Amount and current eligibility need confirming directly before you rely on it."
-              state="verify"
-              source="MID residential rebate pages"
+              detail="For qualifying heat pump water heater replacements. Confirm current eligibility and funding directly with MID before counting on it."
+              amount="$500"
+              state="active"
+              source="California Switch Is On incentive listing for MID"
             />
             <IncentiveRow
               name="California HEEHRA, single family"

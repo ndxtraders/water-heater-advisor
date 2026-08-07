@@ -3,9 +3,9 @@ import Link from "next/link";
 import { INDEPENDENCE_POLICY, site } from "@/lib/site";
 
 const COLUMNS = [
-  { heading: "Water heater types", links: site.footer.guides },
   { heading: "Making the decision", links: site.footer.decide },
   { heading: "Modesto, California", links: site.footer.local },
+  { heading: "About this site", links: site.footer.about },
 ] as const;
 
 export default function Footer() {
@@ -51,7 +51,14 @@ export default function Footer() {
             How we make money
           </h2>
           <p className="mt-2 max-w-measure text-sm leading-relaxed text-muted-foreground">
-            {INDEPENDENCE_POLICY}
+            {INDEPENDENCE_POLICY}{" "}
+            <Link
+              href="/methodology"
+              className="text-blue underline underline-offset-4 hover:text-blue-bright"
+            >
+              Read the full method and our conflicts policy
+            </Link>
+            .
           </p>
         </section>
 

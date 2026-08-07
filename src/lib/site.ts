@@ -20,32 +20,36 @@ export const site = {
     slug: "/local/california/modesto",
   },
 
+  /**
+   * Navigation links only ever point at routes that exist.
+   *
+   * The first pass listed the intended information architecture, which meant
+   * most of the header and footer led to 404s. A dead link on a site whose
+   * whole pitch is that it is more careful than the competition is a worse
+   * problem here than a thin menu. Add entries as the pages land.
+   */
   nav: [
-    { label: "Water Heaters", href: "/water-heaters" },
-    { label: "Compare", href: "/compare" },
-    { label: "Costs", href: "/cost" },
-    { label: "Brands", href: "/brands" },
+    { label: "Compare", href: "/compare/tank-vs-tankless" },
+    { label: "Brands", href: "/brands/navien" },
     { label: "Modesto", href: "/local/california/modesto" },
+    { label: "Choosing an installer", href: "/installers/how-to-choose" },
   ],
 
   footer: {
-    guides: [
-      { label: "Gas storage", href: "/water-heaters/gas-storage" },
-      { label: "Electric storage", href: "/water-heaters/electric-storage" },
-      { label: "Gas tankless", href: "/water-heaters/tankless" },
-      { label: "Heat pump", href: "/water-heaters/heat-pump" },
-    ],
     decide: [
       { label: "Tank vs tankless", href: "/compare/tank-vs-tankless" },
-      { label: "Tankless vs heat pump", href: "/compare/tankless-vs-heat-pump" },
-      { label: "What size do I need?", href: "/sizing" },
       { label: "When tankless is wrong", href: "/water-heaters/tankless/not-right-for-you" },
+      { label: "Find my system", href: "/quiz" },
     ],
     local: [
       { label: "Modesto overview", href: "/local/california/modesto" },
-      { label: "Modesto rebates", href: "/local/california/modesto/rebates" },
-      { label: "Modesto permits", href: "/local/california/modesto/permits" },
+      { label: "Modesto rebates and permits", href: "/local/california/modesto" },
       { label: "Choosing an installer", href: "/installers/how-to-choose" },
+    ],
+    about: [
+      { label: "How we make recommendations", href: "/methodology" },
+      { label: "How we get paid", href: "/methodology" },
+      { label: "Navien", href: "/brands/navien" },
     ],
   },
 } as const;
