@@ -78,11 +78,15 @@
   --ink: oklch(0.24 0.02 250);
   --paper: oklch(0.99 0.004 85);
 
-  /* Two coppers. The bright one is for decoration and hover; the base one is
-     dark enough to carry white text and to pass AA as a link on paper. Using a
-     single mid-tone copper for both would fail contrast in one direction or
-     look muddy in the other. */
-  --copper: oklch(0.52 0.13 45);
+  /* Two coppers. The bright one is for decoration, hover and non-text UI; the
+     base one is the text-safe copper. Using a single mid-tone for both fails
+     contrast in one direction or looks muddy in the other.
+
+     0.47 rather than the 0.52 this started at: measured against paper, the
+     lighter value came out at 3.61:1 as link text, under the 4.5:1 floor the
+     design system claims. A stated accessibility floor that is not measured is
+     just a nice sentence. */
+  --copper: oklch(0.47 0.12 42);
   --copper-bright: oklch(0.62 0.14 48);
 
   /* Neutrals carry a trace of the same blue as ink, so greys never go muddy
@@ -127,7 +131,10 @@
   --secondary: var(--n-100);
   --secondary-foreground: var(--ink);
   --muted: var(--n-100);
-  --muted-foreground: oklch(0.52 0.012 250);
+  /* 0.46, not 0.52. Secondary text carries most of the explanatory copy on this
+     site, so it is body text in every sense that matters and measured 3.81:1 at
+     the lighter value. */
+  --muted-foreground: oklch(0.46 0.014 250);
   --accent: var(--copper);
   --accent-foreground: oklch(1 0 0);
   --destructive: var(--verdict-unfit);

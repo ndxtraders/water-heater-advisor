@@ -246,6 +246,32 @@ constraint expressed as a design constraint, and it is not negotiable.
 
 ## 8. Accessibility floor
 
+### Measured contrast
+
+Not asserted — measured in the browser against the rendered tokens, on
+2026-08-07. The first pass failed: `--copper` came out at **3.61:1** as link
+text and `--muted-foreground` at **3.81:1**, both under the floor this document
+claims. Both were darkened (copper `0.52 → 0.47`, muted `0.52 → 0.46`) and
+re-measured.
+
+| Pair | Ratio | |
+|---|---|---|
+| `--ink` on paper | 15.97 | ✅ |
+| `--muted-foreground` on paper | 6.91 | ✅ |
+| `--muted-foreground` on card | 7.11 | ✅ |
+| `--copper` on paper | 6.99 | ✅ |
+| `--copper` on card | 7.19 | ✅ |
+| White on `--copper` (primary button) | 7.19 | ✅ |
+| `--verdict-fit` on its bg | 4.78 | ✅ |
+| `--verdict-alt` on its bg | 4.97 | ✅ |
+| `--verdict-unfit` on its bg | 4.92 | ✅ |
+| `--status-warn` on its bg | 4.57 | ✅ |
+
+Re-measure whenever a colour token moves. A stated floor that is never measured
+is decoration.
+
+### Rules
+
 - Body text meets WCAG AA (4.5:1); large text and UI meet 3:1.
 - Verdict and status are **never** encoded in color alone — icon plus text label,
   always.
