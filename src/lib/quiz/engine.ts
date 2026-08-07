@@ -30,6 +30,8 @@ export interface Recommendation {
   urgent: boolean;
   primary: Assessment;
   alternative?: Assessment;
+  /** Headline sentence for the verdict card. */
+  summary: string;
   ruledOut: { technology: string; reason: string }[];
   confidence: "High" | "Moderate" | "Low";
   sizing: string;
@@ -199,6 +201,7 @@ export function recommend(answers: Answers): Recommendation {
     urgent,
     primary,
     alternative,
+    summary: summaryFor(primary, ruledOut.length),
     ruledOut,
     confidence,
     sizing: sizingFor(primary.id, answers),
@@ -207,6 +210,26 @@ export function recommend(answers: Answers): Recommendation {
     watchFor: watchFor(primary.id, answers),
     questionsToAsk: QUESTIONS_FOR_INSTALLER[primary.id],
   };
+}
+
+/**
+ * The headline sentence on the verdict card.
+ *
+ * The case worth handling carefully is a winner that has no positive reasons at
+ * all — it survived because everything else was eliminated. Dressing that up as
+ * an enthusiastic recommendation would be dishonest, and a homeowner who later
+ * learns why would be right to feel misled. Saying it plainly costs nothing and
+ * is the whole reason the site is worth trusting.
+ */
+function summaryFor(primary: Assessment, eliminatedCount: number): string {
+  if (primary.reasons.length > 0) return primary.reasons[0];
+  if (eliminatedCount > 0) {
+    return (
+      "This is the sensible choice here mostly by elimination. The other options are " +
+      "ruled out by your fuel supply or the space the unit has to live in, not by preference."
+    );
+  }
+  return "The best balance of fit, cost and practicality for your home.";
 }
 
 function sizingFor(id: TechId, answers: Answers): string {

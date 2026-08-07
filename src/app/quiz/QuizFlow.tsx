@@ -23,10 +23,21 @@ export default function QuizFlow() {
   const question = questions[Math.min(step, questions.length - 1)];
   const total = questions.length;
 
-  // Focus moves to the new question heading on every step so keyboard and
-  // screen reader users are not left at the top of the document.
+  // Focus moves to the new question heading on each step so keyboard and screen
+  // reader users are not stranded where the previous answer button used to be.
+  //
+  // Two details matter. `preventScroll` stops the browser scrolling the heading
+  // under the sticky header, and the window is reset to the top explicitly
+  // instead. And the first render is skipped — grabbing focus on page load
+  // would yank a visitor who is still reading the intro.
+  const mounted = useRef(false);
   useEffect(() => {
-    headingRef.current?.focus();
+    if (!mounted.current) {
+      mounted.current = true;
+      return;
+    }
+    headingRef.current?.focus({ preventScroll: true });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [step, done]);
 
   function choose(value: string) {
@@ -172,7 +183,7 @@ function Results({
         <VerdictCard
           verdict="fit"
           technology={r.primary.name}
-          summary={r.primary.reasons[0] ?? "The best balance of fit, cost and practicality for your home."}
+          summary={r.summary}
           confidence={r.confidence}
           detail={[
             { label: "Suggested size", value: r.sizing },
