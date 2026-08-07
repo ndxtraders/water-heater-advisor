@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowLeft, ArrowRight, RotateCcw } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import { RuledOut, VerdictCard } from "@/components/advisor/Verdict";
@@ -9,12 +10,22 @@ import { Container } from "@/components/common/Layout";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { recordSession } from "@/lib/leads";
 import { recommend } from "@/lib/quiz/engine";
-import { activeQuestions, type Answers } from "@/lib/quiz/questions";
+import { activeQuestions, QUESTIONS, type Answers } from "@/lib/quiz/questions";
 import { cn } from "@/lib/utils";
 
 export default function QuizFlow() {
-  const [answers, setAnswers] = useState<Answers>({});
-  const [step, setStep] = useState(0);
+  // The homepage hero renders question one inline and sends the answer through
+  // in the URL. Seeding from it means a homeowner who has already answered does
+  // not get asked the same thing again on arrival.
+  const params = useSearchParams();
+  const seeded = params.get("status");
+  const validSeed =
+    seeded && (QUESTIONS[0].options ?? []).some((o) => o.value === seeded) ? seeded : null;
+
+  const [answers, setAnswers] = useState<Answers>(
+    validSeed ? { status: validSeed } : {},
+  );
+  const [step, setStep] = useState(validSeed ? 1 : 0);
   const [done, setDone] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
 

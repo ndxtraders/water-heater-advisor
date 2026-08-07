@@ -10,7 +10,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-import { Hero, TrustBar } from "@/components/advisor/Hero";
+import { HeroSplit, TrustBar } from "@/components/advisor/Hero";
+import { HeroQuizStart } from "@/components/advisor/HeroQuizStart";
 import { EmergencyBar, TechnologyCard } from "@/components/advisor/Panels";
 import { CheckedStamp, RebateStatus, SourceNote } from "@/components/advisor/Status";
 import {
@@ -107,41 +108,34 @@ const STEPS = [
   },
 ];
 
+/**
+ * Hero copy.
+ *
+ * Kept as named constants because these three strings carry more weight than
+ * anything else on the site and get revised on their own schedule. SUBHEADING
+ * is a placeholder pending Rev's final wording.
+ */
+const HERO_TAGLINE = "Your trusted source for expert, local water heater advice";
+
+const HERO_HEADING = "Which water heater is right for your home?";
+
+// PLACEHOLDER — replace with Rev's copy when it lands.
+const HERO_SUBHEADING =
+  "Answer a few questions about your home and we will tell you which system actually " +
+  "suits it, what it should cost, and which rebates are worth chasing. Then, only if " +
+  "you want it, we will introduce you to a local installer who does that work.";
+
 export default function HomePage() {
   return (
     <>
       <EmergencyBar />
 
-      <Hero
-        eyebrow="Independent guidance"
-        heading={
-          <>
-            Almost every water heater recommendation you read comes from someone who{" "}
-            <span className="text-flag-red-light">profits from the answer</span>.
-          </>
-        }
-        subtitle={
-          <>
-            We do not install anything. We help you work out what your house actually
-            needs, then introduce you to a local contractor who does that kind of work.
-            Often the right answer is the boring, cheaper tank, and we will tell you so.
-          </>
-        }
-      >
-        <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-          <ButtonLink href="/quiz" size="lg">
-            Find the right system for my home
-            <ArrowRight aria-hidden className="size-4" />
-          </ButtonLink>
-          <ButtonLink href="/compare/tank-vs-tankless" size="lg" variant="onDark">
-            Just show me the comparison
-          </ButtonLink>
-        </div>
-        <p className="mt-5 text-sm text-white/60">
-          Fifteen quick questions, about two minutes. You see the recommendation before we
-          ask for anything.
-        </p>
-      </Hero>
+      <HeroSplit
+        tagline={HERO_TAGLINE}
+        heading={HERO_HEADING}
+        subheading={HERO_SUBHEADING}
+        aside={<HeroQuizStart />}
+      />
 
       <TrustBar />
 
@@ -194,11 +188,15 @@ export default function HomePage() {
           page rather than another equal-weight section. */}
       <Section tone="dark">
         <Container width="narrow">
+          {/* The old hero headline, relocated. It is a strong line but it is an
+              argument about us, which makes it the wrong thing to meet a
+              homeowner with at the door and the right thing to hit them with
+              once they are invested. */}
           <SectionHeading
             eyebrow="Where we differ"
             tone="dark"
-            title="Sometimes we will tell you not to go tankless"
-            lead="Every plumber with a dedicated tankless page has an economic reason to emphasise the benefits. We do not. If your household uses modest amounts of hot water, your gas line needs upsizing, and venting is awkward, the payback maths does not work, and a good contractor will quietly agree."
+            title="Almost every water heater recommendation you read comes from someone who profits from the answer"
+            lead="We do not install anything, so we have nothing to gain from talking you into the expensive option. Every plumber with a dedicated tankless page has an economic reason to emphasise the benefits. If your household uses modest amounts of hot water, your gas line needs upsizing and venting is awkward, the payback maths does not work, and we will say so."
           />
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8">
             <h3 className="text-xl text-white">The number nobody quotes you</h3>

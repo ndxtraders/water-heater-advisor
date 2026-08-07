@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import QuizFlow from "./QuizFlow";
 
@@ -10,5 +11,11 @@ export const metadata: Metadata = {
 };
 
 export default function QuizPage() {
-  return <QuizFlow />;
+  // QuizFlow reads the seeded answer from the query string, which needs a
+  // Suspense boundary to keep this route statically prerenderable.
+  return (
+    <Suspense fallback={null}>
+      <QuizFlow />
+    </Suspense>
+  );
 }
