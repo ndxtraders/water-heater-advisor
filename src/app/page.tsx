@@ -1,14 +1,31 @@
-import { ArrowRight, ClipboardList, MapPin, Users } from "lucide-react";
+import {
+  ArrowRight,
+  ClipboardList,
+  Flame,
+  MapPin,
+  Snowflake,
+  Users,
+  Wind,
+  Zap,
+} from "lucide-react";
 import Link from "next/link";
 
-import { Callout, EmergencyBar, TechnologyCard } from "@/components/advisor/Panels";
+import { Hero, TrustBar } from "@/components/advisor/Hero";
+import { EmergencyBar, TechnologyCard } from "@/components/advisor/Panels";
 import { CheckedStamp, RebateStatus, SourceNote } from "@/components/advisor/Status";
-import { Container, Eyebrow, Section, SectionHeading } from "@/components/common/Layout";
+import {
+  Card,
+  Container,
+  IconChip,
+  Section,
+  SectionHeading,
+} from "@/components/common/Layout";
 import { ButtonLink } from "@/components/ui/Button";
 
 const TECHNOLOGIES = [
   {
     name: "Gas storage tank",
+    icon: Flame,
     href: "/water-heaters/gas-storage",
     summary:
       "The default replacement. Lowest upfront cost and the fastest job when your old tank has already failed.",
@@ -24,6 +41,7 @@ const TECHNOLOGIES = [
   },
   {
     name: "Gas tankless",
+    icon: Wind,
     href: "/water-heaters/tankless",
     summary:
       "Endless hot water and a much smaller footprint, but the install is where the money goes, not the unit.",
@@ -39,6 +57,7 @@ const TECHNOLOGIES = [
   },
   {
     name: "Heat pump",
+    icon: Snowflake,
     href: "/water-heaters/heat-pump",
     summary:
       "By far the cheapest to run in most Central Valley homes. It needs space, air and the right electrical service.",
@@ -54,6 +73,7 @@ const TECHNOLOGIES = [
   },
   {
     name: "Electric storage tank",
+    icon: Zap,
     href: "/water-heaters/electric-storage",
     summary:
       "Simple and cheap to install. Usually the right answer only when a heat pump genuinely will not fit.",
@@ -71,17 +91,17 @@ const TECHNOLOGIES = [
 
 const STEPS = [
   {
-    Icon: ClipboardList,
-    title: "Answer ten questions",
+    icon: ClipboardList,
+    title: "Answer fifteen questions",
     body: "Your current setup, your household, where the unit lives, and what you actually care about. Two minutes.",
   },
   {
-    Icon: MapPin,
+    icon: MapPin,
     title: "Get a real recommendation",
     body: "A system type and size, what it should cost in a house like yours, the rebates worth chasing, and what we ruled out.",
   },
   {
-    Icon: Users,
+    icon: Users,
     title: "Then, if you want it, an installer",
     body: "We introduce you to one local contractor who does that specific work. Not four of them calling you at dinner.",
   },
@@ -92,60 +112,62 @@ export default function HomePage() {
     <>
       <EmergencyBar />
 
-      {/* Hero. No stock photography of a smiling technician, because that is
-          the visual grammar of the contractor sites this one has to be legibly
-          different from. The claim is the hero. */}
-      <section className="pt-16 pb-14 sm:pt-24 sm:pb-20">
-        <Container>
-          <Eyebrow>Independent guidance</Eyebrow>
-          <h1 className="max-w-4xl text-4xl leading-[1.1] sm:text-5xl">
-            Almost every water heater recommendation you will read comes from someone who
-            profits from the answer.
-          </h1>
-          <p className="mt-6 max-w-measure text-lg leading-relaxed text-muted-foreground">
+      <Hero
+        eyebrow="Independent guidance"
+        heading={
+          <>
+            Almost every water heater recommendation you read comes from someone who{" "}
+            <span className="text-flag-red-light">profits from the answer</span>.
+          </>
+        }
+        subtitle={
+          <>
             We do not install anything. We help you work out what your house actually
             needs, then introduce you to a local contractor who does that kind of work.
             Often the right answer is the boring, cheaper tank, and we will tell you so.
-          </p>
+          </>
+        }
+      >
+        <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <ButtonLink href="/quiz" size="lg">
+            Find the right system for my home
+            <ArrowRight aria-hidden className="size-4" />
+          </ButtonLink>
+          <ButtonLink href="/compare/tank-vs-tankless" size="lg" variant="onDark">
+            Just show me the comparison
+          </ButtonLink>
+        </div>
+        <p className="mt-5 text-sm text-white/60">
+          Fifteen quick questions, about two minutes. You see the recommendation before we
+          ask for anything.
+        </p>
+      </Hero>
 
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <ButtonLink href="/quiz" size="lg">
-              Find the right system for my home
-              <ArrowRight aria-hidden className="size-4" />
-            </ButtonLink>
-            <ButtonLink href="/compare/tank-vs-tankless" size="lg" variant="secondary">
-              Just show me the comparison
-            </ButtonLink>
-          </div>
-
-          <p className="mt-4 text-sm text-muted-foreground">
-            Ten questions, about two minutes. You see the recommendation before we ask for
-            anything.
-          </p>
-        </Container>
-      </section>
+      <TrustBar />
 
       {/* How it works */}
-      <Section tone="muted">
+      <Section tone="tint">
         <Container>
           <SectionHeading
             eyebrow="How this works"
             title="Recommendation first. Contact details later, and only if you want them."
             lead="Every lead site in this category collects your phone number and then figures out what to tell you. We think that is backwards, and it is why their advice is worthless."
           />
-          <ol className="grid gap-8 sm:grid-cols-3">
+          <ol className="grid gap-6 sm:grid-cols-3">
             {STEPS.map((step, i) => (
               <li key={step.title}>
-                <div className="mb-4 flex items-center gap-3">
-                  <span className="tabular inline-flex size-8 items-center justify-center rounded-full bg-blue text-sm font-semibold text-white">
-                    {i + 1}
-                  </span>
-                  <step.Icon aria-hidden className="size-5 text-muted-foreground" />
-                </div>
-                <h3 className="text-lg">{step.title}</h3>
-                <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted-foreground">
-                  {step.body}
-                </p>
+                <Card className="h-full">
+                  <div className="flex items-center gap-3">
+                    <IconChip icon={step.icon} />
+                    <span className="tabular text-3xl font-extrabold text-blue/20">
+                      {i + 1}
+                    </span>
+                  </div>
+                  <h3 className="mt-5 text-xl">{step.title}</h3>
+                  <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-muted-foreground">
+                    {step.body}
+                  </p>
+                </Card>
               </li>
             ))}
           </ol>
@@ -160,7 +182,7 @@ export default function HomePage() {
             title="The question is not which tankless to buy"
             lead="It is which kind of water heating makes sense for your house. Four options cover almost every home, and the honest answer depends on things most articles never ask you about."
           />
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-2">
             {TECHNOLOGIES.map((tech) => (
               <TechnologyCard key={tech.name} {...tech} />
             ))}
@@ -168,63 +190,51 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* The contrarian position. This is the site's strongest editorial asset
-          and it gets a full section, not a footnote. */}
-      <Section tone="muted">
+      {/* The contrarian position, on a dark band so it lands as the turn in the
+          page rather than another equal-weight section. */}
+      <Section tone="dark">
         <Container width="narrow">
-          <Eyebrow>Where we differ</Eyebrow>
-          <h2 className="text-3xl sm:text-4xl">
-            Sometimes we will tell you not to go tankless
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            Every plumber with a dedicated tankless page has an economic reason to
-            emphasise the benefits. We do not. If your household uses modest amounts of
-            hot water, your gas line needs upsizing, and the unit lives in a spot that
-            makes venting awkward, the payback maths simply does not work, and a good
-            contractor will quietly agree.
-          </p>
-          <Callout title="The number nobody quotes you">
-            <p>
+          <SectionHeading
+            eyebrow="Where we differ"
+            tone="dark"
+            title="Sometimes we will tell you not to go tankless"
+            lead="Every plumber with a dedicated tankless page has an economic reason to emphasise the benefits. We do not. If your household uses modest amounts of hot water, your gas line needs upsizing, and venting is awkward, the payback maths does not work, and a good contractor will quietly agree."
+          />
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8">
+            <h3 className="text-xl text-white">The number nobody quotes you</h3>
+            <p className="mt-3 leading-relaxed text-white/70">
               A tankless unit is often the cheapest line on a tankless quote. Gas line
               work, venting, a dedicated circuit and condensate routing regularly add more
               than the appliance costs. That is why a national average price is close to
               useless, and why we itemise the job instead of publishing one figure.
             </p>
-          </Callout>
-          <Link
-            href="/water-heaters/tankless/not-right-for-you"
-            className="inline-flex items-center gap-1.5 font-medium text-blue hover:underline hover:underline-offset-4"
-          >
-            When tankless is the wrong call
-            <ArrowRight aria-hidden className="size-4" />
-          </Link>
+          </div>
+          <div className="mt-8">
+            <ButtonLink href="/water-heaters/tankless/not-right-for-you" variant="onDark" size="lg">
+              When tankless is the wrong call
+              <ArrowRight aria-hidden className="size-4" />
+            </ButtonLink>
+          </div>
         </Container>
       </Section>
 
-      {/* Local proof. Generic advice is what everyone else has, so the local
-          block leads with a fact that changes the answer. */}
+      {/* Local proof */}
       <Section>
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-start">
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-start">
             <div>
-              <Eyebrow>Modesto, California</Eyebrow>
-              <h2 className="text-3xl sm:text-4xl">
-                Your utility changes the recommendation
-              </h2>
-              <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-                Not the city. The utility. A Modesto home on MID and a Turlock home
-                fifteen miles away sit in different rebate territories, which can move a
-                heat pump from marginal to obvious. Any page that treats a metro as one
-                market is guessing.
-              </p>
-              <div className="mt-7">
-                <ButtonLink href="/local/california/modesto" variant="secondary" size="lg">
-                  Modesto rebates, permits and prices
-                </ButtonLink>
-              </div>
+              <SectionHeading
+                eyebrow="Modesto, California"
+                eyebrowIcon={MapPin}
+                title="Your utility changes the recommendation"
+                lead="Not the city. The utility. A Modesto home on MID and a Turlock home fifteen miles away sit in different rebate territories, which can move a heat pump from marginal to obvious. Any page that treats a metro as one market is guessing."
+              />
+              <ButtonLink href="/local/california/modesto" variant="secondary" size="lg">
+                Modesto rebates, permits and prices
+              </ButtonLink>
             </div>
 
-            <div className="rounded-lg border border-border bg-card p-6">
+            <Card className="p-6 sm:p-7">
               <div className="mb-5">
                 <CheckedStamp date="7 Aug 2026" />
               </div>
@@ -232,7 +242,7 @@ export default function HomePage() {
                 <li className="flex flex-wrap items-center justify-between gap-3 border-b border-border pb-4">
                   <span>Turlock Irrigation District, heat pump</span>
                   <span className="flex items-center gap-2.5">
-                    <span className="tabular font-semibold">$1,000</span>
+                    <span className="tabular font-bold">$1,000</span>
                     <RebateStatus state="active" />
                   </span>
                 </li>
@@ -257,25 +267,32 @@ export default function HomePage() {
                 An outlined badge means we have not confirmed it ourselves yet. We would
                 rather show you that than quietly present a guess as a fact.
               </p>
-            </div>
+            </Card>
           </div>
         </Container>
       </Section>
 
       {/* Closing CTA */}
-      <Section tone="muted">
+      <Section tone="tint">
         <Container width="narrow" className="text-center">
-          <h2 className="text-3xl sm:text-4xl">Find out what your house needs</h2>
-          <p className="mx-auto mt-5 max-w-measure text-lg leading-relaxed text-muted-foreground">
-            Ten questions. You get the recommendation, the likely cost range and the
-            rebates worth chasing before we ask for a single contact detail.
-          </p>
-          <div className="mt-8 flex justify-center">
+          <SectionHeading
+            align="center"
+            title="Find out what your house needs"
+            lead="Fifteen questions. You get the recommendation, the likely cost range and the rebates worth chasing before we ask for a single contact detail."
+          />
+          <div className="flex justify-center">
             <ButtonLink href="/quiz" size="lg">
               Start the two minute check
               <ArrowRight aria-hidden className="size-4" />
             </ButtonLink>
           </div>
+          <p className="mt-6 text-sm text-muted-foreground">
+            Not ready?{" "}
+            <Link href="/compare/tank-vs-tankless" className="text-blue underline underline-offset-4">
+              Read the comparison first
+            </Link>
+            .
+          </p>
         </Container>
       </Section>
     </>

@@ -42,9 +42,13 @@
   /* Brand */
   --color-ink: var(--ink);
   --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-tint: var(--tint);
+  --color-tint-strong: var(--tint-strong);
   --color-blue: var(--blue);
   --color-blue-bright: var(--blue-bright);
   --color-flag-red: var(--flag-red);
+  --color-flag-red-light: var(--flag-red-light);
 
   /* Verdict scale — the recommendation output. Always paired with icon + label. */
   --color-verdict-fit: var(--verdict-fit);
@@ -95,8 +99,13 @@
   --blue: oklch(0.47 0.15 258);
   --blue-bright: oklch(0.58 0.16 256);
 
-  /* Rationed. Emergency and "not a fit". Never a CTA, never decoration. */
+  /* Rationed. Emergency and "not a fit". Never a CTA, never decoration.
+     Two values, for the same reason there are two blues: the base is the
+     text-safe red on white, and it measured 2.91:1 against navy — below even
+     the 3:1 large-text floor. Anything red sitting on a dark band uses the
+     light variant. */
   --flag-red: oklch(0.52 0.20 27);
+  --flag-red-light: oklch(0.68 0.17 27);
 
   /* Neutrals carry a trace of the same blue as ink, so greys sit quietly
      beside navy instead of going warm against it. */
@@ -157,18 +166,29 @@
   --ring: var(--blue-bright);
 
   /* Type ----------------------------------------------------------------
-     Serif headings are what separate this from every contractor site in the
-     SERP at a glance — those are uniformly geometric sans. System stacks
-     rather than webfonts: no network request, no layout shift, no build-time
-     font fetch, and ui-serif resolves to genuinely good faces where it counts. */
-  --font-heading: ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+     v1 used a serif for headings, on the theory that it would separate the site
+     from the geometric-sans contractor pages in the SERP. It did — but it
+     separated it in the wrong direction, reading as an editorial publication
+     rather than as something a homeowner uses to make a decision.
+
+     Now: Plus Jakarta Sans for headings at extrabold, Inter for body. Same
+     family of choices a well-built local service site makes, because that is
+     the register homeowners trust for this kind of task. The independence comes
+     from what the page *says* and from the sourcing UI, not from the typeface. */
+  --font-heading: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
 
-  /* Squared rather than rounded. Rounded-everything reads friendly and
-     consumer-app; slightly squared reads precise and documentary. */
-  --radius: 0.375rem;
+  /* 0.5rem base, and cards go further (rounded-2xl). Squared reads documentary;
+     softly rounded reads like a product someone maintains. */
+  --radius: 0.5rem;
+
+  /* Tinted surfaces. Sections alternate white → tint → dark rather than
+     white → grey → white. The band rhythm is most of what gives a service site
+     its momentum, and flat neutral greys are what made v1 feel static. */
+  --tint: oklch(0.972 0.014 250);
+  --tint-strong: oklch(0.945 0.024 250);
+  --navy-deep: oklch(0.21 0.055 258);
 }
 
 .dark {
@@ -219,9 +239,10 @@
   h3,
   h4 {
     @apply font-heading text-foreground;
-    line-height: 1.15;
+    font-weight: 800;
+    line-height: 1.12;
     text-wrap: balance;
-    letter-spacing: -0.011em;
+    letter-spacing: -0.022em;
   }
 
   /* Long-form explanation is the product. Tight leading on a 900-word

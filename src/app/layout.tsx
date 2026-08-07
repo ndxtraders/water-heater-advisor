@@ -1,6 +1,23 @@
 import type { Metadata } from "next";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 
 import "./globals.css";
+
+// Self-hosted at build time by next/font, so there is no runtime request to
+// Google and no layout shift. Jakarta only carries the weights headings
+// actually use.
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["700", "800"],
+  variable: "--font-jakarta",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
@@ -26,7 +43,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className={`h-full ${jakarta.variable} ${inter.variable}`}>
       <body className="flex min-h-full flex-col">
         <a
           href="#main"

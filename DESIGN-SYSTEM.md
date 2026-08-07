@@ -42,20 +42,49 @@ build and expensive to fake.
 
 ## 2. Visual register
 
-**Chosen: independent reviewer.** Editorial typography, wide measure, generous
-whitespace, restrained color, comparison tables treated as first-class design
-objects rather than afterthoughts.
+**Modern local-service, with an independent editorial spine.**
 
-Rejected alternatives, and why:
+### What changed from v1, and why
 
-| Register | Why not |
+v1 was set as an *independent reviewer* — serif headings, warm cream paper, a
+copper accent, near-flat surfaces, restrained everything. The reasoning was that
+looking unlike a contractor site would signal independence.
+
+It signalled the wrong thing. The output read as an editorial publication, or
+frankly as an AI company's marketing page, rather than as a tool a homeowner uses
+to make a decision. The register was *correct in theory and wrong in the room*.
+
+Corrected by studying a well-built local plumbing site (J. Hart Plumbing,
+Sonora). The instructive finding: **its palette was almost identical to ours** —
+Baltic Blue `#0B5FA6` against our `#1a57ad`, Flag Red `#C71F2D` against our
+`#c2181d`. Hue was never the problem. The difference was entirely in typography
+and surface treatment.
+
+### Adopted
+
+| Pattern | Why it earns its place |
 |---|---|
-| Precise technical tool (Stripe/Linear) | The quiz and calculators would look excellent. The homeowner would not. A 58-year-old in Modesto whose tank just failed at 6am is not the audience for a dense monospace grid. |
-| Warm homeowner guide | Lowest bounce risk on the emergency funnel, but warmth reads as marketing. It quietly undercuts the independence claim, which is the only defensible asset here. |
+| **Heavy geometric sans headings** (Plus Jakarta Sans, 800) | The single biggest fix. The serif was doing most of the "editorial publication" work. |
+| **Dark navy band sections** | v1 had no arrival and no rhythm — every section the same weight. Dark bands mark the moments that matter. |
+| **Tinted light sections** (`#eff7ff`) rather than neutral grey | Blue-tinted surfaces read as a designed system; flat grey reads as unstyled. |
+| **Cards with radius, shadow and a hover lift** | v1's near-flat cards on flat ground felt like a document, not a tool. |
+| **Icon chips** in tinted rounded squares | Gives each card an anchor and a scan point. |
+| **Pill badge eyebrows** | More presence than bare uppercase type, and somewhere for an icon to live. |
+| **Short accent rule under section headings** | Cheap, distinctive, gives every heading a consistent finish. |
+| **Trust bar** under the hero | Excellent device. See below for the content swap. |
 
-The one real cost of the reviewer register is that it can feel cool to a panicked
-homeowner. That is handled structurally rather than stylistically — see
-`EmergencyBar` in §7. The emergency path gets urgency; the educational pages
+### Deliberately not adopted
+
+| Pattern | Why not |
+|---|---|
+| **Red as the CTA colour** | Red is the contractor tell. Kept for emergency and "not a fit" only — see §3. |
+| **`animate-pulse-subtle` on CTAs** | Pure urgency persuasion. The whole thesis is that this site does not do that. |
+| **Testimonials, star ratings, review counts** | Not a service business. Also a CSLB problem. |
+| **Hero photography of crew and vans** | There is no crew. Showing one implies we perform the work. |
+| **Trust bar *content*** | "Family-Owned Since 1984 · Licensed & Insured · Same-Day Service" would be a lie here. The device is kept, the claims are swapped for ours: *we do not install anything · every figure sourced and dated · one installer, not four · recommendation before contact details.* Each is falsifiable, and each is something no plumber's site can say. |
+
+The emergency funnel is still handled structurally rather than stylistically —
+see `EmergencyBar` in §7. The emergency path gets urgency; educational pages
 never do.
 
 ---
@@ -160,19 +189,21 @@ go muddy against the copper.
 ### Stack
 
 ```
---font-heading: ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif
---font-sans:    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif
---font-mono:    ui-mono, ui-monospace, "SF Mono", Menlo, monospace
+--font-heading: Plus Jakarta Sans, 800   (self-hosted via next/font)
+--font-sans:    Inter                    (self-hosted via next/font)
+--font-mono:    ui-monospace, "SF Mono", Menlo, monospace
 ```
 
-**Serif headings, sans body.** The serif is what separates this from every
-contractor site in the SERP at a glance — those are uniformly geometric sans.
-Serif reads editorial, considered, published.
+**Heavy geometric sans headings, Inter body.** Headings run at `font-weight: 800`
+with `letter-spacing: -0.022em` and `line-height: 1.12`.
 
-System stacks rather than webfonts, deliberately: zero network requests, zero
-layout shift, zero build-time font fetch, and `ui-serif` resolves to genuinely
-good faces on the platforms that matter (New York on Apple, Georgia elsewhere).
-Swapping in Source Serif 4 later is a one-line change if it earns its ~40KB.
+v1 used a serif on the theory that it would separate the site from the uniformly
+geometric-sans contractor pages in the SERP. It did — in the wrong direction. It
+read as a magazine rather than as a decision tool. **The independence comes from
+what the page says and from the sourcing UI, not from the typeface.**
+
+Self-hosted at build time by `next/font`, so there is no runtime request to
+Google and no layout shift. Jakarta ships only the two weights headings use.
 
 Monospace is reserved for numbers that need to align — cost tables, GPM figures,
 model numbers. Tabular figures in cost breakdowns are not optional; misaligned
@@ -283,6 +314,20 @@ Re-measured after the red/white/blue repalette:
 | `--verdict-fit` on its bg | `#106f4c` | 5.58 | ✅ |
 | `--verdict-unfit` on its bg | `#c2181d` | 5.47 | ✅ |
 | `--status-warn` on its bg | `#9d5d03` | 4.70 | ✅ |
+
+On-dark pairs, added with the dark band sections. The first pass failed again:
+`--flag-red` measured **2.91:1** on navy-deep as the hero highlight and
+**2.32:1** as trust-bar icons, both under even the 3:1 large-text and UI floor.
+Hence `--flag-red-light`.
+
+| Pair | Hex | Ratio | |
+|---|---|---|---|
+| White on `--navy-deep` | `#071831` | 17.76 | ✅ |
+| `--flag-red-light` on `--navy-deep` (hero) | `#ef675c` | 5.71 | ✅ |
+| `--flag-red-light` on `--navy` (trust icons) | `#ef675c` | 4.56 | ✅ |
+| `--ink` on `--tint` | `#eff7ff` | 15.18 | ✅ |
+| `--muted-foreground` on `--tint` | | 6.57 | ✅ |
+| `--blue` on `--tint` (eyebrow pill) | | 6.42 | ✅ |
 
 Re-measure whenever a colour token moves. A stated floor that is never measured
 is decoration.

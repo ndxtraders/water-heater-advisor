@@ -80,7 +80,7 @@ export default function NavienPage() {
         </Container>
       </Section>
 
-      <Section tone="muted">
+      <Section tone="tint">
         <Container width="narrow">
           <SectionHeading
             title="What we have verified, and what we have not"

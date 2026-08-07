@@ -3,7 +3,7 @@ import type { ComponentProps, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "secondary" | "ghost" | "emergency";
+type Variant = "primary" | "secondary" | "ghost" | "emergency" | "onDark";
 type Size = "md" | "lg";
 
 /**
@@ -20,6 +20,10 @@ const VARIANTS: Record<Variant, string> = {
   secondary:
     "bg-transparent text-foreground border border-input hover:bg-muted active:translate-y-px",
   ghost: "bg-transparent text-muted-foreground hover:text-foreground hover:bg-muted",
+  // Secondary action sitting on a navy band. Outlined rather than filled so the
+  // primary CTA keeps its status as the only solid button in view.
+  onDark:
+    "bg-white/10 text-white border border-white/25 hover:bg-white/20 active:translate-y-px backdrop-blur-sm",
   // The only place urgency styling is permitted anywhere in the system.
   emergency:
     "bg-verdict-unfit text-white hover:brightness-110 active:translate-y-px shadow-xs",

@@ -98,7 +98,7 @@ export default function TankVsTanklessPage() {
         </Container>
       </Section>
 
-      <Section tone="muted" className="py-16">
+      <Section tone="tint" className="py-16">
         <Container width="narrow">
           <Prose>
             <h2>The number that decides it</h2>

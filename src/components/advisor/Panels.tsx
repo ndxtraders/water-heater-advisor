@@ -1,7 +1,8 @@
-import { ArrowRight, Phone, TriangleAlert } from "lucide-react";
+import { ArrowRight, Phone, TriangleAlert, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { IconChip } from "@/components/common/Layout";
 import { cn } from "@/lib/utils";
 
 /**
@@ -16,12 +17,14 @@ import { cn } from "@/lib/utils";
 export function TechnologyCard({
   name,
   href,
+  icon,
   summary,
   fits,
   cautions,
 }: {
   name: string;
   href: string;
+  icon?: LucideIcon;
   summary: string;
   fits: string[];
   cautions: string[];
@@ -31,13 +34,18 @@ export function TechnologyCard({
     // `after:inset-0` overlay to make the whole card clickable, and without a
     // positioned ancestor that overlay escapes to the nearest one and covers
     // the page.
-    <article className="group relative flex flex-col rounded-lg border border-border bg-card p-6 transition-colors hover:border-blue/40">
-      <h3 className="text-xl">
+    <article className="group relative flex flex-col rounded-2xl border border-border bg-card p-6 shadow-[0_1px_3px_rgba(11,33,67,0.06)] transition-[transform,box-shadow] duration-150 ease-out hover:-translate-y-1 hover:shadow-[0_12px_28px_-8px_rgba(11,33,67,0.16)]">
+      {icon ? <IconChip icon={icon} /> : null}
+
+      <h3 className={cn("text-xl", icon && "mt-5")}>
         <Link href={href} className="after:absolute after:inset-0">
           {name}
         </Link>
       </h3>
-      <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted-foreground">
+      {/* Short rule under the card title, matching the section headings. */}
+      <div aria-hidden className="mt-2 h-1 w-10 rounded-full bg-blue" />
+
+      <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted-foreground">
         {summary}
       </p>
 
@@ -46,7 +54,7 @@ export function TechnologyCard({
         <TechList heading="Think twice when" items={cautions} tone="unfit" />
       </div>
 
-      <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-blue">
+      <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-blue">
         Read the full guide
         <ArrowRight
           aria-hidden

@@ -89,7 +89,7 @@ export default function ModestoPage() {
       </Section>
 
       {/* Local conditions */}
-      <Section tone="muted">
+      <Section tone="tint">
         <Container width="narrow">
           <SectionHeading title="Local conditions that change the recommendation" />
           <LocalDataPanel
@@ -194,7 +194,7 @@ export default function ModestoPage() {
         </Container>
       </Section>
 
-      <Section tone="muted">
+      <Section tone="tint">
         <Container width="narrow">
           <Prose>
             <h2>Getting a permit in Modesto</h2>
