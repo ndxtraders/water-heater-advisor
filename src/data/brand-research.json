@@ -1,0 +1,2680 @@
+{
+  "meta": {
+    "title": "Water Heater Advisor — Brand and Product Selection Research",
+    "checked_at": "2026-08-07",
+    "schema_version": "1.0",
+    "market_focus": "Modesto, California / Central Valley",
+    "evidence_labels": [
+      "verified_fact",
+      "manufacturer_claim",
+      "reasonable_inference",
+      "market_observation",
+      "unverified"
+    ],
+    "rules": [
+      "Technical feasibility outranks brand preference.",
+      "Do not size tankless from headline maximum GPM. Use verified flow at design temperature rise.",
+      "Do not publish blanket warranty terms. Store model/line, component, use case, recirculation condition, installation condition, source and checked date.",
+      "Do not call a contractor authorized/certified/trained unless that exact status is supported by the manufacturer's current directory or program record.",
+      "Do not use budget to select a brand unless current local price evidence exists.",
+      "Unknown is preferable to invented precision."
+    ],
+    "important_corrections": [
+      "Navien is no longer tankless-only in the U.S. residential market; the NWP500 heat-pump line is current.",
+      "Rinnai currently sells gas tankless and electric heat-pump water heaters in the U.S.; its FAQ says it does not make electric tankless water heaters.",
+      "Noritz has enough current residential and Central Valley relevance to be added to the quiz's gas-tankless brand preferences.",
+      "Bradford White technically has current electric tankless products, but the current TEF/TET KwickShot products are point-of-use/fixed-fixture products, not a clean whole-home peer to gas tankless.",
+      "Rheem and A. O. Smith both have current 120V heat-pump options that can change conversion feasibility."
+    ]
+  },
+  "brand_technology_matrix": [
+    {
+      "brand": "navien",
+      "display_name": "Navien",
+      "technologies": {
+        "gas-tankless": true,
+        "electric-tankless": false,
+        "gas-tank": false,
+        "electric-tank": false,
+        "heat-pump": true
+      },
+      "primary_strength": "Condensing gas tankless plus a current high-efficiency NWP500 heat-pump line; strong recirculation/tankless feature depth.",
+      "notes": "Current U.S. residential water-heater catalog lists multiple gas tankless families and NWP500 HPWH. No current residential storage-tank family found.",
+      "source_urls": [
+        "https://www.navieninc.com/residential/water-heaters",
+        "https://www.navieninc.com/series/nwp500"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "rinnai",
+      "display_name": "Rinnai",
+      "technologies": {
+        "gas-tankless": true,
+        "electric-tankless": false,
+        "gas-tank": false,
+        "electric-tank": false,
+        "heat-pump": true
+      },
+      "primary_strength": "Broad gas-tankless portfolio, current RX/RXP platform, strong recirculation options, and current REHP heat-pump line.",
+      "notes": "Rinnai's own FAQ states that it does not make an electric tankless model. Current U.S. residential site shows tankless and REHP heat-pump water heaters.",
+      "source_urls": [
+        "https://www.rinnai.us/residential",
+        "https://www.rinnai.us/residential/faq",
+        "https://www.rinnai.us/residential/tankless-water-heaters"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "rheem",
+      "display_name": "Rheem",
+      "technologies": {
+        "gas-tankless": true,
+        "electric-tankless": true,
+        "gas-tank": true,
+        "electric-tank": true,
+        "heat-pump": true
+      },
+      "primary_strength": "The broadest technology coverage in the priority set, including 120V and 240V heat-pump options and whole-home/point-of-use electric tankless.",
+      "notes": "Current Rheem residential water-heating catalog contains tank, gas tankless, electric tankless and heat-pump products.",
+      "source_urls": [
+        "https://www.rheem.com/products/residential/water-heating/tank/",
+        "https://www.rheem.com/products/residential/water-heating/tankless/",
+        "https://www.rheem.com/heatpumpwaterheaters/"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "ao-smith",
+      "display_name": "A. O. Smith",
+      "technologies": {
+        "gas-tankless": true,
+        "electric-tankless": true,
+        "gas-tank": true,
+        "electric-tank": true,
+        "heat-pump": true
+      },
+      "primary_strength": "Very broad technology coverage, Adapt tankless, 120V Voltex HPWH, and a new Voltex X outdoor split HPWH.",
+      "notes": "Current residential catalog explicitly lists gas/electric tank, gas/electric tankless and hybrid HPWH.",
+      "source_urls": [
+        "https://www.hotwater.com/residential/water-heaters/",
+        "https://www.hotwater.com/newsroom/voltex-x-outdoor-split-heat-pump-water-heater.html"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "noritz",
+      "display_name": "Noritz",
+      "technologies": {
+        "gas-tankless": true,
+        "electric-tankless": false,
+        "gas-tank": false,
+        "electric-tank": false,
+        "heat-pump": false
+      },
+      "primary_strength": "Gas tankless specialization, especially tank-to-tankless retrofit and recirculation applications.",
+      "notes": "Current residential focus is gas tankless. EZ Pro/EZTR are explicitly designed around tank replacement; NRCR Pro has integrated recirculation.",
+      "source_urls": [
+        "https://noritz.com/ez-series",
+        "https://noritz.com/nrcr/",
+        "https://noritz.com/tankless-groups/"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "bradford-white",
+      "display_name": "Bradford White",
+      "technologies": {
+        "gas-tankless": true,
+        "electric-tankless": true,
+        "gas-tank": true,
+        "electric-tank": true,
+        "heat-pump": true
+      },
+      "primary_strength": "Professional/wholesale channel, strong storage presence, AeroTherm G2 HPWH, and gas tankless.",
+      "notes": "Current electric tankless KwickShot TEF/TET products are primarily point-of-use/fixed-fixture. The older broader ES/EFC/EFT residential electric-tankless family is discontinued.",
+      "source_urls": [
+        "https://www.bradfordwhite.com/explore-our-residential-products/",
+        "https://www.bradfordwhite.com/tankless-water-heater/",
+        "https://forthepro.bradfordwhite.com/our-products/usa-residential-tankless-electric/kwickshot-tankless-electric-es-efc-eft-discontinued/"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact",
+      "technology_scope_notes": {
+        "electric-tankless": "Current KwickShot TEF/TET products are point-of-use/fixed-fixture products. The broader ES/EFC/EFT residential electric-tankless family is discontinued. Treat electric tankless as not applicable to the current whole-home quiz."
+      }
+    }
+  ],
+  "product_lines": [
+    {
+      "brand": "navien",
+      "technology": "gas-tankless",
+      "line": "NPE-A2",
+      "models": [
+        "NPE-180A2",
+        "NPE-210A2",
+        "NPE-240A2"
+      ],
+      "capacity": {
+        "gpm_reference": {
+          "NPE-240A2": {
+            "35F_rise": 11.2,
+            "45F_rise": 8.7,
+            "67F_rise": 5.6
+          }
+        },
+        "gallons": null,
+        "first_hour_rating": null
+      },
+      "requires": {
+        "gas_btu_max": 199900,
+        "gas_line_min_inches": null,
+        "gas_line_note": "Manufacturer permits 1/2-inch gas pipe when properly sized; pipe length, pressure drop and total load must be calculated.",
+        "vent_type": "2-inch or 3-inch approved PVC/CPVC/polypropylene/stainless; NPE-2 FAQ gives 75 ft max for 2-inch and 150 ft max for 3-inch before elbow deductions.",
+        "electrical": "120V",
+        "min_air_volume_cuft": null,
+        "condensate": "Condensing unit; condensate disposal required per installation manual/local code.",
+        "outdoor_model_available": true
+      },
+      "recirculation": "NPE-A2 includes ComfortFlow buffer tank + recirculation pump.",
+      "price_band_equipment_usd": null,
+      "notes": "High-value engine rule: uncontrolled recirculation materially reduces residential warranty coverage.",
+      "source_urls": [
+        "https://www.navieninc.com/products/npe-240a2",
+        "https://www.navieninc.com/series/npe-a2/npe-a2-series-faqs"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "navien",
+      "technology": "gas-tankless",
+      "line": "NPE-S2",
+      "models": [
+        "NPE-180S2",
+        "NPE-210S2",
+        "NPE-240S2"
+      ],
+      "capacity": {
+        "gpm_reference": null,
+        "gallons": null,
+        "first_hour_rating": null
+      },
+      "requires": {
+        "gas_btu_max": null,
+        "gas_line_min_inches": null,
+        "vent_type": null,
+        "electrical": "120V [line-level exact amperage NEEDS VERIFICATION]",
+        "min_air_volume_cuft": null,
+        "condensate": "Condensing",
+        "outdoor_model_available": true
+      },
+      "price_band_equipment_usd": null,
+      "notes": "Current catalog family verified. Exact line-wide flow curves and installation limits should be ingested model-by-model before auto-recommending specific SKUs.",
+      "source_urls": [
+        "https://www.navieninc.com/residential/tankless-water-heaters",
+        "https://www.navieninc.com/series/npe-s2/npe-s2-series-faqs"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "navien",
+      "technology": "gas-tankless",
+      "line": "NHW / NPN current families",
+      "models": [
+        "NHW-AI",
+        "NHW-AE",
+        "NHW-SU",
+        "NHW-SE",
+        "NPN-U",
+        "NPN-E"
+      ],
+      "capacity": {
+        "gpm_reference": null,
+        "gallons": null,
+        "first_hour_rating": null
+      },
+      "requires": {},
+      "price_band_equipment_usd": null,
+      "notes": "Current catalog presence verified. Technical ingestion is incomplete; do not emit model-level recommendations from this record yet.",
+      "source_urls": [
+        "https://www.navieninc.com/residential/water-heaters"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "navien",
+      "technology": "heat-pump",
+      "line": "NWP500",
+      "models": [
+        "NWP500-50",
+        "NWP500-65",
+        "NWP500-80"
+      ],
+      "capacity": {
+        "gpm": null,
+        "gallons_nominal": [
+          50,
+          65,
+          80
+        ],
+        "first_hour_rating_gal": {
+          "50": 65,
+          "65": 80,
+          "80": 85
+        }
+      },
+      "requires": {
+        "gas_btu": null,
+        "gas_line_min_inches": null,
+        "vent_type": "Optional 8-inch ducting; unvented installation requires at least 450 cu ft.",
+        "electrical": "208-240V, 30A circuit",
+        "min_air_volume_cuft": 450,
+        "condensate": "3/4-inch condensate drain",
+        "outdoor_model_available": false
+      },
+      "price_band_equipment_usd": null,
+      "notes": "NWP500-65 verified at 63.2 gal rated, 4.03 UEF, 80 gal FHR. Maximum efficiency requires surrounding air about 40F or warmer; electric/high-demand mode can cover colder conditions.",
+      "source_urls": [
+        "https://www.navieninc.com/series/nwp500",
+        "https://www.navieninc.com/products/nwp500-65"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "rinnai",
+      "technology": "gas-tankless",
+      "line": "SENSEI RX / RXP",
+      "models": [
+        "RX199iN",
+        "RXP199iN"
+      ],
+      "capacity": {
+        "gpm_headline_max": 11.1,
+        "gpm_at_120F_setpoint_by_inlet_temp_RX_RXP199": {
+          "35F": 4.6,
+          "37F": 4.7,
+          "42F": 5.0,
+          "47F": 5.3,
+          "52F": 5.7,
+          "57F": 6.2,
+          "62F": 6.7,
+          "67F": 7.3,
+          "72F": 8.1,
+          "77F": 9.0
+        },
+        "gallons": null,
+        "first_hour_rating": null
+      },
+      "requires": {
+        "gas_btu_max": 199000,
+        "gas_line_min_inches": null,
+        "vent_type": "Condensing; exact vent route/length must be checked against RX/RXP manual.",
+        "electrical": "120V [exact current by model NEEDS VERIFICATION]",
+        "min_air_volume_cuft": null,
+        "condensate": "Required",
+        "outdoor_model_available": true
+      },
+      "recirculation": "RX is recirculation-capable; RXP adds built-in pump/Smart-Circ.",
+      "price_band_equipment_usd": [
+        1500,
+        2000
+      ],
+      "price_confidence": "moderate; current market observation, not manufacturer MSRP",
+      "notes": "Do not use 11.1 GPM as sizing capacity. The manufacturer ground-water sizing guide provides actual flow at inlet temperature and 120F setpoint.",
+      "source_urls": [
+        "https://www.rinnai.us/residential/product-detail/rx199in",
+        "https://www.rinnai.us/residential/tankless-water-heaters"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "rinnai",
+      "technology": "gas-tankless",
+      "line": "RE / REP",
+      "models": [
+        "RE140",
+        "RE160",
+        "RE180",
+        "RE199",
+        "REP160",
+        "REP199"
+      ],
+      "capacity": {
+        "gpm_reference": null,
+        "gallons": null,
+        "first_hour_rating": null
+      },
+      "requires": {
+        "vent_type": "Non-condensing; use listed non-condensing vent system/manual.",
+        "outdoor_model_available": true
+      },
+      "recirculation": "REP includes built-in pump; RE does not.",
+      "price_band_equipment_usd": null,
+      "notes": "Current line verified. Exact model flow curves should be ingested before model-level quiz output.",
+      "source_urls": [
+        "https://www.rinnai.us/residential/re-model-series",
+        "https://www.rinnai.us/residential/rep-model-series"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "rinnai",
+      "technology": "gas-tankless",
+      "line": "RUCS / RUS",
+      "models": [
+        "RUCS family",
+        "RUS family"
+      ],
+      "capacity": {
+        "gpm_reference": null
+      },
+      "requires": {},
+      "price_band_equipment_usd": null,
+      "notes": "Still shown as current condensing families on Rinnai's comparison page. Full model-by-model technical ingestion not completed.",
+      "source_urls": [
+        "https://www.rinnai.us/residential/tankless-water-heaters"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "rinnai",
+      "technology": "heat-pump",
+      "line": "REHP",
+      "models": [
+        "REHP50",
+        "REHP65",
+        "REHP80"
+      ],
+      "capacity": {
+        "gallons_nominal": [
+          50,
+          65,
+          80
+        ],
+        "gallons_rated": [
+          46,
+          61,
+          74
+        ],
+        "first_hour_rating_gal": {
+          "50": 73,
+          "65": 80,
+          "80": 91
+        },
+        "recovery_gph_at_90F_rise": 27.5
+      },
+      "requires": {
+        "electrical": "208/240V single phase; 30A breaker; max current 21.5A on current spec sheet.",
+        "min_air_volume_cuft": null,
+        "condensate": "3/4-inch condensate connection",
+        "outdoor_model_available": false,
+        "ambient_heat_pump_range_f": null,
+        "ambient_range_source_note": "Current Rinnai public product material and a retrieved spec sheet differed slightly on the upper ambient limit (109F vs 107F). Use the exact installed model's current installation manual rather than a brand-wide number."
+      },
+      "price_band_equipment_usd": null,
+      "notes": "Current line UEF is about 3.75/3.90/4.00 for 50/65/80. Manufacturer directs buyers to a PRO for pricing.",
+      "source_urls": [
+        "https://www.rinnai.us/residential/product-detail/rehp50",
+        "https://www.rinnai.us/residential/product-detail/rehp65",
+        "https://www.rinnai.us/professional/product-detail/rehp80"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "rheem",
+      "technology": "gas-tankless",
+      "line": "IKONIC S / SR",
+      "models": [
+        "IKONIC S family",
+        "IKONIC SR family"
+      ],
+      "capacity": {
+        "headline_gpm_range": [
+          8.4,
+          11.2
+        ]
+      },
+      "requires": {
+        "vent_type": "Condensing; exact model vent limits must be checked.",
+        "outdoor_model_available": true
+      },
+      "recirculation": "SR models include a built-in recirculation pump; S models do not.",
+      "price_band_equipment_usd": null,
+      "notes": "Rheem lists .96 UEF and 8.4-11.2 GPM headline range. Use design-rise tables rather than headline GPM for sizing.",
+      "source_urls": [
+        "https://www.rheem.com/products/residential/water-heating/tankless/"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "rheem",
+      "technology": "gas-tankless",
+      "line": "RTG / RTG-R",
+      "models": [
+        "RTG family",
+        "RTG-R family"
+      ],
+      "capacity": {
+        "headline_gpm_range": [
+          7.0,
+          9.5
+        ]
+      },
+      "requires": {
+        "vent_type": "Non-condensing; exact vent material/length by model",
+        "outdoor_model_available": true
+      },
+      "recirculation": "RTG-R current page describes built-in recirculation pump.",
+      "price_band_equipment_usd": null,
+      "source_urls": [
+        "https://www.rheem.com/products/residential/water-heating/tankless/"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "rheem",
+      "technology": "electric-tankless",
+      "line": "Professional Classic RTEX",
+      "models": [
+        "RTEX-06T",
+        "RTEX-08",
+        "RTEX-13",
+        "RTEX-24",
+        "RTEX-27"
+      ],
+      "capacity": {
+        "headline_gpm_examples": {
+          "RTEX-08": 1.4,
+          "RTEX-13": 2.3,
+          "RTEX-24": 4.3,
+          "RTEX-27": 4.9
+        }
+      },
+      "requires": {
+        "electrical": "Model-specific dedicated high-amperage circuits; panel/service capacity is a hard feasibility gate.",
+        "outdoor_model_available": false
+      },
+      "price_band_equipment_usd": null,
+      "notes": "Do not add whole-home electric tankless to the current four-technology engine until electrical service/load questions are added.",
+      "source_urls": [
+        "https://www.rheem.com/products/residential/water-heating/tankless/"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "rheem",
+      "technology": "heat-pump",
+      "line": "ProTerra Plug-In 120V Shared Circuit with HydroBoost",
+      "models": [
+        "40 gal",
+        "50 gal",
+        "65 gal",
+        "80 gal"
+      ],
+      "capacity": {
+        "gallons_nominal": [
+          40,
+          50,
+          65,
+          80
+        ],
+        "first_hour_rating_gal": {
+          "40": 45,
+          "50": 55,
+          "65": 63,
+          "80": 84
+        },
+        "uef": {
+          "40": 2.8,
+          "50": 3.0,
+          "65": 3.33,
+          "80": 3.46
+        }
+      },
+      "requires": {
+        "electrical": "120V, 15A shared circuit",
+        "ambient_range_f": [
+          37,
+          145
+        ],
+        "condensate": "Required",
+        "outdoor_model_available": false
+      },
+      "price_band_equipment_usd": [
+        1900,
+        2800
+      ],
+      "price_confidence": "moderate; public Home Depot observation for 80-gal 120V family, varies with promotion",
+      "notes": "Strong conversion-fit signal when a homeowner wants HPWH but wants to avoid adding a 240V circuit. Must still pass FHR/demand test.",
+      "source_urls": [
+        "https://www.rheem.com/product/rheem-proterra-plug-in-heat-pump-water-heater-with-hydroboost-120v-shared-circuit-proph40-t0-rh120-m/",
+        "https://www.homedepot.com/p/317100803"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "rheem",
+      "technology": "heat-pump",
+      "line": "ProTerra 240V Hybrid",
+      "models": [
+        "40 gal",
+        "50 gal",
+        "65 gal",
+        "80 gal"
+      ],
+      "capacity": {
+        "gallons_nominal": [
+          40,
+          50,
+          65,
+          80
+        ]
+      },
+      "requires": {
+        "electrical": "240V dedicated circuit; current product family includes 15A and 30A configurations by model.",
+        "condensate": "Required"
+      },
+      "price_band_equipment_usd": [
+        1900,
+        2700
+      ],
+      "price_confidence": "moderate; current public retail observations, not manufacturer MSRP",
+      "source_urls": [
+        "https://www.rheem.com/heatpumpwaterheaters/",
+        "https://www.homedepot.com/b/Plumbing-Water-Heaters-Tank-Water-Heaters/Rheem/Residential/80-gal/N-5yc1vZ2fkoqepZ7i0Z1z1cmtuZ1z1t3om"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "market_observation"
+    },
+    {
+      "brand": "rheem",
+      "technology": "gas-tank",
+      "line": "Residential tank families",
+      "models": [
+        "Performance/Professional families; exact SKU selected by capacity, venting, NOx and channel"
+      ],
+      "capacity": {
+        "gallons_range": [
+          30,
+          100
+        ]
+      },
+      "requires": {},
+      "price_band_equipment_usd": null,
+      "notes": "Current category verified. Exact Modesto selection must account for applicable California NOx requirements and vent type.",
+      "source_urls": [
+        "https://www.rheem.com/products/residential/water-heating/tank/"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "rheem",
+      "technology": "electric-tank",
+      "line": "Residential electric tank families / Marathon",
+      "models": [
+        "Marathon",
+        "Prestige Smart Electric",
+        "other residential electric families"
+      ],
+      "capacity": {
+        "gallons_range": [
+          12,
+          105
+        ]
+      },
+      "requires": {},
+      "price_band_equipment_usd": null,
+      "source_urls": [
+        "https://www.rheem.com/products/residential/water-heating/tank/"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "ao-smith",
+      "technology": "gas-tankless",
+      "line": "Adapt+ Premium Condensing",
+      "models": [
+        "ATHR-160X3",
+        "ATHR-180X3",
+        "ATHR-199X3"
+      ],
+      "capacity": {
+        "gpm_reference": {
+          "ATHR-199X3_at_67F_rise": 5.9
+        },
+        "headline_max_gpm_ATHR199": 10.5
+      },
+      "requires": {
+        "gas_btu_max": 199000,
+        "gas_btu_min": 9000,
+        "gas_line_min_inches": null,
+        "vent_type": "2-inch up to 75 ft; 3-inch up to 150 ft on ATHR-199X3 product page",
+        "electrical": "120V, 5A",
+        "condensate": "Required",
+        "outdoor_model_available": true
+      },
+      "recirculation": "Adapt+ includes built-in control/recirculation functionality; exact pump configuration by model.",
+      "price_band_equipment_usd": null,
+      "notes": "X3 scale-prevention benefit is a manufacturer claim. Store that evidence label if used as a selection factor.",
+      "source_urls": [
+        "https://www.hotwater.com/products/tankless-adapt-premium-condensing-adapt/athr-199x3-100/100374812.html"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "ao-smith",
+      "technology": "gas-tankless",
+      "line": "Adapt SC / NC",
+      "models": [
+        "Adapt SC 160/180/199 families",
+        "Adapt NC families"
+      ],
+      "capacity": {
+        "gpm_reference": null
+      },
+      "requires": {
+        "outdoor_model_available": true
+      },
+      "price_band_equipment_usd": null,
+      "notes": "Current catalog presence verified. Exact model curves and NC records should be ingested before SKU-level recommendations.",
+      "source_urls": [
+        "https://www.hotwater.com/residential/water-heaters/gas-tankless/",
+        "https://www.hotwater.com/products/tankless-mid-efficiency-condensing-adapt/atm-180m-n-100/100384229.html"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "ao-smith",
+      "technology": "electric-tankless",
+      "line": "ProLine Residential Electric Tankless",
+      "models": [
+        "12-32 kW families"
+      ],
+      "capacity": {
+        "headline_gpm_range": [
+          2,
+          5
+        ]
+      },
+      "requires": {
+        "electrical": "Approximately 51A at smaller 12kW models up to about 135A at 32kW models per A.O. Smith category guidance; exact model wiring must be verified.",
+        "outdoor_model_available": false
+      },
+      "price_band_equipment_usd": null,
+      "notes": "Electrical service capacity is a hard gate. Do not present as a standard whole-home alternative without panel/load inputs.",
+      "source_urls": [
+        "https://www.hotwater.com/residential/water-heaters/electric-tankless/",
+        "https://www.hotwater.com/info-center/electric-water-heaters/electric-tankless.html"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "ao-smith",
+      "technology": "heat-pump",
+      "line": "Voltex 120V Plug-In",
+      "models": [
+        "HPTV-50",
+        "HPTV-66",
+        "HPTV-80"
+      ],
+      "capacity": {
+        "gallons_nominal": [
+          50,
+          66,
+          80
+        ],
+        "first_hour_rating_gal": {
+          "50": 52,
+          "66": 76,
+          "80": 93
+        },
+        "uef": {
+          "50": 3.0,
+          "66": 3.2,
+          "80": 3.0
+        }
+      },
+      "requires": {
+        "electrical": "120V, 15A shared circuit",
+        "condensate": "Required",
+        "outdoor_model_available": false
+      },
+      "price_band_equipment_usd": null,
+      "notes": "Strong conversion option when adding a 240V circuit is undesirable, provided FHR/demand is adequate. Manufacturer sizing material explicitly upsizes relative to gas-tank FHR.",
+      "source_urls": [
+        "https://www.hotwater.com/products/HPTV-66-SG210.html"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "ao-smith",
+      "technology": "heat-pump",
+      "line": "Voltex 240V / premium unitary families",
+      "models": [
+        "current 240V Voltex families"
+      ],
+      "capacity": {
+        "gallons_range": [
+          50,
+          80
+        ]
+      },
+      "requires": {
+        "electrical": "240V dedicated; exact amperage by model",
+        "condensate": "Required"
+      },
+      "price_band_equipment_usd": [
+        1200,
+        3500
+      ],
+      "price_confidence": "moderate; manufacturer-published broad equipment positioning from current Voltex guidance, model/channel dependent",
+      "notes": "Use exact current model before publishing a price.",
+      "source_urls": [
+        "https://www.hotwater.com/residential/water-heaters/heat-pump-water-heaters/"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "market_observation"
+    },
+    {
+      "brand": "ao-smith",
+      "technology": "heat-pump",
+      "line": "Voltex X Outdoor Split",
+      "models": [
+        "Voltex X"
+      ],
+      "capacity": {
+        "gallons": null,
+        "first_hour_rating": null
+      },
+      "requires": {
+        "electrical": null,
+        "min_air_volume_cuft": null,
+        "condensate": null,
+        "outdoor_heat_pump": true,
+        "outdoor_low_ambient_f": -25
+      },
+      "price_band_equipment_usd": null,
+      "notes": "Released April 2026. Outdoor CO2 split architecture is a high-value selection signal when indoor air volume/heat extraction is a constraint. Exact tank sizes, electrical and installed cost NEED VERIFICATION before automated recommendation.",
+      "source_urls": [
+        "https://www.hotwater.com/newsroom/voltex-x-outdoor-split-heat-pump-water-heater.html"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "ao-smith",
+      "technology": "gas-tank",
+      "line": "ProLine Ultra-Low NOx atmospheric",
+      "models": [
+        "GUR-50 450",
+        "GUR-50 500",
+        "other ProLine ULN capacities"
+      ],
+      "capacity": {
+        "example": {
+          "model": "GUR-50 450",
+          "nominal_gallons": 50,
+          "btu": 40000,
+          "fhr_gal": 84,
+          "recovery_gph": 42
+        }
+      },
+      "requires": {
+        "vent_type": "Atmospheric/B-vent for this example; exact California model/NOx applicability by jurisdiction."
+      },
+      "price_band_equipment_usd": null,
+      "source_urls": [
+        "https://www.hotwater.com/products/ultra-low-nox-atmospheric-vent-proline/gur-50-450/100351415.html"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "ao-smith",
+      "technology": "electric-tank",
+      "line": "ProLine electric tank",
+      "models": [
+        "broad 0-75+ gallon residential families"
+      ],
+      "capacity": {
+        "gallons_range": [
+          0,
+          75
+        ]
+      },
+      "requires": {
+        "electrical": "Model-specific 120/240V and element size"
+      },
+      "price_band_equipment_usd": null,
+      "source_urls": [
+        "https://www.hotwater.com/residential/water-heaters/"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "noritz",
+      "technology": "gas-tankless",
+      "line": "EZ Pro",
+      "models": [
+        "EZ71DV",
+        "EZ98DV",
+        "EZ111DV"
+      ],
+      "capacity": {
+        "gpm_at_temp_rise": {
+          "EZ71": {
+            "30F": 9.0,
+            "40F": 7.7,
+            "45F": 6.9,
+            "50F": 6.2,
+            "60F": 5.2,
+            "70F": 4.4,
+            "80F": 3.9,
+            "90F": 3.4,
+            "100F": 3.1
+          },
+          "EZ98": {
+            "30F": 9.8,
+            "40F": 8.6,
+            "45F": 7.7,
+            "50F": 6.9,
+            "60F": 5.7,
+            "70F": 4.9,
+            "80F": 4.3,
+            "90F": 3.8,
+            "100F": 3.4
+          },
+          "EZ111": {
+            "30F": 11.1,
+            "40F": 9.8,
+            "45F": 8.7,
+            "50F": 7.8,
+            "60F": 6.5,
+            "70F": 5.6,
+            "80F": 4.9,
+            "90F": 4.4,
+            "100F": 3.9
+          }
+        }
+      },
+      "requires": {
+        "gas_btu_max": {
+          "EZ98": 180000,
+          "EZ111": 199900
+        },
+        "gas_line_min_inches": null,
+        "gas_line_note": "Manufacturer literature says compatible with 1/2-inch gas pipe subject to manual/sizing conditions.",
+        "vent_type": "2/3/4-inch PVC/CPVC and approved systems; flex-vent retrofit supported with specified kits.",
+        "electrical": "120VAC; current spec is under 4A for EZ Pro family",
+        "condensate": "1/2-inch NPT on current spec",
+        "outdoor_model_available": true
+      },
+      "price_band_equipment_usd": null,
+      "notes": "One of the strongest retrofit-specific lines: top-mounted water connections, field NG-to-LP conversion, indoor/outdoor configurations.",
+      "source_urls": [
+        "https://noritz.com/ez-series",
+        "https://noritz.com/products/eztr50",
+        "https://noritz.com/products/eztr75"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "noritz",
+      "technology": "gas-tankless",
+      "line": "EZTR Bundles",
+      "models": [
+        "EZTR40",
+        "EZTR50",
+        "EZTR75"
+      ],
+      "capacity": {
+        "replacement_positioning": {
+          "EZTR40": "40-gal tank replacement bundle",
+          "EZTR50": "EZ98 bundle for 50-gal tank replacement",
+          "EZTR75": "EZ111 bundle for 75-gal tank replacement"
+        }
+      },
+      "requires": {},
+      "price_band_equipment_usd": null,
+      "notes": "Bundle includes heater plus specified vent/isolation hardware. Replacement positioning is manufacturer positioning, not a substitute for actual demand sizing.",
+      "source_urls": [
+        "https://noritz.com/products/eztr50",
+        "https://noritz.com/products/eztr75",
+        "https://help.noritz.com/index.php/knowledge-base/whats-the-difference-between-ez-and-eztr/"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "noritz",
+      "technology": "gas-tankless",
+      "line": "NRCR Pro",
+      "models": [
+        "NRCR111DV family"
+      ],
+      "capacity": {
+        "gpm_reference": null
+      },
+      "requires": {},
+      "recirculation": "Integrated pump; manufacturer states support for 1/2-inch loop up to 200 ft or 3/4-inch up to 500 ft, subject to installation requirements.",
+      "price_band_equipment_usd": null,
+      "notes": "Use as a recirculation-specific selection candidate rather than generic EZ alternative.",
+      "source_urls": [
+        "https://noritz.com/nrcr/",
+        "https://support.noritz.com/tankless-water-heaters-residential-nrcr-series-nrcr111dv-gq-c3260wxq-ff-us-ng"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "bradford-white",
+      "technology": "gas-tankless",
+      "line": "Infiniti GR / GS / K / L",
+      "models": [
+        "GR family",
+        "GS family",
+        "K family",
+        "L family"
+      ],
+      "capacity": {
+        "GR_199_example_gpm_at_rise": {
+          "40F": 9.7,
+          "50F": 7.8,
+          "60F": 6.5,
+          "70F": 5.6,
+          "80F": 4.9,
+          "90F": 4.3,
+          "100F": 3.9
+        }
+      },
+      "requires": {
+        "gas_btu_max": 199000,
+        "gas_line_min_inches": null,
+        "vent_type": "Model-specific; GR current spec supports condensing vent arrangements.",
+        "electrical": "120V",
+        "condensate": "Condensing GR/GS families require condensate management.",
+        "outdoor_model_available": true
+      },
+      "price_band_equipment_usd": null,
+      "notes": "Exact model family should be chosen from current catalog; GR current warranty/source records are stronger than generic brand claims.",
+      "source_urls": [
+        "https://www.bradfordwhite.com/tankless-water-heater/",
+        "https://docs.bradfordwhite.com/I%26O/238-54628-00_Current.pdf"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "bradford-white",
+      "technology": "electric-tankless",
+      "line": "KwickShot TEF / TET",
+      "models": [
+        "TEF current family",
+        "TET current family"
+      ],
+      "capacity": {
+        "scope": "point-of-use/fixed-fixture; model-specific sub-1 to low-flow applications"
+      },
+      "requires": {
+        "electrical": "120/208/240/277V depending model; current TET/TEF models are not a general whole-home equivalent."
+      },
+      "price_band_equipment_usd": null,
+      "notes": "Old ES/EFC/EFT residential electric-tankless line is discontinued. Do not treat current KwickShot POU products as a fifth whole-home technology in the quiz.",
+      "source_urls": [
+        "https://www.bradfordwhite.com/tankless-water-heater/",
+        "https://forthepro.bradfordwhite.com/our-products/usa-residential-tankless-electric/kwickshot-tankless-electric-es-efc-eft-discontinued/"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "bradford-white",
+      "technology": "heat-pump",
+      "line": "AeroTherm Series G2",
+      "models": [
+        "RE2HP50",
+        "RE2HP65",
+        "RE2HP80"
+      ],
+      "capacity": {
+        "gallons_nominal": [
+          50,
+          65,
+          80
+        ],
+        "first_hour_rating_gal": {
+          "50": 65,
+          "65": 82,
+          "80": 88
+        },
+        "uef": {
+          "50": 3.89,
+          "65": 4.2,
+          "80": 4.0
+        }
+      },
+      "requires": {
+        "electrical": "208/240V; 4/3 kW element configurations by model",
+        "ambient_heat_pump_range_f": [
+          37,
+          120
+        ],
+        "condensate": "Required",
+        "outdoor_model_available": false,
+        "clearance_note": "Current spec allows zero side/rear clearance; air-flow/ducting requirements still apply."
+      },
+      "price_band_equipment_usd": null,
+      "notes": "Warranty duration varies by exact model/suffix. Product catalog shows both 6- and 10-year variants; exact model lookup is mandatory.",
+      "source_urls": [
+        "https://forthepro.bradfordwhite.com/our-products/usa-residential-heat-pump/aerotherm-series-g2/",
+        "https://products.bradfordwhite.com/"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "bradford-white",
+      "technology": "gas-tank",
+      "line": "Defender / Ultra Low NOx / Power Vent residential families",
+      "models": [
+        "RG/RG2 families",
+        "URG power-vent families"
+      ],
+      "capacity": {
+        "gallons_examples": [
+          40,
+          50,
+          75
+        ],
+        "example_model": {
+          "RG240T6X": {
+            "nominal_gallons": 40,
+            "btu": 36000,
+            "fhr_gal": 75,
+            "warranty_years": 6
+          }
+        }
+      },
+      "requires": {
+        "vent_type": "Atmospheric or power vent by exact family; California NOx requirements must be matched by jurisdiction."
+      },
+      "price_band_equipment_usd": null,
+      "source_urls": [
+        "https://products.bradfordwhite.com/",
+        "https://forthepro.bradfordwhite.com/our-products/usa-residential-tank-type-gas-ultra-low-nox/ultra-low-nox-power-vent-gas/"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    },
+    {
+      "brand": "bradford-white",
+      "technology": "electric-tank",
+      "line": "Residential electric storage",
+      "models": [
+        "RE series and current residential electric families"
+      ],
+      "capacity": {
+        "gallons_examples": [
+          40,
+          50
+        ]
+      },
+      "requires": {
+        "electrical": "Model-specific"
+      },
+      "price_band_equipment_usd": null,
+      "source_urls": [
+        "https://www.bradfordwhite.com/explore-our-residential-products/",
+        "https://products.bradfordwhite.com/"
+      ],
+      "checked_at": "2026-08-07",
+      "evidence_type": "verified_fact"
+    }
+  ],
+  "selection_rules": [
+    {
+      "id": "R01_feasibility_over_brand",
+      "if": {
+        "technology": "any",
+        "conditions": [
+          "brand_preference_conflicts_with_technical_feasibility"
+        ],
+        "priority": "any"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [],
+        "reason": "Never revive a technically eliminated technology because of brand preference.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.rinnai.us/residential/faq",
+        "https://www.hotwater.com/residential/water-heaters/"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R02_brand_technology_mismatch",
+      "if": {
+        "technology": "any",
+        "conditions": [
+          "preferred_brand_does_not_make_selected_technology"
+        ],
+        "priority": "brand"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [],
+        "reason": "Explain that the preferred brand does not offer the selected technology and continue with compatible brands.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.navieninc.com/residential/water-heaters",
+        "https://www.rinnai.us/residential/faq"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R03_tankless_size_by_design_rise",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "tankless_candidate"
+        ],
+        "priority": "capacity"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [],
+        "reason": "Size from verified flow at design temperature rise, not headline maximum GPM.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.navieninc.com/products/npe-240a2",
+        "https://www.rinnai.us/residential/product-detail/rx199in"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R04_navien_npe240_flow_curve",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "navien_candidate",
+          "demand_requires_verified_flow"
+        ],
+        "priority": "capacity"
+      },
+      "then": {
+        "prefer_brands": [
+          "Navien"
+        ],
+        "avoid_brands": [],
+        "reason": "NPE-240A2 provides 11.2 GPM at 35F rise, 8.7 at 45F, and 5.6 at 67F; use the design-rise point.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.navieninc.com/products/npe-240a2"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R05_rinnai_rx199_groundwater_sizing",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "rinnai_candidate",
+          "setpoint_120F"
+        ],
+        "priority": "capacity"
+      },
+      "then": {
+        "prefer_brands": [
+          "Rinnai"
+        ],
+        "avoid_brands": [],
+        "reason": "Use Rinnai's inlet-temperature sizing table; e.g. RX/RXP199 is about 5.7 GPM at 52F inlet and 120F setpoint.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.rinnai.us/residential/product-detail/rx199in"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R06_noritz_ez111_flow_curve",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "noritz_candidate",
+          "high_demand"
+        ],
+        "priority": "capacity"
+      },
+      "then": {
+        "prefer_brands": [
+          "Noritz"
+        ],
+        "avoid_brands": [],
+        "reason": "EZ111 must pass its verified rise curve: 7.8 GPM at 50F rise, 6.5 at 60F, 5.6 at 70F, 4.9 at 80F.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://noritz.com/ez-series"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R07_noritz_ez98_flow_curve",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "noritz_candidate",
+          "medium_demand"
+        ],
+        "priority": "capacity"
+      },
+      "then": {
+        "prefer_brands": [
+          "Noritz"
+        ],
+        "avoid_brands": [],
+        "reason": "EZ98 must pass its verified rise curve: 6.9 GPM at 50F rise, 5.7 at 60F, 4.9 at 70F.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://noritz.com/ez-series"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R08_noritz_ez71_flow_curve",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "noritz_candidate",
+          "lower_demand"
+        ],
+        "priority": "capacity"
+      },
+      "then": {
+        "prefer_brands": [
+          "Noritz"
+        ],
+        "avoid_brands": [],
+        "reason": "EZ71 should only be recommended where its verified design-rise flow meets simultaneous demand.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://noritz.com/ez-series"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R09_aos_adapt199_design_rise",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "ao_smith_candidate"
+        ],
+        "priority": "capacity"
+      },
+      "then": {
+        "prefer_brands": [
+          "A. O. Smith"
+        ],
+        "avoid_brands": [],
+        "reason": "Use 5.9 GPM at 67F rise for ATHR-199X3 planning rather than the 10.5 GPM headline maximum.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.hotwater.com/products/tankless-adapt-premium-condensing-adapt/athr-199x3-100/100374812.html"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R10_marginal_gas_line_is_conditional",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "marginal_gas_line"
+        ],
+        "priority": "conversion_cost"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [],
+        "reason": "Treat 1/2-inch compatibility as conditional. Require actual gas-load/pressure/length sizing before preferring a brand.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.navieninc.com/series/npe-a2/npe-a2-series-faqs"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R11_vent_route_exact_model_gate",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "existing_vent_route_or_long_run"
+        ],
+        "priority": "conversion_cost"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [],
+        "reason": "Compare the actual vent route to the exact model's allowed material, diameter, equivalent length and termination rules.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.navieninc.com/series/npe-a2/npe-a2-series-faqs"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R12_builtin_recirc_preference",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "recirculation_priority"
+        ],
+        "priority": "fast_hot_water"
+      },
+      "then": {
+        "prefer_brands": [
+          "Navien",
+          "Rinnai",
+          "Rheem",
+          "Noritz"
+        ],
+        "avoid_brands": [],
+        "reason": "Prefer a verified pump-integrated line when it fits the loop and demand: NPE-A2, RXP, IKONIC SR/RTG-R, or NRCR are examples.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.navieninc.com/series/npe-a2/npe-a2-series-faqs",
+        "https://www.rinnai.us/residential/tankless-water-heaters/recirculation-accessories",
+        "https://noritz.com/nrcr/"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R13_navien_uncontrolled_recirc_penalty",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "navien_npe_a2",
+          "uncontrolled_recirculation"
+        ],
+        "priority": "warranty"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [
+          "Navien NPE-A2 in uncontrolled recirculation configuration"
+        ],
+        "reason": "Uncontrolled recirculation cuts NPE-A2 residential heat-exchanger coverage from 15 years to 5 years and parts from 5 to 3.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.navieninc.com/products/npe-240a2"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R14_noritz_tank_conversion_boost",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "tank_to_tankless_conversion"
+        ],
+        "priority": "conversion_cost"
+      },
+      "then": {
+        "prefer_brands": [
+          "Noritz"
+        ],
+        "avoid_brands": [],
+        "reason": "Boost EZ Pro/EZTR because the current line is explicitly designed around storage-tank replacement.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://noritz.com/ez-series",
+        "https://noritz.com/products/eztr50"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R15_noritz_top_connection_boost",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "existing_tank_top_connections_can_be_reused"
+        ],
+        "priority": "conversion_cost"
+      },
+      "then": {
+        "prefer_brands": [
+          "Noritz"
+        ],
+        "avoid_brands": [],
+        "reason": "EZ Pro's top water connections can reduce repiping in some tank replacements.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://noritz.com/products/eztr50"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R16_outdoor_tankless_only_if_approved",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "outdoor_install_preferred"
+        ],
+        "priority": "conversion_cost"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [],
+        "reason": "Only recommend exact models/configurations explicitly approved for outdoor installation or with the required outdoor kit.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.navieninc.com/products/npe-240a2",
+        "https://www.rinnai.us/residential/product-detail/rx199in",
+        "https://noritz.com/products/eztr75"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R17_high_demand_tankless_gate",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "three_plus_bathrooms_or_high_simultaneous_demand"
+        ],
+        "priority": "capacity"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [],
+        "reason": "Exclude any model whose verified GPM at design rise is below calculated simultaneous demand, regardless of brand.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.rinnai.us/residential/product-detail/rx199in",
+        "https://noritz.com/ez-series"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R18_low_demand_modulation_tiebreaker",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "very_low_demand"
+        ],
+        "priority": "comfort"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [],
+        "reason": "Use exact model minimum firing rate/activation flow as a tie-breaker for low-demand homes; do not apply a brand-wide assumption.",
+        "confidence": "moderate"
+      },
+      "source_urls": [
+        "https://www.hotwater.com/products/tankless-adapt-premium-condensing-adapt/athr-199x3-100/100374812.html"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R19_aos_x3_hard_water_signal",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "scale_risk_or_maintenance_priority"
+        ],
+        "priority": "maintenance"
+      },
+      "then": {
+        "prefer_brands": [
+          "A. O. Smith Adapt+ X3"
+        ],
+        "avoid_brands": [],
+        "reason": "Give a small preference to X3 where scale protection matters, but label its longevity benefit as a manufacturer claim, not independent reliability proof.",
+        "confidence": "moderate"
+      },
+      "source_urls": [
+        "https://www.hotwater.com/products/tankless-adapt-premium-condensing-adapt/athr-199x3-100/100374812.html"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R20_maintenance_averse_tankless_penalty",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "homeowner_unwilling_to_maintain_or_descale"
+        ],
+        "priority": "maintenance"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [],
+        "reason": "Penalize tankless technology where maintenance willingness is low; do not solve a technology-level mismatch by switching brands.",
+        "confidence": "moderate"
+      },
+      "source_urls": [
+        "https://help.noritz.com/index.php/knowledge-base/errorcode90premix/"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R21_local_service_radius_gate",
+      "if": {
+        "technology": "any",
+        "conditions": [
+          "no_capable_service_provider_within_30_miles"
+        ],
+        "priority": "serviceability"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [],
+        "reason": "Strongly penalize or exclude a brand when qualified local service cannot be verified, especially for urgent or complex equipment.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.rinnai.us/find-pro",
+        "https://contractorfinder.noritz.com/contractors-modesto-ca",
+        "https://contractorfinder.bradfordwhite.com/"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R22_rinnai_modesto_service_signal",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "location_modesto"
+        ],
+        "priority": "serviceability"
+      },
+      "then": {
+        "prefer_brands": [
+          "Rinnai"
+        ],
+        "avoid_brands": [],
+        "reason": "Rinnai has a current ACE PRO record in Modesto, which is a routing/service signal, not proof the product is superior.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.rinnai.us/find-pro"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R23_noritz_modesto_service_signal",
+      "if": {
+        "technology": "gas-tankless",
+        "conditions": [
+          "location_modesto"
+        ],
+        "priority": "serviceability"
+      },
+      "then": {
+        "prefer_brands": [
+          "Noritz"
+        ],
+        "avoid_brands": [],
+        "reason": "Noritz's current Modesto-area directory shows multiple installers/servicers and a contractor explicitly labeled Noritz trained.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://contractorfinder.noritz.com/contractors-modesto-ca"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R24_aos_modesto_service_signal",
+      "if": {
+        "technology": "any",
+        "conditions": [
+          "location_modesto"
+        ],
+        "priority": "serviceability"
+      },
+      "then": {
+        "prefer_brands": [
+          "A. O. Smith"
+        ],
+        "avoid_brands": [],
+        "reason": "Use the current A.O. Smith Modesto manufacturer locator as a positive routing signal; re-check status at routing time.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://local.hotwater.com/where-to-buy/california/modesto"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R25_rheem_modesto_hpwh_service_signal",
+      "if": {
+        "technology": "heat-pump",
+        "conditions": [
+          "location_modesto"
+        ],
+        "priority": "serviceability"
+      },
+      "then": {
+        "prefer_brands": [
+          "Rheem"
+        ],
+        "avoid_brands": [],
+        "reason": "Rheem's current Modesto directory shows multiple contractors under heat-pump water heating.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.rheem.com/best-contractors-in-modesto-ca/"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R26_hpwh_120v_no_new_240",
+      "if": {
+        "technology": "heat-pump",
+        "conditions": [
+          "no_240v_circuit",
+          "homeowner_wants_to_avoid_electrical_upgrade"
+        ],
+        "priority": "conversion_cost"
+      },
+      "then": {
+        "prefer_brands": [
+          "Rheem ProTerra 120V",
+          "A. O. Smith Voltex 120V"
+        ],
+        "avoid_brands": [],
+        "reason": "Shortlist current 120V HPWHs, then size by FHR and location; do not force a 208/240V brand preference.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.rheem.com/product/rheem-proterra-plug-in-heat-pump-water-heater-with-hydroboost-120v-shared-circuit-proph40-t0-rh120-m/",
+        "https://www.hotwater.com/products/HPTV-66-SG210.html"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R27_navien_nwp_air_volume_gate",
+      "if": {
+        "technology": "heat-pump",
+        "conditions": [
+          "navien_nwp500",
+          "unvented_space_under_450_cuft",
+          "ducting_not_possible"
+        ],
+        "priority": "feasibility"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [
+          "Navien NWP500"
+        ],
+        "reason": "NWP500 requires at least 450 cu ft for unvented installation or ducting for enclosed spaces.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.navieninc.com/products/nwp500-65"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R28_aos_voltex_x_tight_space",
+      "if": {
+        "technology": "heat-pump",
+        "conditions": [
+          "indoor_air_volume_or_heat_extraction_problem",
+          "outdoor_split_location_possible"
+        ],
+        "priority": "feasibility"
+      },
+      "then": {
+        "prefer_brands": [
+          "A. O. Smith Voltex X"
+        ],
+        "avoid_brands": [],
+        "reason": "Voltex X's outdoor split architecture can solve indoor air-volume/heat-extraction constraints that unitary HPWHs cannot.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.hotwater.com/newsroom/voltex-x-outdoor-split-heat-pump-water-heater.html"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R29_hpwh_size_by_fhr",
+      "if": {
+        "technology": "heat-pump",
+        "conditions": [
+          "high_hot_water_demand"
+        ],
+        "priority": "capacity"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [],
+        "reason": "Compare exact first-hour rating after electrical/location feasibility; gallon label alone is insufficient.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.hotwater.com/products/HPTV-66-SG210.html",
+        "https://www.navieninc.com/products/nwp500-65"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R30_hpwh_ambient_range_gate",
+      "if": {
+        "technology": "heat-pump",
+        "conditions": [
+          "location_temperature_extremes"
+        ],
+        "priority": "feasibility"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [],
+        "reason": "Require the installation location to fit the exact model's heat-pump operating range and understand when resistance backup takes over.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.navieninc.com/products/nwp500-65",
+        "https://www.rheem.com/product/rheem-professional-prestige-plug-in-heat-pump-water-heater-dedicated-circuit-proph50-t0-rh120/"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R31_electrification_or_solar",
+      "if": {
+        "technology": "heat-pump",
+        "conditions": [
+          "homeowner_priority_electrification_or_solar"
+        ],
+        "priority": "lifetime_cost"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [],
+        "reason": "Let technology selection favor HPWH first; brand is chosen only after circuit, FHR, location and service checks.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.navieninc.com/residential/water-heaters",
+        "https://www.hotwater.com/residential/water-heaters/"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R32_same_brand_replacement_small_bonus",
+      "if": {
+        "technology": "any",
+        "conditions": [
+          "replacing_same_brand"
+        ],
+        "priority": "conversion_cost"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [],
+        "reason": "Give only a small tie-breaker bonus when same-brand replacement demonstrably reduces connections, venting, controls, parts or service complexity.",
+        "confidence": "moderate"
+      },
+      "source_urls": [
+        "https://noritz.com/products/eztr50"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R33_bradford_wholesale_channel_fit",
+      "if": {
+        "technology": "any",
+        "conditions": [
+          "homeowner_requires_direct_retail_self_source"
+        ],
+        "priority": "purchase_channel"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [
+          "Bradford White"
+        ],
+        "reason": "Bradford White's professional/wholesale channel makes it a weaker fit for a homeowner who insists on direct retail/self-sourcing.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.bradfordwhite.com/explore-our-residential-products/"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R34_bradford_service_channel_gate",
+      "if": {
+        "technology": "any",
+        "conditions": [
+          "bradford_white_candidate"
+        ],
+        "priority": "serviceability"
+      },
+      "then": {
+        "prefer_brands": [
+          "Bradford White"
+        ],
+        "avoid_brands": [],
+        "reason": "Keep Bradford White only when local professional supply/service is verified; Ferguson's Modesto presence is positive but exact part stock must be checked.",
+        "confidence": "moderate"
+      },
+      "source_urls": [
+        "https://www.ferguson.com/store/ca/modesto/plumbingpvf-0682",
+        "https://www.ferguson.com/category/water-heaters/?prefn1=brand&prefv1=Bradford%2BWhite"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R35_electric_tankless_not_v1_default",
+      "if": {
+        "technology": "electric-tankless",
+        "conditions": [
+          "current_quiz_v1"
+        ],
+        "priority": "feasibility"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [],
+        "reason": "Do not add electric tankless as a standard fifth technology until service amperage, panel capacity, circuit count and design-rise demand are collected.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.rinnai.us/residential/faq",
+        "https://www.hotwater.com/residential/water-heaters/electric-tankless/"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R36_aos_electric_tankless_panel_gate",
+      "if": {
+        "technology": "electric-tankless",
+        "conditions": [
+          "ao_smith_candidate",
+          "insufficient_service_capacity"
+        ],
+        "priority": "feasibility"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [
+          "A. O. Smith high-power electric tankless"
+        ],
+        "reason": "A.O. Smith says its larger electric-tankless models can draw up to about 135A; insufficient panel/service capacity is a hard exclusion.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.hotwater.com/residential/water-heaters/electric-tankless/"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R37_bradford_electric_tankless_scope",
+      "if": {
+        "technology": "electric-tankless",
+        "conditions": [
+          "whole_home_application"
+        ],
+        "priority": "capacity"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [
+          "Bradford White KwickShot TEF/TET as whole-home default"
+        ],
+        "reason": "Current KwickShot TEF/TET products are point-of-use/fixed-fixture products; old broader ES/EFC/EFT family is discontinued.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.bradfordwhite.com/tankless-water-heater/",
+        "https://forthepro.bradfordwhite.com/our-products/usa-residential-tankless-electric/kwickshot-tankless-electric-es-efc-eft-discontinued/"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R38_urgent_like_for_like_storage",
+      "if": {
+        "technology": "gas-tank|electric-tank",
+        "conditions": [
+          "urgent_failure",
+          "no_conversion_appetite"
+        ],
+        "priority": "urgency"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [],
+        "reason": "Favor a compatible in-stock like-for-like tank first; choose brand by exact FHR, dimensions, vent/electrical fit, stock and service.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.hotwater.com/residential/water-heaters/",
+        "https://www.bradfordwhite.com/explore-our-residential-products/"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R39_authorization_language_gate",
+      "if": {
+        "technology": "any",
+        "conditions": [
+          "routing_to_contractor"
+        ],
+        "priority": "compliance"
+      },
+      "then": {
+        "prefer_brands": [],
+        "avoid_brands": [],
+        "reason": "Use 'authorized', 'certified', 'trained', 'ACE PRO', 'NSS' or equivalent only when the current manufacturer source shows that exact status.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://contractorfinder.bradfordwhite.com/",
+        "https://www.navieninc.com/becomenss",
+        "https://contractorfinder.noritz.com/contractors-modesto-ca"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "id": "R40_navien_hpwh_brand_preference",
+      "if": {
+        "technology": "heat-pump",
+        "conditions": [
+          "preferred_brand_navien"
+        ],
+        "priority": "brand"
+      },
+      "then": {
+        "prefer_brands": [
+          "Navien NWP500"
+        ],
+        "avoid_brands": [],
+        "reason": "Do not reject a Navien preference merely because HPWH was selected; NWP500 is now a current 50/65/80-gal residential HPWH line. It still must pass circuit, air-volume and FHR gates.",
+        "confidence": "high"
+      },
+      "source_urls": [
+        "https://www.navieninc.com/series/nwp500"
+      ],
+      "checked_at": "2026-08-07"
+    }
+  ],
+  "warranty_profiles": [
+    {
+      "brand": "navien",
+      "line": "NPE-A2",
+      "residential": {
+        "standard_or_controlled_recirculation": {
+          "labor_years": 1,
+          "parts_years": 5,
+          "heat_exchanger_years": 15
+        },
+        "uncontrolled_recirculation": {
+          "labor_years": 1,
+          "parts_years": 3,
+          "heat_exchanger_years": 5
+        }
+      },
+      "conditions": [
+        "Use/application matters.",
+        "Uncontrolled recirculation changes warranty materially.",
+        "Navien states internet/e-commerce purchase can void warranty.",
+        "Installation must comply with manufacturer instructions and applicable codes."
+      ],
+      "source_urls": [
+        "https://www.navieninc.com/products/npe-240a2",
+        "https://www.navieninc.com/"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "brand": "navien",
+      "line": "NWP500",
+      "residential": {
+        "labor_years": 1,
+        "parts_years": 10,
+        "tank_years": 10
+      },
+      "conditions": [
+        "Warranty document requires original installation by a properly licensed plumber/contractor and compliant operation."
+      ],
+      "source_urls": [
+        "https://www.navieninc.com/products/nwp500-65",
+        "https://www.navieninc.com/products/nwp500-65/warranties"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "brand": "rinnai",
+      "line": "RX199",
+      "residential": {
+        "labor_years": 1,
+        "parts_years": 5,
+        "heat_exchanger_years": 15,
+        "heat_exchanger_hour_cap": 12000
+      },
+      "conditions": [
+        "Exact warranty document and registration/promotional labor-extension terms must be checked for the installed product."
+      ],
+      "source_urls": [
+        "https://www.rinnai.us/residential/product-detail/rx199in"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "brand": "rinnai",
+      "line": "REHP",
+      "residential": {
+        "labor_years": 1,
+        "parts_years": 10,
+        "tank_years": 10
+      },
+      "conditions": [
+        "Product page summarizes 1-year labor / 10-year parts; current spec sheet also identifies tank/parts coverage. Exact manual controls."
+      ],
+      "source_urls": [
+        "https://www.rinnai.us/residential/product-detail/rehp50"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "brand": "rheem",
+      "line": "ProTerra 120V",
+      "residential": {
+        "tank_years": 10,
+        "parts_years": 10,
+        "labor_years": null
+      },
+      "conditions": [
+        "Labor terms not captured from the product page. Do not infer them."
+      ],
+      "source_urls": [
+        "https://www.rheem.com/product/rheem-proterra-plug-in-heat-pump-water-heater-with-hydroboost-120v-shared-circuit-proph40-t0-rh120-m/"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "brand": "ao-smith",
+      "line": "Adapt+",
+      "residential": {
+        "heat_exchanger_years": 15,
+        "parts_years": 5,
+        "labor_years": null
+      },
+      "conditions": [
+        "Exact warranty sheet controls; product page does not establish a blanket labor term."
+      ],
+      "source_urls": [
+        "https://www.hotwater.com/products/tankless-adapt-premium-condensing-adapt/athr-199x3-100/100374812.html"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "brand": "ao-smith",
+      "line": "Voltex 120V",
+      "residential": {
+        "tank_years": 10,
+        "parts_years": 10,
+        "labor_years": null
+      },
+      "conditions": [
+        "Exact warranty sheet and model control."
+      ],
+      "source_urls": [
+        "https://www.hotwater.com/products/HPTV-66-SG210.html"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "brand": "noritz",
+      "line": "EZ71/EZ98/EZ111",
+      "residential": {
+        "without_recirculation": {
+          "heat_exchanger_years": 25,
+          "burn_hours_cap": 15000
+        },
+        "controlled_recirculation": {
+          "heat_exchanger_years": 15,
+          "burn_hours_cap": 12000
+        },
+        "parts_years": 5,
+        "labor_years": 1
+      },
+      "conditions": [
+        "Whichever occurs first where burn-hour cap applies. Detailed warranty terms control."
+      ],
+      "source_urls": [
+        "https://noritz.com/warranty",
+        "https://support.noritz.com/tankless-water-heaters-residential-ez-series-ez111dv-gq-c3260wx-ff-us-ng"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "brand": "noritz",
+      "line": "NRCR",
+      "residential": {
+        "heat_exchanger_years": 15,
+        "burn_hours_cap": 12000,
+        "parts_years": 5,
+        "labor_years": 1
+      },
+      "conditions": [
+        "Detailed warranty terms control."
+      ],
+      "source_urls": [
+        "https://support.noritz.com/tankless-water-heaters-residential-nrcr-series-nrcr111dv-gq-c3260wxq-ff-us-ng"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "brand": "bradford-white",
+      "line": "Infiniti K/L",
+      "residential": {
+        "heat_exchanger_years": 15,
+        "heat_exchanger_operating_hours_cap": 8000,
+        "parts_years": 5,
+        "labor_years": 0
+      },
+      "conditions": [
+        "Warranty product/part is exclusive of labor, freight and installation costs; installation/use/local-condition exclusions apply."
+      ],
+      "source_urls": [
+        "https://docs.bradfordwhite.com/Warranty/238-53321-00_Current.pdf"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "brand": "bradford-white",
+      "line": "AeroTherm G2",
+      "residential": {
+        "tank_years": null,
+        "component_parts_years": null
+      },
+      "conditions": [
+        "Current catalog contains both 6-year and 10-year AeroTherm G2 variants. Exact model/suffix must be looked up before displaying warranty."
+      ],
+      "source_urls": [
+        "https://products.bradfordwhite.com/"
+      ],
+      "checked_at": "2026-08-07"
+    }
+  ],
+  "routing_signals": [
+    {
+      "brand": "navien",
+      "installer_program": "Navien Service Specialist (NSS)",
+      "requires_trained_installer": null,
+      "manufacturer_locator_url": "https://www.navieninc.com/where-to-buy",
+      "parts_availability_central_valley": "mixed",
+      "consumer_financing": null,
+      "local_evidence": "PACE Supply publicly lists KD Navien and states it carries a large Northern California tankless/repair-parts inventory. Exact Modesto/Ripon Navien stock and an exact Modesto NSS need verification.",
+      "source_urls": [
+        "https://www.navieninc.com/becomenss",
+        "https://www.pacesupply.com/Divisions/WaterHeaterSolutions"
+      ],
+      "checked_at": "2026-08-07",
+      "requires_trained_installer_note": "No blanket requirement for manufacturer-program training was verified. Professional/licensed installation requirements and warranty conditions must be checked for the exact product. Program status remains a routing/serviceability signal."
+    },
+    {
+      "brand": "rinnai",
+      "installer_program": "Rinnai PRO / ACE PRO",
+      "requires_trained_installer": null,
+      "manufacturer_locator_url": "https://www.rinnai.us/find-pro",
+      "parts_availability_central_valley": "mixed-to-strong",
+      "consumer_financing": true,
+      "local_evidence": "Current manufacturer directory identifies DeHart Plumbing, Heating, and Air in Modesto as an ACE PRO. PACE Supply publicly carries Rinnai tankless products and parts.",
+      "source_urls": [
+        "https://www.rinnai.us/find-pro",
+        "https://www.rinnai.us/pro/dehart-plumbing%2C-heating%2C-and-air-inc./modesto/95356?email=&guid=001TR00000arj8pYAA&zipcode=95336",
+        "https://www.pacesupply.com/brands/rinnai-13403480"
+      ],
+      "checked_at": "2026-08-07",
+      "requires_trained_installer_note": "No blanket requirement for manufacturer-program training was verified. Professional/licensed installation requirements and warranty conditions must be checked for the exact product. Program status remains a routing/serviceability signal."
+    },
+    {
+      "brand": "rheem",
+      "installer_program": "Rheem Find a Pro / Pro Partner ecosystem",
+      "requires_trained_installer": null,
+      "manufacturer_locator_url": "https://www.rheem.com/find-a-pro/",
+      "parts_availability_central_valley": "mixed-to-strong",
+      "consumer_financing": true,
+      "local_evidence": "Rheem's Modesto contractor directory lists multiple contractors under heat-pump water heating. PACE Supply publicly carries Rheem and repair parts in its water-heater program.",
+      "source_urls": [
+        "https://www.rheem.com/find-a-pro/",
+        "https://www.rheem.com/best-contractors-in-modesto-ca/",
+        "https://www.pacesupply.com/Divisions/WaterHeaterSolutions"
+      ],
+      "checked_at": "2026-08-07",
+      "requires_trained_installer_note": "No blanket requirement for manufacturer-program training was verified. Professional/licensed installation requirements and warranty conditions must be checked for the exact product. Program status remains a routing/serviceability signal."
+    },
+    {
+      "brand": "ao-smith",
+      "installer_program": "Contracted Service Provider (CSP); manufacturer local installer locator",
+      "requires_trained_installer": null,
+      "manufacturer_locator_url": "https://local.hotwater.com/where-to-buy/california/modesto",
+      "parts_availability_central_valley": "mixed-to-strong",
+      "consumer_financing": null,
+      "local_evidence": "A.O. Smith's manufacturer locator has a Modesto 'Authorized Water Heater Installer' page. Ferguson has a Modesto plumbing branch and carries A.O. Smith products nationally; exact branch stock is not established.",
+      "source_urls": [
+        "https://www.hotwater.com/pros/service-provider-enrollment.html",
+        "https://local.hotwater.com/where-to-buy/california/modesto",
+        "https://www.ferguson.com/store/ca/modesto/plumbingpvf-0682",
+        "https://www.ferguson.com/category/water-heaters/?prefn1=brand&prefv1=A.O.+Smith"
+      ],
+      "checked_at": "2026-08-07",
+      "requires_trained_installer_note": "No blanket requirement for manufacturer-program training was verified. Professional/licensed installation requirements and warranty conditions must be checked for the exact product. Program status remains a routing/serviceability signal."
+    },
+    {
+      "brand": "noritz",
+      "installer_program": "PROCard Select / VIP; Noritz Contractor Finder",
+      "requires_trained_installer": null,
+      "manufacturer_locator_url": "https://contractorfinder.noritz.com/contractors-modesto-ca",
+      "parts_availability_central_valley": "strong",
+      "consumer_financing": null,
+      "local_evidence": "Noritz's Modesto-area directory shows multiple installers/servicers and partner-tenure labels. DeHart is explicitly labeled 'Noritz trained.' Pace Supply in Ripon appears in the manufacturer directory, and Noritz's support store shows active genuine-parts inventory.",
+      "source_urls": [
+        "https://contractorfinder.noritz.com/contractors-modesto-ca",
+        "https://procard-v2.noritz.com/",
+        "https://www.pacesupply.com/Divisions/WaterHeaterSolutions"
+      ],
+      "checked_at": "2026-08-07",
+      "requires_trained_installer_note": "No blanket requirement for manufacturer-program training was verified. Professional/licensed installation requirements and warranty conditions must be checked for the exact product. Program status remains a routing/serviceability signal."
+    },
+    {
+      "brand": "bradford-white",
+      "installer_program": "Bradford White Factory Trained / Contractor Directory",
+      "requires_trained_installer": null,
+      "manufacturer_locator_url": "https://contractorfinder.bradfordwhite.com/",
+      "parts_availability_central_valley": "mixed",
+      "consumer_financing": null,
+      "local_evidence": "Ferguson has a Modesto branch and carries Bradford White products nationally. Exact Modesto Factory Trained contractor status and exact local stock were not verified.",
+      "source_urls": [
+        "https://contractorfinder.bradfordwhite.com/",
+        "https://www.ferguson.com/store/ca/modesto/plumbingpvf-0682",
+        "https://www.ferguson.com/category/water-heaters/?prefn1=brand&prefv1=Bradford%2BWhite"
+      ],
+      "checked_at": "2026-08-07",
+      "requires_trained_installer_note": "No blanket requirement for manufacturer-program training was verified. Professional/licensed installation requirements and warranty conditions must be checked for the exact product. Program status remains a routing/serviceability signal."
+    }
+  ],
+  "price_positioning": {
+    "principle": "Do not use brand as a budget rule yet. Current public pricing is incomplete and installed cost is dominated by technology/conversion requirements.",
+    "quiz_budget_bands": [
+      {
+        "band": "under $2,000",
+        "safe_interpretation": "Potentially compatible with some like-for-like standard tank replacements or low-equipment-cost scenarios. Do not promise this band for a named brand without a local quote."
+      },
+      {
+        "band": "$2,000-3,500",
+        "safe_interpretation": "Many standard tank projects and some straightforward equipment purchases can fall here, but full tankless/HPWH installed pricing is highly site-dependent."
+      },
+      {
+        "band": "$3,500-5,000",
+        "safe_interpretation": "Realistic planning band for some straightforward professional tankless or HPWH projects, subject to gas/electrical/venting/site conditions."
+      },
+      {
+        "band": "$5,000-8,000",
+        "safe_interpretation": "Commonly compatible with more involved conversions, recirculation, gas/electrical changes, relocation or premium equipment. Not brand-specific."
+      },
+      {
+        "band": "over $8,000",
+        "safe_interpretation": "Supports high-complexity conversions, major infrastructure work, difficult relocation or premium/split systems. Still requires quote validation."
+      }
+    ],
+    "public_equipment_observations": [
+      {
+        "brand": "rinnai",
+        "model": "RX199IN",
+        "observed_price_usd": 1703.1,
+        "source": "SupplyHouse",
+        "evidence_type": "market_observation",
+        "notes": "Current public equipment price observed; not installed price and not Modesto-specific."
+      },
+      {
+        "brand": "rheem",
+        "model": "80-gal ProTerra 120V",
+        "observed_price_usd_range": [
+          1958.6,
+          2798.0
+        ],
+        "source": "Home Depot",
+        "evidence_type": "market_observation",
+        "notes": "Promotional/regular price observed; changes over time."
+      }
+    ],
+    "needs_verification": [
+      "Current Central Valley contractor cost for Navien NPE-A2/NWP500.",
+      "Current Central Valley contractor cost for Rinnai RXP and REHP.",
+      "Current Central Valley contractor cost for Noritz EZ Pro/NRCR.",
+      "Current Central Valley Bradford White contractor/wholesale equipment prices.",
+      "Current Central Valley A.O. Smith Adapt/Voltex installed prices.",
+      "At least three local quote observations per major project type before brand-budget rules are automated."
+    ]
+  },
+  "reliability_and_failure_modes": [
+    {
+      "brand": "navien",
+      "verified_diagnostic_evidence": [
+        "NPE-A2 FAQ says no-hot-water with no error code may be caused by a flow sensor not spinning, including debris as a possible contributor."
+      ],
+      "common_failure_prevalence": null,
+      "problem_models_or_years": null,
+      "service_life_years": null,
+      "notes": "Manufacturer troubleshooting evidence is not a prevalence study. Do not label the flow sensor as the brand's 'common failure' without field data.",
+      "source_urls": [
+        "https://www.navieninc.com/series/npe-a2/npe-a2-series-faqs"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "brand": "rinnai",
+      "verified_diagnostic_evidence": [
+        "Current tankless diagnostic guide includes Code 25 for condensate pump error or clogged/frozen drain on applicable products."
+      ],
+      "common_failure_prevalence": null,
+      "problem_models_or_years": null,
+      "service_life_years": null,
+      "notes": "Error-code documentation describes failure categories, not how frequently they occur.",
+      "source_urls": [
+        "https://media.rinnai.us/salsify_asset/s-d7680150-5ee9-4b1f-9f19-b4e6be7a41c4/100000652-Troubleshooting%20TWH%20Diagnostic%20Codes%20%281%29.pdf"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "brand": "rheem",
+      "verified_diagnostic_evidence": [
+        "Current HPWH manual includes compressor/airflow/temperature/dry-fire alarm categories.",
+        "Rheem's 2026 maintenance guidance says dirty HPWH air filters can contribute to error codes, reduced efficiency and wear."
+      ],
+      "common_failure_prevalence": null,
+      "problem_models_or_years": null,
+      "service_life_years": null,
+      "notes": "Do not convert service-manual diagnostic categories into reliability rankings.",
+      "source_urls": [
+        "https://www.rheem.com/water-heating/articles/how-to-clean-the-filter-on-your-heat-pump-water-heater/"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "brand": "ao-smith",
+      "verified_diagnostic_evidence": [
+        "A.O. Smith University publishes current training for tankless codes including 031, 111/121, 391, 441, 711 and 991/101."
+      ],
+      "common_failure_prevalence": null,
+      "problem_models_or_years": null,
+      "service_life_years": null,
+      "notes": "The existence of training for a code does not establish prevalence. X3 longevity claims must be labeled manufacturer_claim.",
+      "source_urls": [
+        "https://university.hotwater.com/products/tankless/tanklessworkshop/"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "brand": "noritz",
+      "verified_diagnostic_evidence": [
+        "Noritz Code 90 means combustion/airflow abnormality. For new installs the manufacturer points to gas supply, venting, condensate and configuration; on established units it also points to dirt/maintenance and condensate blockage."
+      ],
+      "common_failure_prevalence": null,
+      "problem_models_or_years": null,
+      "service_life_years": null,
+      "notes": "Noritz itself uses 'could' and context-specific causes. Do not make Code 90 a brand-reliability claim.",
+      "source_urls": [
+        "https://help.noritz.com/index.php/knowledge-base/errorcode90premix/"
+      ],
+      "checked_at": "2026-08-07"
+    },
+    {
+      "brand": "bradford-white",
+      "verified_diagnostic_evidence": [
+        "Current Infiniti GR/GS manuals include water-temperature, fan, venting, leak-detection, flame and gas-system diagnostic codes."
+      ],
+      "common_failure_prevalence": null,
+      "problem_models_or_years": null,
+      "service_life_years": null,
+      "notes": "No defensible current comparative failure-rate or problem-year dataset was found.",
+      "source_urls": [
+        "https://docs.bradfordwhite.com/I%26O/238-54628-00_Current.pdf",
+        "https://docs.bradfordwhite.com/I%26O/238-54627-00_Current.pdf"
+      ],
+      "checked_at": "2026-08-07"
+    }
+  ],
+  "head_to_head": [
+    {
+      "comparison": "Navien vs Rinnai — gas tankless",
+      "navien_strengths": [
+        "NPE-A2 built-in ComfortFlow buffer/recirculation architecture.",
+        "Verified 1/2-inch gas-pipe compatibility when properly sized.",
+        "NPE-A2 model flow data is published by temperature rise."
+      ],
+      "rinnai_strengths": [
+        "RX/RXP .98 UEF platform; RXP adds built-in pump/Smart-Circ.",
+        "Current manufacturer sizing guide converts inlet temperature and 120F setpoint into usable GPM.",
+        "A current ACE PRO is verified in Modesto."
+      ],
+      "choose_navien_when": "NPE-A2's recirculation/buffer architecture or exact install fit wins after flow-at-rise and service checks.",
+      "choose_rinnai_when": "RX/RXP fits the design flow and the homeowner values the verified local ACE PRO/service path or RXP recirculation architecture.",
+      "no_overall_winner": true
+    },
+    {
+      "comparison": "Rheem vs A. O. Smith — heat pump",
+      "rheem_strengths": [
+        "120V shared-circuit ProTerra options in 40/50/65/80 gallon sizes.",
+        "120V FHR ranges up to 84 gal on the current shared-circuit family.",
+        "Current Modesto manufacturer directory shows multiple heat-pump water-heating contractors."
+      ],
+      "ao_smith_strengths": [
+        "120V Voltex options with 50/66/80-gal sizes and FHR up to 93 gal in current spec.",
+        "Voltex X outdoor split system creates a distinct option when indoor air volume/heat extraction is a problem."
+      ],
+      "choose_rheem_when": "A specific ProTerra 120/240 model best matches FHR, circuit and local installer availability.",
+      "choose_ao_smith_when": "Voltex 120 has the better FHR/circuit fit, or Voltex X solves an indoor-space/air constraint that a unitary HPWH does not.",
+      "no_overall_winner": true
+    },
+    {
+      "comparison": "Rinnai vs Noritz — gas tankless",
+      "rinnai_strengths": [
+        "RX/RXP platform, high efficiency, sophisticated recirculation option and verified Modesto ACE PRO."
+      ],
+      "noritz_strengths": [
+        "2026 EZ Pro line is explicitly tank-replacement-oriented with top water connections.",
+        "EZTR bundles package retrofit vent/isolation hardware.",
+        "Strong Modesto-area manufacturer directory footprint, including a contractor explicitly labeled Noritz trained."
+      ],
+      "choose_rinnai_when": "RX/RXP meets design flow and the local ACE PRO/service path or recirculation feature set is more important than retrofit geometry.",
+      "choose_noritz_when": "Tank-to-tankless retrofit geometry, top-mounted connections, flex-vent bundle compatibility or Noritz local service depth reduces conversion complexity.",
+      "no_overall_winner": true
+    },
+    {
+      "comparison": "Bradford White vs A. O. Smith — storage",
+      "bradford_white_strengths": [
+        "Professional/wholesale distribution model and large current storage catalog.",
+        "Ferguson carries Bradford White and has a Modesto plumbing branch."
+      ],
+      "ao_smith_strengths": [
+        "Very broad ProLine storage catalog with current California-relevant Ultra-Low NOx products.",
+        "Public manufacturer data gives clear FHR/recovery on models such as GUR-50."
+      ],
+      "choose_bradford_white_when": "A local plumber/supply channel has the exact Bradford White model in stock and it best fits FHR, dimensions, venting and service needs.",
+      "choose_ao_smith_when": "A current ProLine model is a better exact fit on FHR/venting/NOx/channel availability or the local service path is stronger.",
+      "no_overall_winner": true
+    }
+  ],
+  "quiz_brand_list_recommendation": {
+    "visible_default_brand_preferences": [
+      "Navien",
+      "Rinnai",
+      "Rheem",
+      "A. O. Smith",
+      "Noritz",
+      "Bradford White",
+      "No preference / not sure",
+      "Other / existing brand"
+    ],
+    "changes": [
+      "ADD Noritz.",
+      "KEEP Navien, Rinnai, Rheem, A. O. Smith and Bradford White.",
+      "DO NOT add State, American or Ruud as separate default buttons yet; accept them through Other/existing brand and map them internally to sibling-brand/platform records.",
+      "If the selected technology is incompatible with a preferred brand, explain the mismatch rather than silently ignoring the preference."
+    ],
+    "sibling_brand_notes": [
+      "Ruud is part of Rheem's brand family and has water-heating products.",
+      "State and American have close corporate/platform relationships with A. O. Smith. Exact model equivalence must be verified SKU by SKU before claiming products are identical."
+    ]
+  },
+  "unverified": [
+    {
+      "item": "Exact Modesto cold-water inlet design temperature by season/ZIP",
+      "why_it_matters": "Tankless GPM must be calculated at actual design temperature rise.",
+      "what_would_verify": "Reliable local utility/engineering data or measured cold-water temperatures across representative Modesto homes."
+    },
+    {
+      "item": "Complete model-by-model technical ingestion for Navien NHW/NPN families",
+      "why_it_matters": "Current catalog presence is verified, but exact flow/vent/gas data is not yet in the engine.",
+      "what_would_verify": "Download and parse current manufacturer spec sheets/install manuals for every active SKU."
+    },
+    {
+      "item": "Complete model-by-model technical ingestion for Rinnai RUCS/RUS/V families",
+      "why_it_matters": "They remain on current product pages but are not needed for the first decision rules without exact specs.",
+      "what_would_verify": "Current manufacturer tech sheets and model pages."
+    },
+    {
+      "item": "Brand-specific comparative reliability/failure rates",
+      "why_it_matters": "Without a denominator, error-code and complaint data cannot support 'more reliable' claims.",
+      "what_would_verify": "Large warranty-claim/service-call dataset normalized by installed base, model and age."
+    },
+    {
+      "item": "Known bad production years/model lines across all six brands",
+      "why_it_matters": "Anecdotes are not enough to publish an avoid list.",
+      "what_would_verify": "Manufacturer service bulletins/recalls plus statistically meaningful service/warranty evidence."
+    },
+    {
+      "item": "Realistic brand-specific service life under Modesto hard-water conditions",
+      "why_it_matters": "Water quality, maintenance and installation dominate life; no defensible comparative dataset was found.",
+      "what_would_verify": "Local service history by model + water hardness + maintenance history."
+    },
+    {
+      "item": "Exact current Modesto/Central Valley physical parts stock by brand",
+      "why_it_matters": "Distributor network presence does not prove that a specific repair part is on the shelf today.",
+      "what_would_verify": "Direct branch inventory/API check or distributor confirmation by critical part category."
+    },
+    {
+      "item": "Navien NSS status for specific Modesto contractors",
+      "why_it_matters": "Do not call a local company NSS/approved unless current directory output verifies it.",
+      "what_would_verify": "Manufacturer locator query for target ZIP on the date of routing."
+    },
+    {
+      "item": "Bradford White Factory Trained status for specific Modesto contractors",
+      "why_it_matters": "General directory existence does not prove local training status.",
+      "what_would_verify": "Manufacturer directory result showing the BW Factory Trained label for the contractor."
+    },
+    {
+      "item": "Brand-specific installed price bands in Modesto",
+      "why_it_matters": "Public equipment prices do not predict conversion labor, permit, gas, venting, electrical, recirculation or relocation costs.",
+      "what_would_verify": "At least three current local quotes per technology/complexity class, with equipment and upgrade components separated."
+    },
+    {
+      "item": "Consumer financing at manufacturer level for Navien, A.O. Smith, Noritz and Bradford White",
+      "why_it_matters": "Financing may be offered by contractors or channel partners rather than the manufacturer.",
+      "what_would_verify": "Current manufacturer program documentation or verified contractor program pages."
+    },
+    {
+      "item": "Exact model-level water-hardness limits/descaling intervals across every line",
+      "why_it_matters": "These are manual-specific and can affect warranty/maintenance recommendations.",
+      "what_would_verify": "Parse current installation/maintenance manuals for every active model family."
+    }
+  ],
+  "historical_recall_records": [
+    {
+      "brand": "navien",
+      "date": "2018-12-20",
+      "scope": "NPE-180A/NPE-180S and NCB-180E units in specified 2018 production dates when converted from natural gas to propane with the affected kit.",
+      "hazard": "Excess carbon monoxide from an affected conversion kit.",
+      "source_url": "https://www.cpsc.gov/Recalls/2019/Navien-Recalls-Tankless-Water-Heaters-and-Boilers-Due-to-Risk-of-Carbon-Monoxide-Poisoning",
+      "interpretation": "Historical model/date-specific recall. Do not generalize it to current NPE-A2 products."
+    },
+    {
+      "brand": "ao-smith",
+      "date": "2018-11-08",
+      "scope": "Certain 30/40/50-gallon Ultra-Low NOx gas water heaters made 2011-2016 under A.O. Smith, State, American and other labels, sold primarily in California.",
+      "hazard": "Burner screen could tear and create excess radiant heat/fire hazard.",
+      "source_url": "https://www.cpsc.gov/Recalls/2019/A-O-Smith-Recalls-Ultra-Low-NOx-Water-Heaters-Due-to-Fire-Hazard",
+      "interpretation": "Relevant to legacy-unit identification in California, not a current-line reliability ranking."
+    },
+    {
+      "brand": "rheem",
+      "date": "2016-05-26",
+      "scope": "Specified 2014-2015 Performance Platinum electric storage models sold at Home Depot.",
+      "hazard": "Control panel overheating, fire and burn hazard.",
+      "source_url": "https://www.cpsc.gov/Recalls/2016/Rheem-Recalls-to-Repair-Water-Heaters",
+      "interpretation": "Historical model/date-specific recall. Do not generalize to current ProTerra or storage models."
+    },
+    {
+      "brand": "bradford-white",
+      "date": "2002-08-15",
+      "scope": "Specified 75-gallon power-vented gas models manufactured/sold in 2002.",
+      "hazard": "Incorrect flue-gas baffles could affect combustion and carbon monoxide emissions.",
+      "source_url": "https://www.cpsc.gov/Recalls/2002/cpsc-bradford-white-corporation-announce-recall-of-gas-water-heater",
+      "interpretation": "Very old model-specific recall, useful only for legacy-unit lookup."
+    }
+  ],
+  "service_life_guidance": {
+    "gas_tankless": {
+      "planning_baseline": "about 20 years is a common technology-level planning figure",
+      "brand_specific": "unverified",
+      "notes": "Actual life depends heavily on installation, water quality, maintenance, duty cycle and repairability."
+    },
+    "storage_tank": {
+      "planning_baseline": "roughly 10-15 years is a common technology-level planning range",
+      "brand_specific": "unverified",
+      "notes": "Do not use this to rank the six brands."
+    },
+    "heat_pump": {
+      "planning_baseline": "similar broad lifespan category to electric storage; many current products carry 10-year tank/parts coverage",
+      "brand_specific": "unverified",
+      "notes": "Warranty length is not the same as expected service life."
+    }
+  }
+}

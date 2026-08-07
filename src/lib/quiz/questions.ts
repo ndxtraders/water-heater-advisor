@@ -193,13 +193,23 @@ export const QUESTIONS: Question[] = [
     id: "brand",
     prompt: "Do you already have a brand in mind?",
     why: "If you do, we will point you at an installer who works with that brand rather than talk you out of it.",
+    // Noritz added on the brand research recommendation: its 2026 EZ Pro line
+    // is built for retrofit and gives it a real claim on some tank-to-tankless
+    // conversions, and it has installer and service presence around Modesto.
+    //
+    // State, American and Ruud are deliberately not separate buttons. They sit
+    // under "another brand" and get mapped internally to their sibling
+    // platforms, which keeps the homeowner's choice short without losing the
+    // routing signal.
     options: [
       { value: "navien", label: "Navien" },
       { value: "rinnai", label: "Rinnai" },
       { value: "rheem", label: "Rheem" },
       { value: "ao-smith", label: "A. O. Smith" },
+      { value: "noritz", label: "Noritz" },
       { value: "bradford-white", label: "Bradford White" },
       { value: "none", label: "No preference" },
+      { value: "other", label: "Another brand, or whatever I have now" },
     ],
     skipWhenUrgent: true,
   },

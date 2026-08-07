@@ -1,3 +1,5 @@
+import { brandMismatch } from "@/lib/brands";
+
 import type { Answers } from "./questions";
 import { hasAuthority, isUrgent } from "./questions";
 
@@ -174,6 +176,12 @@ export interface Recommendation {
   budgetGap?: { ceiling: number; floor: number };
   /** Set when the respondent rents and cannot authorise the work. */
   needsOwner: boolean;
+  /**
+   * Set when the homeowner named a brand that does not make the recommended
+   * technology. The recommendation stands; this exists so the site can explain
+   * the mismatch rather than silently discarding what they asked for.
+   */
+  brandNote?: { brandName: string; alternatives: string[] };
 }
 
 /**
@@ -374,6 +382,7 @@ export function recommend(answers: Answers): Recommendation {
         ? { ceiling, floor: costFor(primary.id, answers)[0] }
         : undefined,
     needsOwner: !hasAuthority(answers),
+    brandNote: brandMismatch(answers.brand, primary.id) ?? undefined,
   };
 }
 
@@ -397,23 +406,54 @@ function summaryFor(primary: Assessment, eliminatedCount: number): string {
   return "The best balance of fit, cost and practicality for your home.";
 }
 
+/**
+ * Winter design temperature rise, in Fahrenheit, used for tankless sizing.
+ *
+ * Central Valley groundwater in winter against a 120F output. This is a stated
+ * assumption, not a verified figure: the brand research explicitly lists exact
+ * Modesto inlet temperature by season and ZIP as unverified, so it is surfaced
+ * to the homeowner as an assumption to confirm rather than published as fact.
+ */
+export const DESIGN_TEMP_RISE_F = 65;
+
+/**
+ * Tankless sizing, expressed as required flow **at a design temperature rise**.
+ *
+ * The earlier version returned bare GPM figures like "roughly 9 to 11 GPM", and
+ * that was actively misleading. A tankless unit's headline rating is quoted at a
+ * 35F rise; the same unit delivers roughly half that at a winter rise. A
+ * Navien NPE-240A2 is 11.2 GPM at 35F and 5.6 GPM at around 67F. A homeowner
+ * matching a bare "9 to 11 GPM" against a spec sheet would buy a unit that runs
+ * cold every January.
+ *
+ * So the output is now the flow the household actually needs, paired with the
+ * rise it has to be met at. That is the number a contractor sizes against, and
+ * it is the number that makes a spec sheet comparable.
+ */
 function sizingFor(id: TechId, answers: Answers): string {
   const big = answers.household === "5+" || answers.bathrooms === "3+";
   const mid = answers.household === "3-4" || answers.bathrooms === "2";
+  const heavyOverlap = answers.simultaneous === "often";
 
   if (id === "gas-tankless") {
-    // Simultaneous flow plus temperature rise, not household size alone.
-    if (big) return "Roughly 9 to 11 GPM, sized on simultaneous flow and winter inlet temperature";
-    if (mid) return "Roughly 7 to 9 GPM, confirmed against your incoming water temperature";
-    return "Roughly 6 to 8 GPM is usually plenty";
+    const rise = `at a ${DESIGN_TEMP_RISE_F}°F temperature rise`;
+    if (big || heavyOverlap) {
+      return `About 6 to 7 GPM ${rise}. That usually means a 199,000 BTU unit, because headline GPM ratings are quoted at a much smaller rise`;
+    }
+    if (mid) {
+      return `About 4 to 5 GPM ${rise}, which is more unit than the headline rating on the box suggests`;
+    }
+    return `About 3 to 4 GPM ${rise}, enough for one shower plus a sink`;
   }
+
   if (id === "heat-pump") {
     // ENERGY STAR advises upsizing in high-demand homes so the resistance
     // backup elements run less often.
-    if (big) return "80 gallon. Upsizing keeps the backup resistance elements from running";
-    if (mid) return "65 to 80 gallon";
+    if (big) return "80 gallon, around an 85 gallon first hour rating. Upsizing keeps the backup resistance elements from running";
+    if (mid) return "65 to 80 gallon, around an 80 gallon first hour rating";
     return "50 to 65 gallon";
   }
+
   if (big) return "75 gallon, or 50 gallon with a high recovery rate";
   if (mid) return "50 gallon";
   return "40 gallon";
@@ -431,12 +471,24 @@ function watchFor(id: TechId, answers: Answers): string[] {
   if (id === "gas-tankless") {
     out.push("Ask whether your existing gas line can carry the unit before anyone quotes a price");
     out.push("Hard water makes annual descaling non optional, so budget for it");
+    out.push(
+      `The size above is flow at a ${DESIGN_TEMP_RISE_F}°F rise, which is our winter assumption for this area. Spec sheets quote a much smaller rise, so a unit rated 11 GPM on the box may deliver closer to 6 here. Ask your installer to size against your actual inlet temperature`,
+    );
+    // From the brand research: uncontrolled recirculation can cut Navien's
+    // residential heat exchanger cover from 15 years to 5. Expensive to learn
+    // afterwards, and almost nobody mentions it at quote stage.
+    out.push(
+      "If you are adding a recirculation pump, ask how it is controlled. On some brands an uncontrolled recirculation loop materially reduces the warranty",
+    );
   }
   if (id === "heat-pump") {
     out.push("Confirm there is a condensate route from where the unit will sit");
     if (answers.electrical === "unsure" || answers.electrical === "full") {
       out.push("Your installer should check panel capacity before ordering anything");
     }
+    out.push(
+      "Unducted, these typically need around 450 cubic feet of air around them. A small closet needs ducting, which adds cost",
+    );
     out.push("These make some noise, so think about what is on the other side of that wall");
   }
   if (id === "gas-tank" || id === "electric-tank") {

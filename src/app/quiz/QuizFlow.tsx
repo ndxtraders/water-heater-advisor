@@ -306,6 +306,30 @@ function Results({
           </Callout>
         ) : null}
 
+        {/* Honouring the brand answer without letting it override feasibility.
+            Silently dropping what someone told us would be its own small
+            dishonesty, and the alternatives list makes the note useful rather
+            than just a refusal. */}
+        {r.brandNote ? (
+          <Callout title={`${r.brandNote.brandName} does not make this type`}>
+            <p>
+              You told us you were leaning toward {r.brandNote.brandName}, and we have not
+              ignored that. They do not currently make a {r.primary.name.toLowerCase()} for
+              homes, so sticking with the brand would mean choosing a system that suits
+              your house less well.
+              {r.brandNote.alternatives.length > 0 ? (
+                <>
+                  {" "}
+                  Brands that do make one include{" "}
+                  {r.brandNote.alternatives.slice(0, 4).join(", ")}.
+                </>
+              ) : null}{" "}
+              If the brand matters more to you than the type, say so when you talk to an
+              installer and ask them to price both.
+            </p>
+          </Callout>
+        ) : null}
+
         {r.needsOwner ? (
           <Callout title="You will need the owner involved">
             <p>
