@@ -144,52 +144,110 @@ export default function ModestoPage() {
             title="What a Modesto job actually costs"
             lead="We will not publish an average. The evidence does not support that precision, and an average answers the wrong question anyway. Here is the job broken into parts instead."
           />
+          {/* Tank replacement first. It is the volume job, it is what most
+              visitors are actually buying, and it is the one figure we have a
+              real local quote for. */}
           <CostBreakdown
-            title="Tank to gas tankless conversion"
+            title="Gas tank replacement, like for like"
             lines={[
-              { label: "Tankless unit", low: 1100, high: 2400 },
-              { label: "Installation labour", low: 900, high: 1800 },
+              {
+                label: "Water heater unit",
+                low: 950,
+                high: 2200,
+                condition: "Entry level 40 gallon up to a premium contractor line",
+              },
+              { label: "Installation labour", low: 650, high: 1300 },
               { label: "Permit and inspection", low: 150, high: 400 },
               {
-                label: "Gas line upsizing",
-                low: 350,
-                high: 2000,
-                condition: "If the existing line cannot carry the unit",
-                optional: true,
-              },
-              {
-                label: "New venting",
-                low: 400,
-                high: 1500,
-                condition: "Almost always required on a conversion",
-                optional: true,
-              },
-              {
-                label: "Dedicated electrical circuit",
-                low: 250,
-                high: 900,
-                condition: "Condensing units need power",
-                optional: true,
-              },
-              {
-                label: "Condensate routing",
+                label: "Code compliance items",
                 low: 150,
-                high: 600,
-                condition: "Depends on where the unit sits",
+                high: 500,
+                condition: "Expansion tank, seismic strapping, relief discharge, drain pan",
+              },
+              { label: "Haul away of the old unit", low: 50, high: 150 },
+              {
+                label: "Venting corrections",
+                low: 300,
+                high: 900,
+                condition: "If the existing flue does not meet current code",
                 optional: true,
               },
               {
-                label: "Recirculation pump",
-                low: 400,
-                high: 1600,
-                condition: "Only if you want instant hot water at distant taps",
+                label: "Re-piping or relocation",
+                low: 200,
+                high: 800,
+                condition: "If the new unit does not match the old footprint",
                 optional: true,
               },
             ]}
-            note="Ranges are drawn from national 2026 cost data and locally advertised Modesto pricing. They are a planning tool, not a quote. The conditional lines are where two houses on the same street end up thousands apart."
+            note="Most of the spread sits in the first line. A basic 40 gallon unit and a premium contractor-channel model are the same job to install and roughly $1,200 apart to buy. For reference, one Modesto company currently quotes around $2,700 for a Bradford White installation, and a local water heater specialist advertises $1,995 to $2,495 for a standard 40 gallon replacement."
           />
           <SourceNote
-            source="2026 consumer cost guides and advertised Modesto water heater pricing"
+            source="Local Modesto contractor quote and advertised specialist pricing, collected directly"
+            checked={CHECKED}
+          />
+
+          {/* The single most common homeowner misunderstanding in this
+              category, and cheap to clear up. */}
+          <Callout title="Why the $900 water heater costs $2,700 installed">
+            <p>
+              A tank on the shelf at a big box store starts around $900, and that number
+              is what most people have in their head when they call a plumber. The gap is
+              not markup. It is labour, the permit and inspection, the code items an
+              inspector will actually look for, hauling the old unit away, and in many
+              cases a better unit than the entry level one on display. A quote that comes
+              in near the shelf price is usually missing several of those.
+            </p>
+          </Callout>
+
+          <div className="mt-10">
+            <CostBreakdown
+              title="Tank to gas tankless conversion"
+              lines={[
+                { label: "Tankless unit", low: 1300, high: 2800 },
+                { label: "Installation labour", low: 1200, high: 2400 },
+                { label: "Permit and inspection", low: 150, high: 400 },
+                {
+                  label: "Gas line upsizing",
+                  low: 350,
+                  high: 2000,
+                  condition: "If the existing line cannot carry the unit",
+                  optional: true,
+                },
+                {
+                  label: "New venting",
+                  low: 400,
+                  high: 1500,
+                  condition: "Almost always required on a conversion",
+                  optional: true,
+                },
+                {
+                  label: "Dedicated electrical circuit",
+                  low: 250,
+                  high: 900,
+                  condition: "Condensing units need power",
+                  optional: true,
+                },
+                {
+                  label: "Condensate routing",
+                  low: 150,
+                  high: 600,
+                  condition: "Depends on where the unit sits",
+                  optional: true,
+                },
+                {
+                  label: "Recirculation pump",
+                  low: 400,
+                  high: 1600,
+                  condition: "Only if you want instant hot water at distant taps",
+                  optional: true,
+                },
+              ]}
+              note="A conversion is a different job from a swap, and the conditional lines are where two houses on the same street end up thousands apart. National sources put tankless installation lower than this, but those figures largely describe replacing an existing tankless unit rather than converting from a tank."
+            />
+          </div>
+          <SourceNote
+            source="2026 consumer cost guides, cross-checked against Modesto contractor pricing"
             checked={CHECKED}
           />
         </Container>

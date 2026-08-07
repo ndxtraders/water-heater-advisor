@@ -80,12 +80,69 @@ export interface TechProfile {
   cost: [number, number];
 }
 
+/**
+ * Installed cost ranges, Modesto market, 2026.
+ *
+ * These are the *baseline* figures. `costFor()` below adjusts them for whether
+ * the job is a like-for-like swap or a technology conversion, which is worth
+ * far more than any refinement of the numbers themselves.
+ *
+ * Revised upward from an earlier pass that was simply wrong at the bottom end.
+ * Two local observations moved it:
+ *
+ *   - A Modesto plumbing company quoting roughly $2,700 for a Bradford White
+ *     tank installation. First-party, and the single most reliable figure we
+ *     have.
+ *   - A Modesto water-heater specialist publicly advertising $1,995 to $2,495
+ *     for a 40-gallon replacement including standard installation, haul-away
+ *     and basic code items.
+ *
+ * The old gas-tank floor of $1,600 sat below both. A floor beneath every real
+ * quote in the market is not a conservative estimate, it is a number that makes
+ * every actual quote look like a rip-off, which is the opposite of useful.
+ *
+ * Worth noting against the national data: 2026 national sources put tank
+ * replacement around $882 to $1,825. Modesto contractor pricing runs well above
+ * that. National averages understate this market, so they are a sanity check
+ * and never the published figure.
+ */
 export const TECHNOLOGIES: Record<TechId, TechProfile> = {
-  "gas-tank": { id: "gas-tank", name: "Gas storage tank", cost: [1600, 3100] },
-  "electric-tank": { id: "electric-tank", name: "Electric storage tank", cost: [1400, 2600] },
-  "gas-tankless": { id: "gas-tankless", name: "Gas tankless", cost: [3200, 8000] },
-  "heat-pump": { id: "heat-pump", name: "Heat pump water heater", cost: [2800, 6500] },
+  "gas-tank": { id: "gas-tank", name: "Gas storage tank", cost: [2000, 3800] },
+  "electric-tank": { id: "electric-tank", name: "Electric storage tank", cost: [1700, 3200] },
+  "gas-tankless": { id: "gas-tankless", name: "Gas tankless", cost: [4200, 9000] },
+  "heat-pump": { id: "heat-pump", name: "Heat pump water heater", cost: [4000, 8000] },
 };
+
+/**
+ * Cost adjusted for what the job actually is.
+ *
+ * A homeowner replacing a failed tankless unit and one converting a gas tank to
+ * tankless were being quoted the same range, and those are not the same job.
+ * The conversion carries gas line, venting, electrical and condensate work; the
+ * replacement mostly reuses what is already there.
+ *
+ * The same applies to heat pumps. Coming from an existing electric tank there
+ * is usually a circuit to work with. Coming off gas means new electrical, and
+ * that is most of the difference.
+ */
+export function costFor(id: TechId, answers: Answers): [number, number] {
+  const base = TECHNOLOGIES[id].cost;
+  const current = answers.current;
+
+  if (id === "gas-tankless" && current === "tankless") {
+    // Like-for-like tankless swap. Gas, venting and power already sized.
+    return [2800, 5200];
+  }
+  if (id === "heat-pump" && (current === "heat-pump" || current === "electric-tank")) {
+    // Existing electrical service to work from.
+    return [3200, 6500];
+  }
+  if (id === "gas-tank" && current === "gas-tank") {
+    // The straightforward swap. Still not cheap in this market.
+    return [2000, 3400];
+  }
+  return base;
+}
 
 export interface Assessment {
   id: TechId;
@@ -259,9 +316,12 @@ export function recommend(answers: Answers): Recommendation {
   const ceiling = answers.budget ? BUDGET_CEILING[answers.budget] : null;
   if (ceiling !== null && ceiling !== undefined) {
     for (const t of Object.values(a)) {
-      const floor = TECHNOLOGIES[t.id].cost[0];
+      // costFor, not the static baseline: someone replacing an existing
+      // tankless should not be scored against conversion pricing they will
+      // never pay.
+      const floor = costFor(t.id, answers)[0];
       if (floor > ceiling) t.score -= 3;
-      else if (TECHNOLOGIES[t.id].cost[1] <= ceiling) t.score += 1;
+      else if (costFor(t.id, answers)[1] <= ceiling) t.score += 1;
     }
   }
 
@@ -303,15 +363,15 @@ export function recommend(answers: Answers): Recommendation {
     ruledOut,
     confidence,
     sizing: sizingFor(primary.id, answers),
-    costRange: TECHNOLOGIES[primary.id].cost,
+    costRange: costFor(primary.id, answers),
     installerType: installerFor(primary.id, urgent),
     watchFor: watchFor(primary.id, answers),
     questionsToAsk: QUESTIONS_FOR_INSTALLER[primary.id],
     score: leadScore(answers),
     category: routingCategory(answers, primary.id),
     budgetGap:
-      ceiling !== null && ceiling !== undefined && TECHNOLOGIES[primary.id].cost[0] > ceiling
-        ? { ceiling, floor: TECHNOLOGIES[primary.id].cost[0] }
+      ceiling !== null && ceiling !== undefined && costFor(primary.id, answers)[0] > ceiling
+        ? { ceiling, floor: costFor(primary.id, answers)[0] }
         : undefined,
     needsOwner: !hasAuthority(answers),
   };
