@@ -71,27 +71,42 @@ This is not minimalism for its own sake. A site that colors things because they
 look nice cannot then use color to say "this option is wrong for your house" —
 the signal is already spent.
 
-### Brand
+### Brand: red, white and blue — with red rationed
 
-Plumbing sites are blue. Efficiency sites are green. Both are taken, and worse,
-both are *biased*: blue reads gas, green reads electrification. A
-technology-neutral advisor cannot wear either without tipping its hand before the
-quiz starts.
+Red, white and blue is this category's visual language and the trust register
+American homeowners already read. The site borrows it. The question is *how*,
+and the answer is the single most important rule in the palette:
 
-**Primary is ink** — a deep, slightly blue-black slate. Authority, editorial,
-neutral between fuels.
+> **Blue carries the brand. Red is rationed to two jobs: emergency, and "not a
+> fit."**
 
-**Accent is copper.** Water-heater adjacent (copper supply line, burner flame),
-warm enough to keep the page from feeling clinical, and it belongs to neither the
-gas camp nor the electric camp. It is used for interactive affordances and the
-primary CTA only — never for verdicts.
+On a plumber's site red is the primary — the logo, the banner, the CALL NOW
+button. Doing the same here would make the site look like the companies it
+refers work to, which is a positioning problem and a CSLB problem at once. Used
+sparingly against navy, the same red reads as a warning system rather than a
+sales voice, and it stays available for the one moment it genuinely needs to
+shout.
 
 ```
---ink        oklch(0.24 0.02 250)   Primary. Headings, primary buttons, nav.
---copper     oklch(0.62 0.14 48)    Accent. Links, CTAs, focus rings.
---paper      oklch(0.99 0.004 85)   Page background. Warm white, not clinical.
---surface    oklch(1 0 0)           Cards, raised panels.
+--ink        oklch(0.24 0.03 255)   #15202d   Body and headings.
+--navy       oklch(0.29 0.07 258)   #132b4d   Brand. Wordmark, nav, footer.
+--blue       oklch(0.47 0.15 258)   #1a57ad   Links, primary CTA, focus.
+--blue-bright oklch(0.58 0.16 256)            Hover and non-text UI only.
+--flag-red   oklch(0.52 0.20 27)    #c2181d   Emergency and "not a fit". Nothing else.
+--paper      oklch(0.995 0.001 250)           Page background. Near-neutral white.
 ```
+
+**Previous palette, and why it changed.** v1 used warm cream paper with a copper
+accent. It was correctly called out as reading like an AI company rather than a
+homeowner utility — cream plus copper plus a serif is a very specific current
+signature. The cream is gone and paper is now near-neutral white.
+
+**On green as a type colour.** It should not be one. Green appears in exactly one
+place, `--verdict-fit`, and a green used for headings or links would collide with
+the one spot green has to carry meaning. It would also start signalling "eco",
+which a technology-neutral advisor cannot afford — the site has to be able to
+recommend a gas tank without its own palette arguing back. Blue does the
+interactive work; green stays a verdict.
 
 ### Verdict scale
 
@@ -254,18 +269,20 @@ text and `--muted-foreground` at **3.81:1**, both under the floor this document
 claims. Both were darkened (copper `0.52 → 0.47`, muted `0.52 → 0.46`) and
 re-measured.
 
-| Pair | Ratio | |
-|---|---|---|
-| `--ink` on paper | 15.97 | ✅ |
-| `--muted-foreground` on paper | 6.91 | ✅ |
-| `--muted-foreground` on card | 7.11 | ✅ |
-| `--copper` on paper | 6.99 | ✅ |
-| `--copper` on card | 7.19 | ✅ |
-| White on `--copper` (primary button) | 7.19 | ✅ |
-| `--verdict-fit` on its bg | 4.78 | ✅ |
-| `--verdict-alt` on its bg | 4.97 | ✅ |
-| `--verdict-unfit` on its bg | 4.92 | ✅ |
-| `--status-warn` on its bg | 4.57 | ✅ |
+Re-measured after the red/white/blue repalette:
+
+| Pair | Hex | Ratio | |
+|---|---|---|---|
+| `--ink` on paper | `#15202d` | 16.21 | ✅ |
+| `--navy` on paper | `#132b4d` | 13.97 | ✅ |
+| `--blue` on paper (links) | `#1a57ad` | 6.85 | ✅ |
+| White on `--blue` (primary button) | `#1a57ad` | 6.95 | ✅ |
+| `--flag-red` on white | `#c2181d` | 6.11 | ✅ |
+| White on `--flag-red` | `#c2181d` | 6.11 | ✅ |
+| `--muted-foreground` on paper | `#515962` | 7.02 | ✅ |
+| `--verdict-fit` on its bg | `#106f4c` | 5.58 | ✅ |
+| `--verdict-unfit` on its bg | `#c2181d` | 5.47 | ✅ |
+| `--status-warn` on its bg | `#9d5d03` | 4.70 | ✅ |
 
 Re-measure whenever a colour token moves. A stated floor that is never measured
 is decoration.

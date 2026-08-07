@@ -289,8 +289,8 @@ function Results({
               You said up to {usd(r.budgetGap.ceiling)}, and this option realistically
               starts around {usd(r.budgetGap.floor)}. We are still showing it because it
               is what suits your home. Two things worth knowing: most installers here
-              offer financing, and the alternative below is the honest cheaper answer if
-              the number is firm.
+              offer financing, and the alternative shown above is the honest cheaper
+              answer if the number is firm.
             </p>
           </Callout>
         ) : null}
