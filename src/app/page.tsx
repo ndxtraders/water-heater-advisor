@@ -119,11 +119,12 @@ const HERO_TAGLINE = "Your trusted source for expert, local water heater advice"
 
 const HERO_HEADING = "Which water heater is right for your home?";
 
-// PLACEHOLDER — replace with Rev's copy when it lands.
+// Deliberately one short line. The long version pushed the quiz card below the
+// fold on phones, and the tagline above plus the card's own footnote already
+// carry the trust and no-contact-required claims. This line only has to make
+// the next action obvious.
 const HERO_SUBHEADING =
-  "Answer a few questions about your home and we will tell you which system actually " +
-  "suits it, what it should cost, and which rebates are worth chasing. Then, only if " +
-  "you want it, we will introduce you to a local installer who does that work.";
+  "Answer a few simple questions and get personalized recommendations in 2 minutes.";
 
 export default function HomePage() {
   return (
