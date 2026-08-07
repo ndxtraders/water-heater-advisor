@@ -1,20 +1,13 @@
 {
-  "name": "authority-site-generator",
-  "version": "0.3.0",
+  "name": "water-heater-advisor",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "validate": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/validate-content.mts",
-    "verify:production": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify-production.mts",
-    "prebuild": "npm run validate",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit",
-    "test": "node --import tsx --test tests/*.test.mts",
-    "test:build": "node --import tsx scripts/run-build-integration.mts",
-    "test:browser": "playwright test",
-    "verify": "npm run validate && npm run lint && npm run typecheck && npm test && npm run test:build && npm run test:browser"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
@@ -30,7 +23,6 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@playwright/test": "^1.62.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

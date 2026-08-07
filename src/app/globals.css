@@ -4,127 +4,230 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ---------------------------------------------------------------------------
+   Water Heater Advisor design tokens.
+
+   Rationale lives in DESIGN-SYSTEM.md. The short version, because it governs
+   every choice below: color carries meaning or it does not appear. There is no
+   decorative hue in this system. A site that tints things because they look
+   nice has already spent the signal it needs in order to say "this option is
+   wrong for your house."
+   --------------------------------------------------------------------------- */
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-heading);
+
   --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand */
+  --color-ink: var(--ink);
+  --color-copper: var(--copper);
+  --color-copper-bright: var(--copper-bright);
+
+  /* Verdict scale — the recommendation output. Always paired with icon + label. */
+  --color-verdict-fit: var(--verdict-fit);
+  --color-verdict-fit-bg: var(--verdict-fit-bg);
+  --color-verdict-alt: var(--verdict-alt);
+  --color-verdict-alt-bg: var(--verdict-alt-bg);
+  --color-verdict-unfit: var(--verdict-unfit);
+  --color-verdict-unfit-bg: var(--verdict-unfit-bg);
+
+  /* Rebate / data freshness */
+  --color-status-warn: var(--status-warn);
+  --color-status-warn-bg: var(--status-warn-bg);
+
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.4);
   --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Editorial measure. Body prose is capped; tables and quiz UI are exempt
+     because they are scanned rather than read. */
+  --spacing-measure: 68ch;
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* Brand ---------------------------------------------------------------
+     Plumbing sites are blue, efficiency sites are green. Both are taken and
+     both are biased — blue reads gas, green reads electrification. A
+     technology-neutral advisor cannot wear either without tipping its hand
+     before the quiz has asked a single question. Ink stays out of the fight;
+     copper is water-heater adjacent (supply line, burner flame) and belongs to
+     neither camp. */
+  --ink: oklch(0.24 0.02 250);
+  --paper: oklch(0.99 0.004 85);
+
+  /* Two coppers. The bright one is for decoration and hover; the base one is
+     dark enough to carry white text and to pass AA as a link on paper. Using a
+     single mid-tone copper for both would fail contrast in one direction or
+     look muddy in the other. */
+  --copper: oklch(0.52 0.13 45);
+  --copper-bright: oklch(0.62 0.14 48);
+
+  /* Neutrals carry a trace of the same blue as ink, so greys never go muddy
+     when they sit next to copper. */
+  --n-50: oklch(0.985 0.003 250);
+  --n-100: oklch(0.965 0.004 250);
+  --n-200: oklch(0.925 0.005 250);
+  --n-300: oklch(0.87 0.006 250);
+  --n-400: oklch(0.72 0.008 250);
+  --n-500: oklch(0.58 0.01 250);
+  --n-600: oklch(0.47 0.012 250);
+  --n-700: oklch(0.38 0.014 250);
+  --n-800: oklch(0.29 0.016 250);
+  --n-900: oklch(0.21 0.018 250);
+
+  /* Verdict scale -------------------------------------------------------
+     Deliberately desaturated. Saturated green/red is the palette of a sales
+     comparison chart; muted is the palette of an assessment.
+
+     "Fit" green means *suits your house*, not *environmentally good*. The
+     verdict scale is orthogonal to technology — a gas storage tank can and
+     often should come back green. */
+  --verdict-fit: oklch(0.52 0.09 168);
+  --verdict-fit-bg: oklch(0.965 0.02 168);
+  --verdict-alt: oklch(0.52 0.02 250);
+  --verdict-alt-bg: oklch(0.965 0.005 250);
+  --verdict-unfit: oklch(0.54 0.13 25);
+  --verdict-unfit-bg: oklch(0.97 0.015 25);
+
+  --status-warn: oklch(0.55 0.12 70);
+  --status-warn-bg: oklch(0.97 0.03 85);
+
+  /* shadcn surface mapping */
+  --background: var(--paper);
+  --foreground: var(--ink);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: var(--ink);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: var(--n-100);
+  --secondary-foreground: var(--ink);
+  --muted: var(--n-100);
+  --muted-foreground: oklch(0.52 0.012 250);
+  --accent: var(--copper);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: var(--verdict-unfit);
+  --border: var(--n-200);
+  --input: var(--n-300);
+  --ring: var(--copper-bright);
+
+  /* Type ----------------------------------------------------------------
+     Serif headings are what separate this from every contractor site in the
+     SERP at a glance — those are uniformly geometric sans. System stacks
+     rather than webfonts: no network request, no layout shift, no build-time
+     font fetch, and ui-serif resolves to genuinely good faces where it counts. */
+  --font-heading: ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Squared rather than rounded. Rounded-everything reads friendly and
+     consumer-app; slightly squared reads precise and documentary. */
+  --radius: 0.375rem;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: oklch(0.17 0.015 250);
+  --foreground: oklch(0.96 0.004 250);
+  --card: oklch(0.21 0.018 250);
+  --card-foreground: oklch(0.96 0.004 250);
+  --popover: oklch(0.21 0.018 250);
+  --popover-foreground: oklch(0.96 0.004 250);
+  --primary: oklch(0.96 0.004 250);
+  --primary-foreground: oklch(0.21 0.018 250);
+  --secondary: oklch(0.27 0.018 250);
+  --secondary-foreground: oklch(0.96 0.004 250);
+  --muted: oklch(0.27 0.018 250);
+  --muted-foreground: oklch(0.72 0.01 250);
+  --accent: oklch(0.68 0.13 50);
+  --accent-foreground: oklch(0.17 0.015 250);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 18%);
+  --ring: oklch(0.68 0.13 50);
+
+  --copper: oklch(0.72 0.12 52);
+  --copper-bright: oklch(0.78 0.12 55);
+
+  --verdict-fit: oklch(0.72 0.11 168);
+  --verdict-fit-bg: oklch(0.28 0.04 168);
+  --verdict-alt: oklch(0.72 0.02 250);
+  --verdict-alt-bg: oklch(0.27 0.018 250);
+  --verdict-unfit: oklch(0.7 0.14 25);
+  --verdict-unfit-bg: oklch(0.29 0.05 25);
+  --status-warn: oklch(0.78 0.13 75);
+  --status-warn-bg: oklch(0.29 0.05 75);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-size: 1rem;
+    line-height: 1.65;
   }
-  html {
-    @apply font-sans;
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading text-foreground;
+    line-height: 1.15;
+    text-wrap: balance;
+    letter-spacing: -0.011em;
+  }
+
+  /* Long-form explanation is the product. Tight leading on a 900-word
+     technology page is a comprehension tax the site cannot afford. */
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Prices in a comparison table that do not align are a legibility bug, not a
+     stylistic preference. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2;
+    outline-color: var(--copper-bright);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }

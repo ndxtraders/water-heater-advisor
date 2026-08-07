@@ -1,58 +1,77 @@
-import { Button as ButtonPrimitive } from "@base-ui/react/button"
-import { cva, type VariantProps } from "class-variance-authority"
+import Link from "next/link";
+import type { ComponentProps, ReactNode } from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/80",
-        outline:
-          "border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
-        ghost:
-          "hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50",
-        destructive:
-          "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
-        link: "text-primary underline-offset-4 hover:underline",
-      },
-      size: {
-        default:
-          "h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
-        xs: "h-6 gap-1 rounded-[min(var(--radius-md),10px)] px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
-        lg: "h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
-        icon: "size-8",
-        "icon-xs":
-          "size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",
-        "icon-sm":
-          "size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg",
-        "icon-lg": "size-9",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  }
-)
+type Variant = "primary" | "secondary" | "ghost" | "emergency";
+type Size = "md" | "lg";
 
-function Button({
-  className,
-  variant = "default",
-  size = "default",
-  ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
-  return (
-    <ButtonPrimitive
-      data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
-    />
-  )
+/**
+ * Written rather than inherited from shadcn, whose default button is `h-8`.
+ * That is an application-chrome size. Half this audience is on a phone and some
+ * of them are standing in a garage next to a leaking tank, so every control
+ * clears the 44px target floor from DESIGN-SYSTEM.md §8.
+ */
+const VARIANTS: Record<Variant, string> = {
+  // Copper, not ink, so the single primary action on a page is the one thing
+  // wearing the accent colour. Scarcity is what makes it read as the action.
+  primary:
+    "bg-copper text-white hover:bg-copper-bright active:translate-y-px shadow-xs",
+  secondary:
+    "bg-transparent text-foreground border border-input hover:bg-muted active:translate-y-px",
+  ghost: "bg-transparent text-muted-foreground hover:text-foreground hover:bg-muted",
+  // The only place urgency styling is permitted anywhere in the system.
+  emergency:
+    "bg-verdict-unfit text-white hover:brightness-110 active:translate-y-px shadow-xs",
+};
+
+const SIZES: Record<Size, string> = {
+  md: "min-h-11 px-4 text-[0.9375rem] gap-2",
+  lg: "min-h-13 px-6 text-base gap-2.5",
+};
+
+const BASE =
+  "inline-flex items-center justify-center rounded-md font-medium tracking-tight " +
+  "transition-[background-color,filter,transform] duration-150 ease-out " +
+  "disabled:pointer-events-none disabled:opacity-50 " +
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper-bright";
+
+interface BaseProps {
+  variant?: Variant;
+  size?: Size;
+  className?: string;
+  children: ReactNode;
 }
 
-export { Button, buttonVariants }
+export function Button({
+  variant = "primary",
+  size = "md",
+  className,
+  children,
+  ...rest
+}: BaseProps & ComponentProps<"button">) {
+  return (
+    <button className={cn(BASE, VARIANTS[variant], SIZES[size], className)} {...rest}>
+      {children}
+    </button>
+  );
+}
+
+export function ButtonLink({
+  variant = "primary",
+  size = "md",
+  className,
+  children,
+  href,
+  ...rest
+}: BaseProps & ComponentProps<typeof Link>) {
+  return (
+    <Link
+      href={href}
+      className={cn(BASE, VARIANTS[variant], SIZES[size], className)}
+      {...rest}
+    >
+      {children}
+    </Link>
+  );
+}
