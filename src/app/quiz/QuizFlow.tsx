@@ -351,6 +351,55 @@ function Results({
           </Callout>
         ) : null}
 
+        {/* Brand comes last and stays a shortlist, never a winner. The research
+            is explicit that the evidence does not support ranking these six on
+            reliability, and installed price is driven by the house rather than
+            the badge. */}
+        {r.brandFits.length > 0 ? (
+          <section className="rounded-lg border border-border bg-card p-6 sm:p-7">
+            <h2 className="text-xl">Brands worth shortlisting for this job</h2>
+            <p className="mt-2 text-[0.9375rem] text-muted-foreground">
+              Not a ranking, and not the most important decision you are making. These
+              suit your particular situation for the reasons given.
+            </p>
+            <ul className="mt-5 space-y-5">
+              {r.brandFits.map((b) => (
+                <li key={b.id} className="border-t border-border pt-4 first:border-0 first:pt-0">
+                  <h3 className="text-lg">{b.name}</h3>
+                  <ul className="mt-2 space-y-1.5">
+                    {b.reasons.map((reason) => (
+                      <li
+                        key={reason}
+                        className="flex gap-2.5 text-[0.9375rem] leading-relaxed text-muted-foreground"
+                      >
+                        <span
+                          aria-hidden
+                          className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-verdict-fit"
+                        />
+                        {reason}
+                      </li>
+                    ))}
+                  </ul>
+                  {b.caution ? (
+                    <p className="mt-2.5 flex gap-2.5 text-[0.9375rem] leading-relaxed text-muted-foreground">
+                      <span
+                        aria-hidden
+                        className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-status-warn"
+                      />
+                      {b.caution}
+                    </p>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 border-t border-border pt-4 text-xs leading-relaxed text-muted-foreground">
+              We do not rank these brands on reliability, because the public evidence does
+              not support it. Who services them near you is the more useful question, and
+              it is worth asking your installer directly.
+            </p>
+          </section>
+        ) : null}
+
         <section className="rounded-lg border border-border bg-card p-6 sm:p-7">
           <h2 className="text-xl">Before you accept a quote</h2>
           <p className="mt-2 text-[0.9375rem] text-muted-foreground">

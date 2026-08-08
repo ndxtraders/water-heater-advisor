@@ -28,6 +28,8 @@ export const metadata: Metadata = {
  * directory. That is a claim about someone else's business and it changes
  * without notice.
  */
+const CHECKED = "7 Aug 2026";
+
 export default function NavienPage() {
   return (
     <>
@@ -39,8 +41,10 @@ export default function NavienPage() {
             <h1 className="text-4xl leading-tight sm:text-[2.75rem]">Navien</h1>
             <p className="mt-5 max-w-measure text-lg leading-relaxed text-muted-foreground">
               Best known for condensing gas tankless units and for recirculation built
-              into the unit rather than bolted on afterwards. A strong choice in the
-              right house, and an expensive mistake in the wrong one.
+              into the unit rather than bolted on afterwards. Since the NWP500 line they
+              also make heat pump water heaters, which matters if you assumed choosing
+              Navien meant choosing tankless. A strong choice in the right house, and an
+              expensive mistake in the wrong one.
             </p>
           </div>
         </Container>
@@ -90,74 +94,83 @@ export default function NavienPage() {
             title="Navien — brand record"
             rows={[
               {
-                label: "Product focus",
+                label: "Technologies made",
                 value:
-                  "Condensing gas tankless, including models with integrated recirculation. Also produces combi boilers.",
-                meta: <SourceNote source="Manufacturer product literature" checked="7 Aug 2026" />,
+                  "Condensing gas tankless (NPE-A2 line) and heat pump water heaters (NWP500 line, 50, 65 and 80 gallon). Also produces combi boilers.",
+                meta: <SourceNote source="Navien residential water heater range" checked={CHECKED} />,
               },
               {
-                label: "Homeowner positioning",
+                label: "Tankless output",
                 value:
-                  "Navien directs homeowners to professional installation and operates a contractor and service locator.",
-                meta: <SourceNote source="Manufacturer homeowner resources" checked="7 Aug 2026" />,
+                  "NPE-240A2 is rated 11.2 GPM at a 35°F temperature rise and 5.6 GPM at around a 67°F rise. Size against the rise your winter groundwater actually requires, not the headline figure.",
+                meta: <SourceNote source="Navien NPE-240A2 product specification" checked={CHECKED} />,
               },
               {
-                label: "Warranty terms",
+                label: "Heat pump sizing",
+                value:
+                  "NWP500-65 is rated around 63 gallons with an 80 gallon first hour rating. Unducted installation needs roughly 450 cubic feet of surrounding air, and it runs on a 208 to 240V, 30A circuit.",
+                meta: <SourceNote source="Navien NWP500 series specification" checked={CHECKED} />,
+              },
+              {
+                label: "Warranty, NPE-A2 residential",
                 value: (
-                  <div className="flex flex-wrap items-center gap-2">
-                    <RebateStatus state="verify" />
-                    <span>Varies by model, component, registration and installation type.</span>
+                  <div className="space-y-2">
+                    <p>
+                      With standard or <strong>controlled</strong> recirculation: 15 years
+                      heat exchanger, 5 years parts, 1 year labour.
+                    </p>
+                    <p className="rounded-lg bg-status-warn-bg px-4 py-3 text-[0.9375rem]">
+                      With <strong>uncontrolled</strong> recirculation the same line drops
+                      to 5 years heat exchanger and 3 years parts. If you are adding a
+                      recirculation loop, this single detail is worth thousands.
+                    </p>
                   </div>
                 ),
                 meta: (
-                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                    We will not publish a single figure such as &ldquo;15 years&rdquo;.
-                    Warranty is a model-level fact with conditions attached, and a
-                    homeowner who relies on a blanket number can lose coverage on a
-                    technicality. Ask for the warranty document for the exact model quoted.
-                  </p>
-                ),
-              },
-              {
-                label: "Current model lines",
-                value: (
-                  <div className="flex flex-wrap items-center gap-2">
-                    <RebateStatus state="verify" />
-                    <span>Not yet confirmed against current manufacturer documentation.</span>
-                  </div>
+                  <>
+                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                      Line level, not model level, and conditions attach. Navien also
+                      states that internet or e-commerce purchase can void cover. Ask for
+                      the warranty document for the exact model you are quoted.
+                    </p>
+                    <SourceNote source="Navien NPE-A2 warranty terms" checked={CHECKED} />
+                  </>
                 ),
               },
               {
                 label: "Installer programme",
+                value:
+                  "Navien Service Specialist (NSS). We found no blanket requirement that an installer hold it, but it is a useful serviceability signal.",
+                meta: <SourceNote source="Navien NSS programme page" checked={CHECKED} />,
+              },
+              {
+                label: "Which Modesto companies hold NSS",
                 value: (
                   <div className="flex flex-wrap items-center gap-2">
                     <RebateStatus state="verify" />
-                    <span>
-                      Navien operates contractor programmes. We have not verified which
-                      local companies hold which status.
-                    </span>
+                    <span>Not yet confirmed for any specific local company.</span>
                   </div>
                 ),
                 meta: (
                   <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                    We will never describe an installer as authorised or certified until
-                    that status is confirmed in the manufacturer&rsquo;s own directory.
+                    We will not describe any installer as authorised, certified or trained
+                    until that exact status appears in Navien&rsquo;s own directory.
                   </p>
                 ),
               },
               {
-                label: "Local service coverage, Modesto",
+                label: "Parts availability, Central Valley",
+                value:
+                  "Mixed. PACE Supply publicly lists Navien and states it carries a large Northern California tankless and repair parts inventory. Exact Modesto and Ripon stock still needs checking.",
+                meta: <SourceNote source="PACE Supply water heater solutions listing" checked={CHECKED} />,
+              },
+              {
+                label: "Consumer financing",
                 value: (
                   <div className="flex flex-wrap items-center gap-2">
                     <RebateStatus state="verify" />
-                    <span>Being researched.</span>
+                    <span>Not confirmed at manufacturer level.</span>
                   </div>
-                ),
-                meta: (
-                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                    The most important field on this page. The best unit on paper is the
-                    wrong purchase if nobody within thirty miles services it properly.
-                  </p>
                 ),
               },
             ]}

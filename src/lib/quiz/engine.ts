@@ -1,5 +1,7 @@
 import { brandMismatch } from "@/lib/brands";
 
+import { suggestBrands, type BrandFit } from "./brand-fit";
+
 import type { Answers } from "./questions";
 import { hasAuthority, isUrgent } from "./questions";
 
@@ -182,6 +184,8 @@ export interface Recommendation {
    * the mismatch rather than silently discarding what they asked for.
    */
   brandNote?: { brandName: string; alternatives: string[] };
+  /** Shortlist of brands that suit this specific job, with reasons. */
+  brandFits: BrandFit[];
 }
 
 /**
@@ -383,6 +387,7 @@ export function recommend(answers: Answers): Recommendation {
         : undefined,
     needsOwner: !hasAuthority(answers),
     brandNote: brandMismatch(answers.brand, primary.id) ?? undefined,
+    brandFits: suggestBrands(primary.id, answers),
   };
 }
 
