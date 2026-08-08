@@ -2,16 +2,11 @@
 
 **Updated:** 7 August 2026
 **Repo:** https://github.com/ndxtraders/water-heater-advisor
-**Working copy:** `~/Desktop/water heater advisor/site` (git clean, all work pushed)
+**Working copy:** `~/Desktop/water heater advisor` (repo root; the app lives in `site/`)
 
-> ⚠️ **This file and `research/` are NOT in git.** Only `site/` is a repo, so
-> everything at the project root — this handoff, the price observations, the
-> brand research JSON's original — exists on this Mac and nowhere else. One
-> disk failure loses it. Worth moving `research/` and `STARTHERE.md` inside
-> `site/` (or making the project root the repo) before this grows further.
-
-Read this first. It is the session handoff: current state, what is blocked, what
-is decided and must not be relitigated, and what to do next.
+> **Everything is under version control.** The repo root is the project root:
+> `research/`, this handoff and the original deep-research files are all in git
+> alongside `site/`. Push before you finish a session.
 
 ---
 
@@ -129,7 +124,7 @@ worse than a thin menu.
 | `site/REVENUE-MODEL.md` | Commission model, the cap rationale, open legal question |
 | `research/LOCAL-PRICE-OBSERVATIONS.md` | **Authority for every price on the site.** National figures never appear as local prices. |
 | `research/PHASE-2-MANUFACTURER-RESEARCH.md` | Mostly complete; lists what desk research could not resolve |
-| `research/deep research/*.json` | 31 product lines, 40 selection rules, 6 routing records. Imported at `site/src/data/brand-research.json`, read-only |
+| `research/Deep Research/*.json` | 31 product lines, 40 selection rules, 6 routing records. Imported at `site/src/data/brand-research.json`, read-only |
 | `Water Heater Advisor_ Deep Research Blueprint.md` | The original strategy blueprint |
 
 ---
