@@ -9,7 +9,7 @@ import { Callout } from "@/components/advisor/Panels";
 import { Container } from "@/components/common/Layout";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { recordSession } from "@/lib/leads";
-import { WORK_BUNDLE } from "@/lib/pricing";
+import { PRICE_MODEL } from "@/lib/pricing";
 import { recommend } from "@/lib/quiz/engine";
 import { activeQuestions, QUESTIONS, type Answers } from "@/lib/quiz/questions";
 import { cn } from "@/lib/utils";
@@ -223,7 +223,7 @@ function Results({
 }) {
   const r = recommend(answers);
   const usd = (n: number) => `$${n.toLocaleString("en-US")}`;
-  const bundle = WORK_BUNDLE[r.primary.id];
+  const model = PRICE_MODEL[r.primary.id];
 
   // Record the completed quiz anonymously, once, as the results render. This is
   // what makes drop-off measurable — how many people reach a recommendation
@@ -300,15 +300,17 @@ function Results({
         <section className="rounded-lg border border-border bg-card p-6 sm:p-7">
           <h2 className="text-xl">How to sanity check any quote you are given</h2>
           <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted-foreground">
-            Look up what the unit itself sells for, then add the work. For this kind of
-            job that is roughly{" "}
-            <strong className="font-semibold text-foreground">
-              {usd(bundle.low)} to {usd(bundle.high)}
-            </strong>{" "}
-            on top of the equipment, or {bundle.roughMultiplier}.
+            Look up what the unit itself sells for, then apply the trade&rsquo;s own rule
+            of thumb: installed comes out at{" "}
+            <strong className="font-semibold text-foreground">{model.ruleOfThumb}</strong>.
+            Contractors price roughly a third materials, a third labour, a third overhead
+            and profit, which is where that lands.
           </p>
-          <ul className="mt-4 space-y-2">
-            {bundle.includes.map((item) => (
+          <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted-foreground">
+            Expect {model.hours}. What the extra buys:
+          </p>
+          <ul className="mt-3 space-y-2">
+            {model.includes.map((item) => (
               <li
                 key={item}
                 className="flex gap-2.5 text-[0.9375rem] leading-relaxed text-muted-foreground"
