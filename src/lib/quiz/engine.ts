@@ -6,12 +6,19 @@ import { suggestBrands, type BrandFit } from "./brand-fit";
 import type { Answers } from "./questions";
 import { hasAuthority, isUrgent } from "./questions";
 
-/** Upper bound of each budget band, in dollars. `null` means they declined. */
+/**
+ * Upper bound of each budget band, in dollars. `null` means they declined.
+ *
+ * Boundaries sit where the realistic answer changes, not on round numbers.
+ * $2,500 is roughly the ceiling for a basic tank job, $4,000 the floor for
+ * anything beyond one, and $6,000 the point at which a conversion needing gas,
+ * venting or electrical work becomes affordable.
+ */
 const BUDGET_CEILING: Record<string, number | null> = {
-  "under-2000": 2000,
-  "2000-3500": 3500,
-  "3500-5000": 5000,
-  "5000-8000": 8000,
+  "under-2500": 2500,
+  "2500-4000": 4000,
+  "4000-6000": 6000,
+  "6000-8000": 8000,
   "over-8000": Number.MAX_SAFE_INTEGER,
   unsure: null,
 };
@@ -55,10 +62,10 @@ export function leadScore(answers: Answers): number {
   // Budget — 10 points, and declining to answer is barely penalised. Someone
   // who wants to see options before naming a number is being sensible, not
   // evasive.
-  if (answers.budget === "over-8000" || answers.budget === "5000-8000") s += 10;
-  else if (answers.budget === "3500-5000") s += 8;
-  else if (answers.budget === "2000-3500") s += 6;
-  else if (answers.budget === "under-2000") s += 4;
+  if (answers.budget === "over-8000" || answers.budget === "6000-8000") s += 10;
+  else if (answers.budget === "4000-6000") s += 9;
+  else if (answers.budget === "2500-4000") s += 7;
+  else if (answers.budget === "under-2500") s += 4;
   else s += 5;
 
   return Math.min(100, s);

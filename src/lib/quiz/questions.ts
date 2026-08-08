@@ -239,13 +239,30 @@ export const QUESTIONS: Question[] = [
     id: "budget",
     prompt: "How much are you able to invest in this?",
     why: "Last question, and an honest one. It changes what we recommend, because pointing you at something out of reach helps nobody.",
+    /*
+     * Five brackets, and each boundary is placed where the honest answer
+     * actually changes rather than at a round number.
+     *
+     *   under $2,500   a basic tank and not much else
+     *   $2,500-4,000   a good tank, or a heat pump if the circuit already exists
+     *   $4,000-6,000   heat pump territory, or a straightforward tankless job
+     *   $6,000-8,000   conversions that need gas, venting or electrical work
+     *   $8,000+        anything, including the awkward installs
+     *
+     * Brackets that do not change the recommendation are just friction, which
+     * is why there is no split between $1,200 and $2,400: both mean tank.
+     *
+     * "Not sure yet" is kept as a sixth button rather than a bracket. Forcing a
+     * guess would put a number into the record that the homeowner does not
+     * actually hold, and the engine barely penalises the answer anyway.
+     */
     options: [
-      { value: "under-2000", label: "Under $2,000" },
-      { value: "2000-3500", label: "$2,000 to $3,500" },
-      { value: "3500-5000", label: "$3,500 to $5,000" },
-      { value: "5000-8000", label: "$5,000 to $8,000" },
-      { value: "over-8000", label: "More than $8,000" },
-      { value: "unsure", label: "I would rather see the options first" },
+      { value: "under-2500", label: "Under $2,500" },
+      { value: "2500-4000", label: "$2,500 to $4,000" },
+      { value: "4000-6000", label: "$4,000 to $6,000" },
+      { value: "6000-8000", label: "$6,000 to $8,000" },
+      { value: "over-8000", label: "$8,000+" },
+      { value: "unsure", label: "Not sure yet, show me the options" },
     ],
   },
 ];
