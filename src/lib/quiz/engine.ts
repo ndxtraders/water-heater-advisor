@@ -1,4 +1,5 @@
 import { brandMismatch } from "@/lib/brands";
+import { designRiseF, riseExplanation } from "@/lib/market";
 
 import { suggestBrands, type BrandFit } from "./brand-fit";
 
@@ -412,14 +413,13 @@ function summaryFor(primary: Assessment, eliminatedCount: number): string {
 }
 
 /**
- * Winter design temperature rise, in Fahrenheit, used for tankless sizing.
+ * Winter design temperature rise, from the market record.
  *
- * Central Valley groundwater in winter against a 120F output. This is a stated
- * assumption, not a verified figure: the brand research explicitly lists exact
- * Modesto inlet temperature by season and ZIP as unverified, so it is surfaced
- * to the homeowner as an assumption to confirm rather than published as fact.
+ * A homeowner has no way to know their incoming water temperature, so we never
+ * ask. It is modelled per market in `lib/market.ts`, stated on screen as an
+ * assumption, and flagged for the installer to confirm.
  */
-export const DESIGN_TEMP_RISE_F = 65;
+const DESIGN_TEMP_RISE_F = designRiseF();
 
 /**
  * Tankless sizing, expressed as required flow **at a design temperature rise**.
@@ -477,7 +477,10 @@ function watchFor(id: TechId, answers: Answers): string[] {
     out.push("Ask whether your existing gas line can carry the unit before anyone quotes a price");
     out.push("Hard water makes annual descaling non optional, so budget for it");
     out.push(
-      `The size above is flow at a ${DESIGN_TEMP_RISE_F}°F rise, which is our winter assumption for this area. Spec sheets quote a much smaller rise, so a unit rated 11 GPM on the box may deliver closer to 6 here. Ask your installer to size against your actual inlet temperature`,
+      riseExplanation(),
+    );
+    out.push(
+      "Spec sheets quote flow at a much smaller rise than we use, so a unit rated 11 GPM on the box may deliver closer to 6 here in winter",
     );
     // From the brand research: uncontrolled recirculation can cut Navien's
     // residential heat exchanger cover from 15 years to 5. Expensive to learn

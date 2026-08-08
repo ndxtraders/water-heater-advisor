@@ -9,6 +9,7 @@ import { Callout } from "@/components/advisor/Panels";
 import { Container } from "@/components/common/Layout";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { recordSession } from "@/lib/leads";
+import { WORK_BUNDLE } from "@/lib/pricing";
 import { recommend } from "@/lib/quiz/engine";
 import { activeQuestions, QUESTIONS, type Answers } from "@/lib/quiz/questions";
 import { cn } from "@/lib/utils";
@@ -222,6 +223,7 @@ function Results({
 }) {
   const r = recommend(answers);
   const usd = (n: number) => `$${n.toLocaleString("en-US")}`;
+  const bundle = WORK_BUNDLE[r.primary.id];
 
   // Record the completed quiz anonymously, once, as the results render. This is
   // what makes drop-off measurable — how many people reach a recommendation
@@ -290,6 +292,40 @@ function Results({
         ) : null}
 
         {r.ruledOut.length ? <RuledOut items={r.ruledOut} /> : null}
+
+        {/* The portable half of the cost advice. The absolute range above is
+            Modesto-specific; this works anywhere, because the homeowner can
+            price the equipment themselves and what they cannot work out is
+            everything that gets added to it. */}
+        <section className="rounded-lg border border-border bg-card p-6 sm:p-7">
+          <h2 className="text-xl">How to sanity check any quote you are given</h2>
+          <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted-foreground">
+            Look up what the unit itself sells for, then add the work. For this kind of
+            job that is roughly{" "}
+            <strong className="font-semibold text-foreground">
+              {usd(bundle.low)} to {usd(bundle.high)}
+            </strong>{" "}
+            on top of the equipment, or {bundle.roughMultiplier}.
+          </p>
+          <ul className="mt-4 space-y-2">
+            {bundle.includes.map((item) => (
+              <li
+                key={item}
+                className="flex gap-2.5 text-[0.9375rem] leading-relaxed text-muted-foreground"
+              >
+                <span
+                  aria-hidden
+                  className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-blue"
+                />
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 border-t border-border pt-4 text-sm leading-relaxed text-muted-foreground">
+            A quote much below that usually has something left out rather than being a
+            better deal. Ask which of the items above is not included.
+          </p>
+        </section>
 
         {/* Naming the gap rather than quietly downgrading the recommendation.
             A homeowner who finds out later that the site steered them cheap

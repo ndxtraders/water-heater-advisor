@@ -152,19 +152,29 @@ export function suggestBrands(tech: TechId, answers: Answers): BrandFit[] {
 /**
  * Rules in the dataset that are deliberately not implemented, and why.
  *
- * Each depends on an answer the quiz does not collect. Adding the question is
- * the fix, not inferring it from a neighbouring answer.
- *
- *   R19  A. O. Smith scale handling      needs: will you keep up with descaling?
- *   R20  maintenance-averse penalty      needs: the same question
+ *   R19  A. O. Smith scale handling      needs: maintenance intent
+ *   R20  maintenance-averse penalty      needs: maintenance intent
  *   R32  same-brand replacement bonus    needs: which brand do you have now?
  *   R33  Bradford White channel fit      needs: do you want to buy the unit yourself?
  *   R28  A. O. Smith outdoor split       needs: is an outdoor location possible?
  *   R16  outdoor tankless approval       needs: the same question
  *
- * The strongest candidate to add is the maintenance question. It gates two
- * rules, it is easy for a homeowner to answer honestly, and getting it wrong is
- * how tankless units die early.
+ * ## On the maintenance rules, R19 and R20
+ *
+ * The obvious fix is to ask "will you keep up with descaling?" We are not going
+ * to. It asks a homeowner to predict their own future diligence about a
+ * maintenance task most of them have never heard of, and the honest answer from
+ * almost everyone is an optimistic yes. A question that reliably returns the
+ * same answer is not collecting information, it is collecting noise, and then
+ * routing on it would make things worse rather than better.
+ *
+ * Descaling is handled instead as a disclosed cost of ownership. The results
+ * page and the tankless pages state that the unit needs annual service and why,
+ * so the homeowner factors it in with everything else rather than being asked
+ * to certify their own future behaviour.
+ *
+ * R32 and R28 are the better candidates if a question is ever added, because
+ * both ask about a present fact the homeowner can simply look at.
  */
 export const UNIMPLEMENTED_RULES = [
   "R16",
