@@ -9,6 +9,7 @@ import { Callout } from "@/components/advisor/Panels";
 import { Container } from "@/components/common/Layout";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { recordSession } from "@/lib/leads";
+import { saveHandoff } from "@/lib/quiz/handoff";
 import { PRICE_MODEL } from "@/lib/pricing";
 import { recommend } from "@/lib/quiz/engine";
 import { activeQuestions, QUESTIONS, type Answers } from "@/lib/quiz/questions";
@@ -234,7 +235,12 @@ function Results({
   useEffect(() => {
     if (recorded.current) return;
     recorded.current = true;
-    void recordSession(answers, r);
+    // Hand the answers to /match immediately, so the introduction carries the
+    // recommendation even if the session write never lands.
+    saveHandoff(answers, null);
+    void recordSession(answers, r).then((sessionId) => {
+      if (sessionId) saveHandoff(answers, sessionId);
+    });
   }, [answers, r]);
 
   return (

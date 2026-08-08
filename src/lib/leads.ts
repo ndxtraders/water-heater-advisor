@@ -87,7 +87,19 @@ export interface LeadInput {
 /** Written only when someone explicitly asks to be introduced to an installer. */
 export async function submitLead(input: LeadInput): Promise<{ ok: boolean; error?: string }> {
   const db = supabase();
-  if (!db) return { ok: false, error: "Lead capture is not configured yet." };
+  if (!db) {
+    // Homeowner-facing wording. They did not do anything wrong and they should
+    // not be shown our configuration state, but they do need to know the
+    // submission did not land so they can act rather than sit waiting.
+    console.error("submitLead: Supabase is not configured");
+    return {
+      ok: false,
+      error:
+        "We could not send that just now. Nothing has been lost, so please try again " +
+        "in a few minutes. If it keeps failing, your recommendation above is still " +
+        "yours to take straight to a contractor.",
+    };
+  }
 
   const { error } = await db.from("leads").insert({
     session_id: input.sessionId,
