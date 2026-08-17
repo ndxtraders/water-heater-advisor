@@ -4,24 +4,27 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
+import { SetPointMark } from "@/components/layout/Logo";
 import { ButtonLink } from "@/components/ui/Button";
 import { site } from "@/lib/site";
 
 /**
- * The wordmark is set in the heading face with the two words stacked in
- * weight — "Water Heater" plain, "Advisor" emphasised. The site's whole claim
- * is in that second word, and a contractor could not use this lockup. Every
- * plumbing competitor in the SERP is a geometric sans logotype next to a phone
- * number; the difference should be legible before a visitor reads anything.
+ * Mark plus wordmark.
+ *
+ * Through V.3 this was type alone, with the differentiation carried by a weight
+ * split — "Water Heater" muted, "Advisor" emphasised — on the argument that the
+ * site's whole claim sits in that second word. The set-point mark now carries
+ * that job better than a weight change can, so the type runs at one weight and
+ * the mark does the distinguishing. Every plumbing competitor in the SERP is a
+ * geometric sans logotype next to a phone number; this should not be mistaken
+ * for one before a visitor has read a word.
  */
 function Wordmark() {
   return (
-    <Link href="/" className="group inline-flex items-baseline gap-1.5 font-heading">
-      <span className="text-[1.0625rem] tracking-tight text-muted-foreground transition-colors group-hover:text-foreground">
-        Water Heater
-      </span>
-      <span className="text-[1.0625rem] font-semibold tracking-tight text-foreground">
-        Advisor
+    <Link href="/" className="group inline-flex items-center gap-2.5 font-heading">
+      <SetPointMark width={46} className="text-foreground" />
+      <span className="text-[1.0625rem] font-extrabold tracking-tight text-navy transition-colors group-hover:text-blue">
+        Water Heater Advisor
       </span>
     </Link>
   );

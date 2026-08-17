@@ -116,12 +116,21 @@ sparingly against navy, the same red reads as a warning system rather than a
 sales voice, and it stays available for the one moment it genuinely needs to
 shout.
 
+**The one amendment to that rule is the logo,** and it is an amendment rather
+than an exception because of *why* the red is there. In the set-point mark the
+red ticks are the hot end of a temperature scale — the colour is encoding a
+physical quantity, the way it does on a tap or a thermostat, not decorating a
+brand. It is also spent at hairline weight on six 2.5px strokes, so the total
+red area in the header is a fraction of a single word set in red would be. The
+test the mark has to keep passing: with the logo on screen, the `EmergencyBar`
+must still be the loudest red on the page. It is.
+
 ```
 --ink         oklch(0.24 0.03 255)     #15202d   Body and headings.
 --navy        oklch(0.29 0.07 258)     #132b4d   Brand. Wordmark, nav, footer, lead paragraphs.
 --blue        oklch(0.484 0.135 253.6) #1a5fa8   Links, primary CTA, focus.
 --blue-bright oklch(0.591 0.145 251.5) #2f80d0   Hover and non-text UI only.
---flag-red    oklch(0.52 0.20 27)      #c2181d   Emergency and "not a fit". Nothing else.
+--flag-red    oklch(0.52 0.20 27)      #c2181d   Emergency, "not a fit", and the hot half of the set-point mark.
 --paper       oklch(0.995 0.001 250)   #fdfdfe   Page background. Near-neutral white.
 ```
 
@@ -334,6 +343,7 @@ advisor vocabulary replaces them:
 | `DecisionPath` | Where the homeowner is in the funnel: problem → technology → feasibility → sizing → cost → local → match. |
 | `EmergencyBar` | Short-circuit for the emergency funnel. The *only* place urgency styling is permitted. Rendered in the root layout and self-hiding on `/emergency`, so it covers every route — through V.2 it appeared on the homepage alone, which is the page a panicking homeowner is least likely to land on. |
 | `Prose` | Long-form editorial wrapper enforcing the 68ch measure. |
+| `SetPointMark` | The logo. A thermostat scale, 90–150°F in 5°F steps, with the recommended 120°F standing at the midpoint. Six cool ticks, six hot, one 3px marker — the same stroke as the `VerdictCard` spine, so the mark and the product make the same gesture. Simplifies to four ticks in `app/icon.svg`, where the full scale would turn to mush. |
 
 ### What is deliberately absent
 

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!--
+    Favicon form of the set-point mark. Simplified to four ticks and the marker:
+    the thirteen-tick scale from the full lockup turns to mush below about 48px.
+    Palette is the reversed set (blue-bright / flag-red-light on navy-deep) so it
+    holds up against a browser chrome that is usually light grey.
+  -->
+  <rect width="64" height="64" rx="14" fill="#071831"/>
+  <g stroke-linecap="round" stroke-width="3.4" fill="none">
+    <path d="M13 43V33" stroke="#5fa2e0"/>
+    <path d="M22.5 43V33" stroke="#5fa2e0"/>
+    <path d="M41.5 43V33" stroke="#ef675c"/>
+    <path d="M51 43V33" stroke="#ef675c"/>
+  </g>
+  <path d="M32 45V16" stroke="#ffffff" stroke-width="4.4" stroke-linecap="round"/>
+</svg>
