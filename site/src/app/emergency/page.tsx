@@ -1,6 +1,7 @@
 import { AlertTriangle, ArrowRight, Droplets, Flame, Zap } from "lucide-react";
 import type { Metadata } from "next";
 
+import { LeakPointDiagram } from "@/components/advisor/LeakPointDiagram";
 import { Callout } from "@/components/advisor/Panels";
 import { RuledOut, VerdictBadge } from "@/components/advisor/Verdict";
 import {
@@ -134,6 +135,12 @@ export default function EmergencyPage() {
               </ul>
             </Card>
           </div>
+
+          {/* The cards above name the distinction; this answers it. A homeowner
+              with water on the floor cannot tell a drain valve from a corroded
+              tank, and that judgement is worth the difference between a service
+              call and a replacement. */}
+          <LeakPointDiagram />
 
           <Callout title="The twelve year rule">
             <p>
