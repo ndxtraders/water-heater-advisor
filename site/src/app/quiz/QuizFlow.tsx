@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { RuledOut, VerdictCard } from "@/components/advisor/Verdict";
 import { Callout } from "@/components/advisor/Panels";
+import { AirVolumeDiagram } from "@/components/advisor/AirVolumeDiagram";
 import { IdentifyDiagram } from "@/components/advisor/IdentifyDiagram";
 import { Container } from "@/components/common/Layout";
 import { Button, ButtonLink } from "@/components/ui/Button";
@@ -130,6 +131,11 @@ export default function QuizFlow() {
             damage: the type answer drives more of the engine than any other,
             and an unsure answer widens every cost range downstream. */}
         {question.id === "current" ? <IdentifyDiagram /> : null}
+
+        {/* Location looks like bookkeeping and is the most consequential answer
+            after the technology itself — an interior closet eliminates heat pump
+            outright in the engine. Worth showing why before they answer. */}
+        {question.id === "location" ? <AirVolumeDiagram /> : null}
 
         {step > 0 ? (
           <button
