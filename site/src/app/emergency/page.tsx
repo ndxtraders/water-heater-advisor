@@ -105,7 +105,10 @@ export default function EmergencyPage() {
         </Container>
       </Section>
 
-      <Section tone="tint">
+      {/* Anchored: this section answers a search intent of its own — "repair or
+          replace water heater" — that is distinct from the emergency framing
+          wrapping it, and nothing could link to it directly before. */}
+      <Section tone="tint" id="repair-or-replace">
         <Container width="narrow">
           <SectionHeading
             eyebrow="The first decision"
