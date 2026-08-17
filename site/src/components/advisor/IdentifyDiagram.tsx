@@ -102,18 +102,39 @@ function Tankless() {
   );
 }
 
-/** Heat pump. The tell is the unit sitting on top of the tank. */
+/**
+ * Heat pump. The tell is height, and a louvred cap that is part of the tank.
+ *
+ * Drawn as one continuous cylinder on purpose. The first version had a box
+ * wider than the tank with a fan circle on it, which reads as a window air
+ * conditioner bolted to a water heater — and prompted exactly the question you
+ * would expect: "isn't a heat pump an HVAC thing?"
+ *
+ * On the integrated units this site actually recommends — Rheem ProTerra,
+ * A. O. Smith Voltex, Navien NWP500 — the compressor and evaporator sit under a
+ * shroud at the top of the same cylinder, at roughly the tank's diameter. The
+ * homeowner-visible tells are the louvred intake up top, a control panel on the
+ * body, and the fact that it is unmistakably the tallest thing in the garage.
+ * That height is not cosmetic: it is why these fail closets, and why the engine
+ * scores location so heavily.
+ *
+ * (A. O. Smith's Voltex X splits the heat pump outdoors, so it does not look
+ * like this. Not drawn — it is the rarer architecture and a diagram covering
+ * both would tell a homeowner less, not more.)
+ */
 function HeatPump() {
   return (
     <Frame>
-      <rect x="34" y="62" width="52" height="92" rx="7" strokeWidth="2.5" className={`${S.stroke} ${S.fill}`} />
-      {/* The compressor and evaporator, which is what makes these unmistakable
-          and also what makes them tall enough to fail a closet. */}
-      <rect x="28" y="28" width="64" height="34" rx="6" strokeWidth="2.5" className={`${S.stroke} ${S.fill}`} />
-      <path d="M36 39 H58 M36 45 H58 M36 51 H58" strokeWidth="2" className={S.stroke} />
-      <circle cx="75" cy="45" r="9" strokeWidth="2" className={S.stroke} />
+      {/* Shroud and tank overlap so the two rects read as one silhouette. */}
+      <rect x="33" y="28" width="54" height="42" rx="11" strokeWidth="2.5" className={`${S.stroke} ${S.fill}`} />
+      <rect x="34" y="64" width="52" height="90" rx="7" strokeWidth="2.5" className={`${S.stroke} ${S.fill}`} />
+      {/* Louvred air intake. */}
+      <rect x="42" y="37" width="36" height="23" rx="3" strokeWidth="2" className={S.stroke} />
+      <path d="M48 43 H72 M48 48.5 H72 M48 54 H72" strokeWidth="1.75" className={S.stroke} />
+      {/* Control panel. */}
+      <rect x="48" y="86" width="24" height="13" rx="2" strokeWidth="2" className={S.stroke} />
       {/* Condensate drain — the line a garage install has to have somewhere to go. */}
-      <path d="M86 78 H98 V146 H109" strokeWidth="2" className={S.stroke} />
+      <path d="M86 108 H98 V146 H109" strokeWidth="2" className={S.stroke} />
       <path d="M45 154 V163 M75 154 V163" strokeWidth="2" className={S.stroke} />
     </Frame>
   );
@@ -138,7 +159,7 @@ const TYPES = [
   {
     name: "Heat pump",
     Art: HeatPump,
-    tell: "A fan and compressor unit sitting on top of the tank. Taller than the rest.",
+    tell: "One tall unit with a louvred cap on top. Clearly the tallest of the four.",
   },
 ];
 
