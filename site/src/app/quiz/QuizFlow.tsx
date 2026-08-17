@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { RuledOut, VerdictCard } from "@/components/advisor/Verdict";
 import { Callout } from "@/components/advisor/Panels";
+import { IdentifyDiagram } from "@/components/advisor/IdentifyDiagram";
 import { Container } from "@/components/common/Layout";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { recordSession } from "@/lib/leads";
@@ -124,6 +125,11 @@ export default function QuizFlow() {
           })}
         </div>
         )}
+
+        {/* Only on the question that has an "I am not sure" option doing real
+            damage: the type answer drives more of the engine than any other,
+            and an unsure answer widens every cost range downstream. */}
+        {question.id === "current" ? <IdentifyDiagram /> : null}
 
         {step > 0 ? (
           <button
