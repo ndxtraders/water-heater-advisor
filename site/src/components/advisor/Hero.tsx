@@ -141,7 +141,7 @@ export function Hero({
           {heading}
         </h1>
 
-        <div aria-hidden className="mt-6 h-1 w-16 rounded-full bg-flag-red-light" />
+        <div aria-hidden className="mt-6 h-1 w-16 rounded-full bg-white/80" />
 
         {subtitle ? (
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/70">{subtitle}</p>
@@ -185,17 +185,31 @@ export function TrustBar({
 }) {
   return (
     <div className={cn("relative border-y border-white/10 bg-navy py-4", className)}>
-      <div className="flex items-center gap-0 overflow-x-auto px-4 md:justify-center">
+      {/*
+        These four claims are the positioning — each one falsifiable, and each
+        one something no plumber's site can say. Through V.2 they sat in a
+        horizontal scroller with `shrink-0 whitespace-nowrap`, which runs past
+        1000px: on a 390px phone a reader saw the first claim and half of the
+        second, with no affordance suggesting the rest existed. Half this
+        audience is on a phone, so half the audience was getting a quarter of
+        the argument.
+
+        A 2×2 grid below md, a row above it. Nothing scrolls.
+      */}
+      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-x-4 gap-y-3 px-4 md:flex md:justify-center md:gap-0">
         {items.map((item, i) => (
-          <div key={item.label} className="flex shrink-0 items-center">
+          <div key={item.label} className="flex items-center md:shrink-0">
             {i > 0 ? (
-              <span aria-hidden className="mx-1 h-5 w-px shrink-0 bg-white/15" />
+              <span
+                aria-hidden
+                className="mx-1 hidden h-5 w-px shrink-0 bg-white/15 md:block"
+              />
             ) : null}
-            <div className="flex items-center gap-2.5 px-4">
+            <div className="flex items-center gap-2.5 md:px-4">
               <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15">
-                <item.icon aria-hidden className="size-4 text-flag-red-light" strokeWidth={2.5} />
+                <item.icon aria-hidden className="size-4 text-white/85" strokeWidth={2.5} />
               </span>
-              <span className="text-sm font-medium whitespace-nowrap text-white/90">
+              <span className="text-[0.8125rem] font-medium leading-snug text-white/90 md:text-sm md:whitespace-nowrap">
                 {item.label}
               </span>
             </div>

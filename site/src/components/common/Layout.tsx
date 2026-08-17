@@ -72,7 +72,9 @@ export function Prose({
   return (
     <div
       className={cn(
-        "max-w-measure text-[1.0625rem] leading-[1.75] text-foreground/85",
+        // Full ink, not 85%. Long-form explanation is the product; running the
+        // product at reduced opacity was costing readability for no gain.
+        "max-w-measure text-[1.0625rem] leading-[1.75] text-foreground",
         "[&_p]:mb-5 [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:text-3xl [&_h3]:mt-9 [&_h3]:mb-3 [&_h3]:text-xl",
         "[&_ul]:mb-5 [&_ul]:space-y-2 [&_ul]:pl-5 [&_li]:list-disc [&_li]:marker:text-blue",
         "[&_a]:text-blue [&_a]:underline [&_a]:underline-offset-3 [&_a:hover]:text-blue-bright",
@@ -119,6 +121,11 @@ export function Eyebrow({
  * red is reserved for emergency and "not a fit" and a decorative red rule under
  * every heading would spend exactly the signal the verdict system depends on.
  * The device survives the translation; the colour does not.
+ *
+ * That argument was written in V.2 and then contradicted two lines below it:
+ * the dark variant rendered in flag red, which is the same decorative spend on
+ * the bands where it is most visible. V.3 makes the dark rule white. Red now
+ * appears on /emergency and on "Not a fit", and nowhere else on the site.
  */
 export function AccentRule({
   align = "left",
@@ -132,7 +139,7 @@ export function AccentRule({
       aria-hidden
       className={cn(
         "mt-4 h-1 w-14 rounded-full",
-        tone === "dark" ? "bg-flag-red-light" : "bg-blue",
+        tone === "dark" ? "bg-white/80" : "bg-blue",
         align === "center" && "mx-auto",
       )}
     />
@@ -166,8 +173,11 @@ export function SectionHeading({
       {lead ? (
         <p
           className={cn(
+            // Navy, not muted grey. The lead is the first sentence a homeowner
+            // actually reads; running it at 7:1 grey was the single most
+            // visible place the site failed its own "readable black" brief.
             "mt-5 max-w-measure text-lg leading-relaxed",
-            tone === "dark" ? "text-white/70" : "text-muted-foreground",
+            tone === "dark" ? "text-white/75" : "text-navy",
             align === "center" && "mx-auto",
           )}
         >
@@ -179,29 +189,28 @@ export function SectionHeading({
 }
 
 /**
- * Card surface. rounded-2xl, a real shadow and a hover lift.
+ * Card surface. rounded-2xl and one quiet shadow.
  *
  * v1 was near-flat with borders doing all the separation, on the argument that
  * heavy shadows are a marketing idiom. That was too austere — flat cards on a
  * flat background is what made the site feel like a document rather than a
- * tool. The lift is 4px and 150ms, enough to feel responsive without animating
- * at the reader.
+ * tool. One shadow, and borders still do most of the work.
+ *
+ * The `interactive` hover-lift prop is gone in V.3: no caller ever passed it,
+ * and a card that lifts without navigating anywhere is an affordance that lies.
+ * TechnologyCard, which does navigate, keeps its lift.
  */
 export function Card({
   children,
   className,
-  interactive = false,
 }: {
   children: ReactNode;
   className?: string;
-  interactive?: boolean;
 }) {
   return (
     <div
       className={cn(
         "rounded-2xl border border-border bg-card p-6 shadow-[0_1px_3px_rgba(11,33,67,0.06),0_1px_2px_rgba(11,33,67,0.04)]",
-        interactive &&
-          "transition-[transform,box-shadow] duration-150 ease-out hover:-translate-y-1 hover:shadow-[0_12px_28px_-8px_rgba(11,33,67,0.16)]",
         className,
       )}
     >
@@ -210,18 +219,25 @@ export function Card({
   );
 }
 
-/** Tinted rounded square holding a lucide icon. Used at the top of feature cards. */
+/**
+ * Tinted rounded square holding a lucide icon.
+ *
+ * Only where the icon encodes something — emergency, status, a verdict. It is
+ * not a decoration to hang on every card; when every card has an anchor, none
+ * of them is one.
+ *
+ * The `green` tone is gone with the rest of the green.
+ */
 export function IconChip({
   icon: Icon,
   tone = "blue",
 }: {
   icon: LucideIcon;
-  tone?: "blue" | "red" | "green" | "dark";
+  tone?: "blue" | "red" | "dark";
 }) {
   const tones = {
     blue: "bg-blue/10 text-blue",
     red: "bg-flag-red/10 text-flag-red",
-    green: "bg-verdict-fit/10 text-verdict-fit",
     dark: "bg-white/10 text-white",
   };
   return (

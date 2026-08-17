@@ -91,7 +91,7 @@ export function ComparisonTable({
 const MARKS = {
   yes: { Icon: Check, className: "text-verdict-fit", label: "Yes" },
   no: { Icon: X, className: "text-verdict-unfit", label: "No" },
-  partial: { Icon: Minus, className: "text-status-warn", label: "Sometimes" },
+  partial: { Icon: Minus, className: "text-verdict-alt", label: "Sometimes" },
 } as const;
 
 function CellContent({ cell }: { cell: Cell }) {

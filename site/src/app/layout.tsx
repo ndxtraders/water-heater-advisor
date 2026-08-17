@@ -1,33 +1,43 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Archivo, IBM_Plex_Mono } from "next/font/google";
 
 import "./globals.css";
 
-// Self-hosted at build time by next/font, so there is no runtime request to
-// Google and no layout shift. Jakarta only carries the weights headings
-// actually use.
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["700", "800"],
-  variable: "--font-jakarta",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
+import EmergencyBar from "@/components/advisor/EmergencyBar";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import { site } from "@/lib/site";
 
 /**
- * No next/font import. Typography runs on system stacks (DESIGN-SYSTEM.md §4):
- * no network request at build or runtime, no layout shift, and `ui-serif`
- * resolves to a genuinely good face on the platforms that matter.
+ * Two families, self-hosted at build time by next/font — no runtime request to
+ * Google. Body deliberately has none: it runs the system stack, which removes
+ * the largest font asset on the site and, with it, the largest layout-shift
+ * surface. See DESIGN-SYSTEM.md §4.
+ *
+ * On shift, precisely: `display: swap` paints the fallback first and swaps, so
+ * there *is* a shift. next/font generates size-adjusted fallback metrics that
+ * shrink it. It does not eliminate it, and the previous comment here claiming
+ * otherwise was wrong.
  */
+const archivo = Archivo({
+  subsets: ["latin"],
+  weight: ["700", "800"],
+  variable: "--font-archivo",
+  display: "swap",
+});
+
+/**
+ * The apparatus layer: checked dates, model numbers, permit line items, cost
+ * figures. One weight is all it needs — it is labelling evidence, not setting
+ * copy.
+ */
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["500"],
+  variable: "--font-plex-mono",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
@@ -43,7 +53,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`h-full ${jakarta.variable} ${inter.variable}`}>
+    <html
+      lang="en"
+      className={`h-full ${archivo.variable} ${plexMono.variable}`}
+    >
       <body className="flex min-h-full flex-col">
         <a
           href="#main"
@@ -52,6 +65,9 @@ export default function RootLayout({
           Skip to content
         </a>
         <Header />
+        {/* Hides itself on /emergency. See the component for why it lives here
+            rather than on the homepage alone. */}
+        <EmergencyBar />
         <main id="main" className="flex-1">
           {children}
         </main>

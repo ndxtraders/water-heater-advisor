@@ -137,7 +137,7 @@ export default function MatchForm() {
               strokeWidth={2}
             />
             <h1 className="mt-5 text-3xl">That is with us</h1>
-            <p className="mt-4 leading-relaxed text-foreground/85">
+            <p className="mt-4 leading-relaxed text-foreground">
               We will look at your answers and introduce you to one local installer who
               does this specific work. You should hear from us within one working day.
             </p>
@@ -167,7 +167,7 @@ export default function MatchForm() {
           Get introduced to one local installer
         </h1>
         <div aria-hidden className="mt-5 h-1 w-14 rounded-full bg-blue" />
-        <p className="mt-6 max-w-measure text-lg leading-relaxed text-muted-foreground">
+        <p className="mt-6 max-w-measure text-lg leading-relaxed text-navy">
           One installer suited to this job, not four of them calling you at dinner. You
           keep your recommendation either way.
         </p>

@@ -277,7 +277,7 @@ function Results({
           {r.primary.reasons.length > 1 ? (
             <ul className="space-y-2 border-t border-border pt-5">
               {r.primary.reasons.slice(1).map((reason) => (
-                <li key={reason} className="flex gap-2.5 text-[0.9375rem] text-foreground/80">
+                <li key={reason} className="flex gap-2.5 text-[0.9375rem] text-foreground">
                   <span aria-hidden className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-verdict-fit" />
                   {reason}
                 </li>
@@ -428,7 +428,7 @@ function Results({
                     <p className="mt-2.5 flex gap-2.5 text-[0.9375rem] leading-relaxed text-muted-foreground">
                       <span
                         aria-hidden
-                        className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-status-warn"
+                        className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-verdict-alt"
                       />
                       {b.caution}
                     </p>
@@ -467,7 +467,7 @@ function Results({
               <ul className="mt-3 space-y-2">
                 {r.watchFor.map((w) => (
                   <li key={w} className="flex gap-2.5 text-[0.9375rem] leading-relaxed text-muted-foreground">
-                    <span aria-hidden className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-status-warn" />
+                    <span aria-hidden className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-verdict-alt" />
                     {w}
                   </li>
                 ))}
@@ -481,7 +481,7 @@ function Results({
             reason this lead is worth more than a form fill. */}
         <section className="rounded-lg border border-blue/30 bg-blue/[0.04] p-6 sm:p-8">
           <h2 className="text-2xl">Want an installer who does this specific work?</h2>
-          <p className="mt-3 max-w-measure leading-relaxed text-foreground/80">
+          <p className="mt-3 max-w-measure leading-relaxed text-foreground">
             We will introduce you to one local contractor suited to this job. One, not
             four. You keep everything above either way.
           </p>

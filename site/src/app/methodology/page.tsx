@@ -75,7 +75,7 @@ export default function MethodologyPage() {
             How we make recommendations, and how we get paid
           </h1>
           <div aria-hidden className="mt-5 h-1 w-14 rounded-full bg-blue" />
-          <p className="mt-6 max-w-measure text-lg leading-relaxed text-muted-foreground">
+          <p className="mt-6 max-w-measure text-lg leading-relaxed text-navy">
             Both, on one page, because a claim of independence you cannot check is worth
             nothing. If you find something here that does not match what the site actually
             does, we want to hear about it.
@@ -89,8 +89,8 @@ export default function MethodologyPage() {
           <Card className="border-blue/30 bg-blue/[0.04] sm:p-8">
             <IconChip icon={Wallet} />
             <h2 className="mt-5 text-2xl">Where the money comes from</h2>
-            <p className="mt-3 leading-relaxed text-foreground/85">{INDEPENDENCE_POLICY}</p>
-            <p className="mt-4 leading-relaxed text-foreground/85">
+            <p className="mt-3 leading-relaxed text-foreground">{INDEPENDENCE_POLICY}</p>
+            <p className="mt-4 leading-relaxed text-foreground">
               Specifically, we are paid a percentage of the value of work that actually
               completes. We are not paid per enquiry, we do not run an auction, and we do
               not sell the same homeowner to several contractors.
@@ -99,7 +99,7 @@ export default function MethodologyPage() {
 
           <div className="mt-6 grid gap-5 sm:grid-cols-2">
             <Card>
-              <IconChip icon={Scale} tone="green" />
+              <IconChip icon={Scale} />
               <h3 className="mt-4 text-lg">What payment can affect</h3>
               <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted-foreground">
                 Which qualified installer receives an introduction, when more than one is
@@ -107,7 +107,7 @@ export default function MethodologyPage() {
               </p>
             </Card>
             <Card>
-              <IconChip icon={Ban} tone="red" />
+              <IconChip icon={Ban} />
               <h3 className="mt-4 text-lg">What it can never affect</h3>
               <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted-foreground">
                 What we recommend. The engine that decides what suits your home has no
@@ -227,7 +227,7 @@ export default function MethodologyPage() {
         <Container width="narrow">
           <IconChip icon={ShieldCheck} tone="dark" />
           <h2 className="mt-5 text-3xl text-white sm:text-4xl">What we are not</h2>
-          <div aria-hidden className="mt-4 h-1 w-14 rounded-full bg-flag-red-light" />
+          <div aria-hidden className="mt-4 h-1 w-14 rounded-full bg-white/80" />
           <div className="mt-6 space-y-4 text-lg leading-relaxed text-white/75">
             <p>
               Water Heater Advisor is an independent information and referral service. We

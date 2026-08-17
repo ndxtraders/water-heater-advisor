@@ -63,7 +63,7 @@ export default function HowToChoosePage() {
               How to choose a water heater installer
             </h1>
             <div aria-hidden className="mt-5 h-1 w-14 rounded-full bg-blue" />
-            <p className="mt-6 max-w-measure text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-6 max-w-measure text-lg leading-relaxed text-navy">
               The cheapest quote is not automatically the best one, and the most expensive
               is not automatically thorough. Here is how to tell the difference, whether
               or not you ever use us to find someone.

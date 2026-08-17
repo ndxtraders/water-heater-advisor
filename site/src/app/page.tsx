@@ -1,10 +1,8 @@
 import {
   ArrowRight,
-  ClipboardList,
   Flame,
   MapPin,
   Snowflake,
-  Users,
   Wind,
   Zap,
 } from "lucide-react";
@@ -12,12 +10,11 @@ import Link from "next/link";
 
 import { HeroSplit, TrustBar } from "@/components/advisor/Hero";
 import { HeroQuizStart } from "@/components/advisor/HeroQuizStart";
-import { EmergencyBar, TechnologyCard } from "@/components/advisor/Panels";
+import { TechnologyCard } from "@/components/advisor/Panels";
 import { CheckedStamp, RebateStatus, SourceNote } from "@/components/advisor/Status";
 import {
   Card,
   Container,
-  IconChip,
   Section,
   SectionHeading,
 } from "@/components/common/Layout";
@@ -92,17 +89,14 @@ const TECHNOLOGIES = [
 
 const STEPS = [
   {
-    icon: ClipboardList,
     title: "Answer fifteen questions",
     body: "Your current setup, your household, where the unit lives, and what you actually care about. Two minutes.",
   },
   {
-    icon: MapPin,
     title: "Get a real recommendation",
     body: "A system type and size, what it should cost in a house like yours, the rebates worth chasing, and what we ruled out.",
   },
   {
-    icon: Users,
     title: "Then, if you want it, an installer",
     body: "We introduce you to one local contractor who does that specific work. Not four of them calling you at dinner.",
   },
@@ -129,8 +123,6 @@ const HERO_SUBHEADING =
 export default function HomePage() {
   return (
     <>
-      <EmergencyBar />
-
       <HeroSplit
         tagline={HERO_TAGLINE}
         heading={HERO_HEADING}
@@ -152,13 +144,15 @@ export default function HomePage() {
             {STEPS.map((step, i) => (
               <li key={step.title}>
                 <Card className="h-full">
-                  <div className="flex items-center gap-3">
-                    <IconChip icon={step.icon} />
-                    <span className="tabular text-3xl font-extrabold text-blue/20">
-                      {i + 1}
-                    </span>
-                  </div>
-                  <h3 className="mt-5 text-xl">{step.title}</h3>
+                  {/* The steps are a real sequence, so the number carries
+                      information and stays. What went is the icon chip beside
+                      it: two anchors competing for the same corner, one of them
+                      a 20%-opacity numeral that was decoration pretending to be
+                      structure. One anchor, at full contrast, small. */}
+                  <span className="apparatus text-sm font-semibold text-blue">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-3 text-xl">{step.title}</h3>
                   <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-muted-foreground">
                     {step.body}
                   </p>

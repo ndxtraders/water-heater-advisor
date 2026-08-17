@@ -65,7 +65,7 @@ export default function EmergencyPage() {
           <h1 className="mt-4 text-4xl leading-[1.1] sm:text-5xl">
             Leaking tank or no hot water
           </h1>
-          <p className="mt-5 max-w-measure text-lg leading-relaxed text-foreground/80">
+          <p className="mt-5 max-w-measure text-lg leading-relaxed text-foreground">
             If water is actively leaking, do these three things before you read anything
             else or call anyone. They take about two minutes and they stop a bad day
             becoming an expensive one.

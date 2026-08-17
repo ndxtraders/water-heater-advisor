@@ -13,8 +13,8 @@ type Size = "md" | "lg";
  * clears the 44px target floor from DESIGN-SYSTEM.md §8.
  */
 const VARIANTS: Record<Variant, string> = {
-  // Copper, not ink, so the single primary action on a page is the one thing
-  // wearing the accent colour. Scarcity is what makes it read as the action.
+  // Blue, not navy, so the single primary action on a page is the one thing
+  // wearing the interactive colour. Scarcity is what makes it read as the action.
   primary:
     "bg-blue text-white hover:bg-blue-bright active:translate-y-px shadow-xs",
   secondary:

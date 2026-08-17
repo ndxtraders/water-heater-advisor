@@ -39,7 +39,7 @@ export default function NavienPage() {
           <div className="mt-8">
             <Eyebrow>Brands</Eyebrow>
             <h1 className="text-4xl leading-tight sm:text-[2.75rem]">Navien</h1>
-            <p className="mt-5 max-w-measure text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-5 max-w-measure text-lg leading-relaxed text-navy">
               Best known for condensing gas tankless units and for recirculation built
               into the unit rather than bolted on afterwards. Since the NWP500 line they
               also make heat pump water heaters, which matters if you assumed choosing
@@ -119,7 +119,7 @@ export default function NavienPage() {
                       With standard or <strong>controlled</strong> recirculation: 15 years
                       heat exchanger, 5 years parts, 1 year labour.
                     </p>
-                    <p className="rounded-lg bg-status-warn-bg px-4 py-3 text-[0.9375rem]">
+                    <p className="rounded-lg border-l-2 border-verdict-alt bg-muted px-4 py-3 text-[0.9375rem]">
                       With <strong>uncontrolled</strong> recirculation the same line drops
                       to 5 years heat exchanger and 3 years parts. If you are adding a
                       recirculation loop, this single detail is worth thousands.

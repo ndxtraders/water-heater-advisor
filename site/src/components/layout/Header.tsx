@@ -8,7 +8,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { site } from "@/lib/site";
 
 /**
- * The wordmark is set in the heading serif with the two words stacked in
+ * The wordmark is set in the heading face with the two words stacked in
  * weight — "Water Heater" plain, "Advisor" emphasised. The site's whole claim
  * is in that second word, and a contractor could not use this lockup. Every
  * plumbing competitor in the SERP is a geometric sans logotype next to a phone

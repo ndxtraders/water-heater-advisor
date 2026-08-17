@@ -72,7 +72,7 @@ export default function NotRightForYouPage() {
               When tankless is not your best choice
             </h1>
             <div aria-hidden className="mt-5 h-1 w-14 rounded-full bg-blue" />
-            <p className="mt-6 max-w-measure text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-6 max-w-measure text-lg leading-relaxed text-navy">
               We do not install water heaters, so we have nothing to gain from talking you
               into the expensive option. Here are six situations where converting to
               tankless is the wrong call, written plainly because almost nobody else in

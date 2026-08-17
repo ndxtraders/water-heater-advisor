@@ -42,8 +42,8 @@ export function CostBreakdown({
   const allHigh = lines.reduce((s, l) => s + l.high, 0);
 
   return (
-    <div className="rounded-lg border border-border bg-card">
-      <div className="border-b border-border px-6 py-5">
+    <div data-print="keep" className="rounded-lg border border-border bg-card">
+      <div className="border-b border-border px-4 py-5 sm:px-6">
         <h3 className="text-xl">{title}</h3>
       </div>
 
@@ -58,7 +58,7 @@ export function CostBreakdown({
         <tbody>
           {lines.map((line) => (
             <tr key={line.label} className="border-b border-border/70">
-              <th scope="row" className="py-3.5 pl-6 pr-4 font-normal align-top">
+              <th scope="row" className="py-3.5 pl-4 pr-3 font-normal align-top sm:pl-6 sm:pr-4">
                 <span
                   className={cn(
                     "text-[0.9375rem]",
@@ -75,7 +75,7 @@ export function CostBreakdown({
               </th>
               <td
                 className={cn(
-                  "tabular py-3.5 pr-6 text-right text-[0.9375rem] whitespace-nowrap align-top",
+                  "apparatus py-3.5 pr-4 text-right whitespace-nowrap align-top sm:pr-6",
                   line.optional && "text-muted-foreground",
                 )}
               >
@@ -86,24 +86,24 @@ export function CostBreakdown({
         </tbody>
         <tfoot>
           <tr className="bg-muted/50">
-            <th scope="row" className="py-4 pl-6 pr-4 text-left text-[0.9375rem]">
+            <th scope="row" className="py-4 pl-4 pr-3 text-left text-[0.9375rem] sm:pl-6 sm:pr-4">
               Typical straightforward job
               <span className="mt-0.5 block text-xs font-normal text-muted-foreground">
                 Required items only
               </span>
             </th>
-            <td className="tabular py-4 pr-6 text-right font-semibold whitespace-nowrap">
+            <td className="apparatus py-4 pr-4 text-right font-semibold whitespace-nowrap sm:pr-6">
               {usd(baseLow)}–{usd(baseHigh)}
             </td>
           </tr>
           <tr className="bg-muted/50 border-t border-border">
-            <th scope="row" className="py-4 pl-6 pr-4 text-left text-[0.9375rem]">
+            <th scope="row" className="py-4 pl-4 pr-3 text-left text-[0.9375rem] sm:pl-6 sm:pr-4">
               If every upgrade applies
               <span className="mt-0.5 block text-xs font-normal text-muted-foreground">
                 Uncommon, but this is the ceiling
               </span>
             </th>
-            <td className="tabular py-4 pr-6 text-right font-semibold whitespace-nowrap">
+            <td className="apparatus py-4 pr-4 text-right font-semibold whitespace-nowrap sm:pr-6">
               up to {usd(allHigh)}
             </td>
           </tr>
@@ -111,7 +111,7 @@ export function CostBreakdown({
       </table>
 
       {note ? (
-        <p className="border-t border-border px-6 py-4 text-sm leading-relaxed text-muted-foreground">
+        <p className="border-t border-border px-4 py-4 text-sm leading-relaxed text-muted-foreground sm:px-6">
           {note}
         </p>
       ) : null}

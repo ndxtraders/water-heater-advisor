@@ -27,7 +27,7 @@ export default function ModestoPage() {
             <h1 className="text-4xl leading-tight sm:text-[2.75rem]">
               What actually changes the answer in Modesto
             </h1>
-            <p className="mt-5 max-w-measure text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-5 max-w-measure text-lg leading-relaxed text-navy">
               Not the city name. The utility territory, the permit process, and which
               rebates are genuinely funded this week. A page that swaps a city name into
               generic advice is worth nothing, so here is the local detail that moves a

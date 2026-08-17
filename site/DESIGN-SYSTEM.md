@@ -64,13 +64,13 @@ and surface treatment.
 
 | Pattern | Why it earns its place |
 |---|---|
-| **Heavy geometric sans headings** (Plus Jakarta Sans, 800) | The single biggest fix. The serif was doing most of the "editorial publication" work. |
+| **Heavy sans headings** (Plus Jakarta Sans 800 in V.2; **Archivo** from V.3) | The single biggest fix. The serif was doing most of the "editorial publication" work. V.3 kept the weight and changed the face — see §4. |
 | **Dark navy band sections** | v1 had no arrival and no rhythm — every section the same weight. Dark bands mark the moments that matter. |
 | **Tinted light sections** (`#eff7ff`) rather than neutral grey | Blue-tinted surfaces read as a designed system; flat grey reads as unstyled. |
 | **Cards with radius, shadow and a hover lift** | v1's near-flat cards on flat ground felt like a document, not a tool. |
 | **Icon chips** in tinted rounded squares | Gives each card an anchor and a scan point. |
 | **Pill badge eyebrows** | More presence than bare uppercase type, and somewhere for an icon to live. |
-| **Short accent rule under section headings** | Cheap, distinctive, gives every heading a consistent finish. |
+| **Short accent rule under section headings** | Cheap, distinctive, gives every heading a consistent finish. Blue on light, **white on dark** — V.2 rendered the dark variant in flag red, which is decorative red by any honest reading and contradicted §3 two lines below the rule that forbids it. |
 | **Trust bar** under the hero | Excellent device. See below for the content swap. |
 
 ### Deliberately not adopted
@@ -117,25 +117,34 @@ sales voice, and it stays available for the one moment it genuinely needs to
 shout.
 
 ```
---ink        oklch(0.24 0.03 255)   #15202d   Body and headings.
---navy       oklch(0.29 0.07 258)   #132b4d   Brand. Wordmark, nav, footer.
---blue       oklch(0.47 0.15 258)   #1a57ad   Links, primary CTA, focus.
---blue-bright oklch(0.58 0.16 256)            Hover and non-text UI only.
---flag-red   oklch(0.52 0.20 27)    #c2181d   Emergency and "not a fit". Nothing else.
---paper      oklch(0.995 0.001 250)           Page background. Near-neutral white.
+--ink         oklch(0.24 0.03 255)     #15202d   Body and headings.
+--navy        oklch(0.29 0.07 258)     #132b4d   Brand. Wordmark, nav, footer, lead paragraphs.
+--blue        oklch(0.484 0.135 253.6) #1a5fa8   Links, primary CTA, focus.
+--blue-bright oklch(0.591 0.145 251.5) #2f80d0   Hover and non-text UI only.
+--flag-red    oklch(0.52 0.20 27)      #c2181d   Emergency and "not a fit". Nothing else.
+--paper       oklch(0.995 0.001 250)   #fdfdfe   Page background. Near-neutral white.
 ```
+
+**On the blue's hue.** V.3 moved it from OKLCH 258 to 254 — CSS hue 215 to 208. Measured
+against the two best-built sites in the category, J. Hart Plumbing sits at 207 (`#0b61a8`)
+and Aim High HVAC at 211 (`#2b6cb0`). At 215 this palette read faintly indigo where the
+category reads blue. Lightness is unchanged, so every ratio below holds.
 
 **Previous palette, and why it changed.** v1 used warm cream paper with a copper
 accent. It was correctly called out as reading like an AI company rather than a
 homeowner utility — cream plus copper plus a serif is a very specific current
 signature. The cream is gone and paper is now near-neutral white.
 
-**On green as a type colour.** It should not be one. Green appears in exactly one
-place, `--verdict-fit`, and a green used for headings or links would collide with
-the one spot green has to carry meaning. It would also start signalling "eco",
-which a technology-neutral advisor cannot afford — the site has to be able to
-recommend a gas tank without its own palette arguing back. Blue does the
-interactive work; green stays a verdict.
+**On green.** There is none, as of V.3. Through V.2 it appeared in exactly one
+place, `--verdict-fit`, on the argument that a verdict hue must not collide with
+anything else. That argument held right up until it didn't: the same reasoning —
+that green quietly signals *eco*, which a technology-neutral advisor cannot
+afford when it has to be able to recommend a gas tank — applies to the verdict
+scale itself. The scale now runs on blue, red and a fill rule. See below.
+
+Amber went with it. `--status-warn` existed for a single rebate state and was the
+only warm hue in the system; the fill rule expresses the same thing. What is left
+is blue, red, ink and paper.
 
 ### Verdict scale
 
@@ -144,17 +153,29 @@ never color alone. Roughly 8% of men have some form of color vision deficiency,
 and this is the exact moment the site cannot afford to be misread.
 
 ```
---verdict-fit      oklch(0.52 0.09 168)   ✓ Recommended
---verdict-alt      oklch(0.52 0.02 250)   ○ Alternative
---verdict-unfit    oklch(0.54 0.13 25)    ✕ Not a fit
+--verdict-fit      oklch(0.507 0.111 240.1)  #0f6c9e   ✓ Recommended     FILLED
+--verdict-alt      oklch(0.5 0.02 256.3)     #5c646f   ○ Worth considering  OUTLINED
+--verdict-unfit    var(--flag-red)           #c2181d   ✕ Not a fit       FILLED
 ```
 
-Deliberately desaturated. Saturated green/red is the palette of a sales
-comparison chart; muted is the palette of an assessment.
+**Three states, two hues, one fill rule.** Through V.2 "recommended" was green.
+Green is gone, for two reasons that point the same way: it was the only hue in
+the system belonging to no other part of it, and on a technology-neutral advisor
+it quietly argues *eco* — which a site that must be able to recommend a gas
+storage tank cannot have its own palette contradicting.
 
-Note that green here means *"fits your house,"* not *"environmentally good."* The
-verdict scale is orthogonal to technology. A gas storage tank can absolutely come
-back green.
+What replaced it is not another hue. It is the fill rule already proven in
+`RebateStatus`: **a filled badge is a claim, an outlined badge is not.** So the
+two states where the site commits — recommended, not a fit — are filled and wear
+the site's two colours. "Worth considering" is the outline, because it is a
+weaker statement and should look like one.
+
+Fit blue is deliberately lighter and more cyan than `--blue`. A verdict must
+never read as a link.
+
+Note that a *fit* means "suits your house," not "environmentally good." The
+verdict scale is orthogonal to technology. A gas storage tank can and often
+should come back recommended.
 
 ### Rebate status
 
@@ -163,24 +184,24 @@ finder, and that incentives are live data. Four states, and the design of the
 fourth is the important one:
 
 ```
-ACTIVE            filled, --verdict-fit        Confirmed available.
-RESERVED          filled, --status-warn        Funded but waitlisted (e.g. HEEHRA).
+ACTIVE            filled, --verdict-fit           Confirmed available.
+RESERVED          SOLID OUTLINE, ink              Funded but waitlisted (e.g. HEEHRA).
 EXPIRED           filled, --muted, strikethrough  Ended (e.g. federal 25C after 2025).
-VERIFY            OUTLINED, no fill            We have not confirmed this.
+VERIFY            DASHED OUTLINE, no fill         We have not confirmed this.
 ```
+
+V.3 removed the amber that used to carry RESERVED. It was the only warm hue in
+the system and it existed for exactly one state. The fill rule says the same
+thing without spending a colour: the claim is real, the offer is not open.
 
 `VERIFY` renders as an **unfilled outline**. Filled badges are claims; the empty
 badge is visibly a non-claim. A homeowner can tell at a glance which numbers the
 site stands behind and which it does not. That visual honesty is the brand.
 
-```
---status-warn    oklch(0.68 0.13 70)
-```
-
 ### Neutrals
 
 Ten steps from paper to ink, all carrying a trace of the same blue so greys never
-go muddy against the copper.
+go muddy against the navy.
 
 ---
 
@@ -189,13 +210,36 @@ go muddy against the copper.
 ### Stack
 
 ```
---font-heading: Plus Jakarta Sans, 800   (self-hosted via next/font)
---font-sans:    Inter                    (self-hosted via next/font)
---font-mono:    ui-monospace, "SF Mono", Menlo, monospace
+--font-heading: Archivo 700/800          (self-hosted via next/font)
+--font-sans:    system stack             (no webfont)
+--font-mono:    IBM Plex Mono 500        (self-hosted via next/font)
 ```
 
-**Heavy geometric sans headings, Inter body.** Headings run at `font-weight: 800`
-with `letter-spacing: -0.022em` and `line-height: 1.12`.
+**Three roles, and the third one is the point.**
+
+*Headings — Archivo.* An American grotesque with signage and newspaper lineage,
+which reads civic and declarative: the register of something that renders a
+verdict. It replaces Plus Jakarta Sans, which fixed V.1's serif problem
+correctly but is the geometric sans every template reaches for, and so argued
+for nothing in particular.
+
+*Body — the system stack.* Inter was the largest single asset on the site and is
+very nearly indistinguishable from SF Pro on the phones that are half this
+audience. Removing it also removes the largest webfont swap surface on the page,
+which is where layout shift actually comes from. `.tabular` survives: SF Pro,
+Segoe UI and Roboto all carry tabular figures.
+
+*Data — IBM Plex Mono.* This token was defined and unused for two versions. The
+site's real subject matter is specification — permit line items, model numbers,
+GPM figures, rebate programme names, checked dates — and setting that layer in
+mono is what makes the sourcing UI read as apparatus rather than as fine print.
+Applied through the `.apparatus` class.
+
+Measured payload, latin subsets as built by `next/font`: **73.9KB → 43.9KB.**
+
+Weight is a hierarchy axis, not a constant: h1/h2 at 800, h3/h4 at 700. Tracking
+scales with size — -0.028em at h1 down to -0.008em at h4 — because -0.022em is
+right at a 3rem hero and visibly too tight at 1.25rem.
 
 v1 used a serif on the theory that it would separate the site from the uniformly
 geometric-sans contractor pages in the SERP. It did — in the wrong direction. It
@@ -203,7 +247,12 @@ read as a magazine rather than as a decision tool. **The independence comes from
 what the page says and from the sourcing UI, not from the typeface.**
 
 Self-hosted at build time by `next/font`, so there is no runtime request to
-Google and no layout shift. Jakarta ships only the two weights headings use.
+Google. **There is still a layout shift** — `display: swap` paints the fallback
+first and swaps, and `next/font`'s size-adjusted fallback metrics shrink that
+shift rather than removing it. Earlier versions of this document and of
+`layout.tsx` claimed otherwise, which was wrong. Dropping the body webfont in
+V.3 removes the largest swap surface on the page, which is the part that
+actually mattered.
 
 Monospace is reserved for numbers that need to align — cost tables, GPM figures,
 model numbers. Tabular figures in cost breakdowns are not optional; misaligned
@@ -241,12 +290,18 @@ tight leading on a 900-word technology page is a comprehension tax.
 Whitespace does real work in the reviewer register — it is what makes a page read
 as considered rather than crowded.
 
-**Radius is small: `0.375rem`.** Rounded-everything reads friendly and
-consumer-app; slightly squared reads precise and documentary. Badges are the one
-exception — fully rounded pills, because they are labels rather than surfaces.
+**Radius is `0.5rem`, and cards go further (`rounded-2xl`).** This section
+described `0.375rem` and "slightly squared reads documentary" until V.3 — a V.1
+rule that survived the V.2 repalette by oversight and contradicted both §2 and
+the shipped code. V.2 deliberately softened the radius on the argument that flat
+cards on a flat background read as a document rather than a tool, and that is
+what ships. Badges are fully rounded pills, because they are labels rather than
+surfaces.
 
-**Elevation is nearly flat.** One subtle shadow for raised cards, and borders do
-most of the separation work. Heavy drop shadows are a marketing-page idiom.
+**Elevation is one quiet shadow.** Borders still do most of the separation work.
+`TechnologyCard` carries a hover lift because it navigates — the whole card is a
+stretched link. Nothing that does not navigate lifts; the unused `interactive`
+prop on `Card` was removed in V.3 rather than left as an affordance that lies.
 
 ---
 
@@ -277,7 +332,7 @@ advisor vocabulary replaces them:
 | `LocalDataPanel` | Per-market data with per-field source and freshness. |
 | `QuizShell` / `QuizQuestion` / `QuizProgress` | The quiz. Branches on urgency. |
 | `DecisionPath` | Where the homeowner is in the funnel: problem → technology → feasibility → sizing → cost → local → match. |
-| `EmergencyBar` | Short-circuit for the emergency funnel. The *only* place urgency styling is permitted. |
+| `EmergencyBar` | Short-circuit for the emergency funnel. The *only* place urgency styling is permitted. Rendered in the root layout and self-hiding on `/emergency`, so it covers every route — through V.2 it appeared on the homepage alone, which is the page a panicking homeowner is least likely to land on. |
 | `Prose` | Long-form editorial wrapper enforcing the 68ch measure. |
 
 ### What is deliberately absent
@@ -295,39 +350,39 @@ constraint expressed as a design constraint, and it is not negotiable.
 ### Measured contrast
 
 Not asserted — measured in the browser against the rendered tokens, on
-2026-08-07. The first pass failed: `--copper` came out at **3.61:1** as link
-text and `--muted-foreground` at **3.81:1**, both under the floor this document
-claims. Both were darkened (copper `0.52 → 0.47`, muted `0.52 → 0.46`) and
-re-measured.
+2026-08-07, and again for V.3. The first pass failed: the v1 copper accent came
+out at **3.61:1** as link text and `--muted-foreground` at **3.81:1**, both under
+the floor this document claims. Both were darkened and re-measured. Copper itself
+is long gone — the note survives because the lesson did.
 
-Re-measured after the red/white/blue repalette:
+Re-measured for V.3, after the hue shift and the removal of green and amber.
+Every pair below was computed from the shipped tokens, not asserted.
 
-| Pair | Hex | Ratio | |
-|---|---|---|---|
-| `--ink` on paper | `#15202d` | 16.21 | ✅ |
-| `--navy` on paper | `#132b4d` | 13.97 | ✅ |
-| `--blue` on paper (links) | `#1a57ad` | 6.85 | ✅ |
-| White on `--blue` (primary button) | `#1a57ad` | 6.95 | ✅ |
-| `--flag-red` on white | `#c2181d` | 6.11 | ✅ |
-| White on `--flag-red` | `#c2181d` | 6.11 | ✅ |
-| `--muted-foreground` on paper | `#515962` | 7.02 | ✅ |
-| `--verdict-fit` on its bg | `#106f4c` | 5.58 | ✅ |
-| `--verdict-unfit` on its bg | `#c2181d` | 5.47 | ✅ |
-| `--status-warn` on its bg | `#9d5d03` | 4.70 | ✅ |
+| Pair | Ratio | |
+|---|---|---|
+| `--ink` on paper | 16.18 | ✅ |
+| `--navy` on paper | 13.95 | ✅ |
+| `--blue` on paper (links) | 6.36 | ✅ |
+| White on `--blue` (primary button) | 6.47 | ✅ |
+| `--flag-red` on white | 6.00 | ✅ |
+| White on `--flag-red` | 6.10 | ✅ |
+| `--muted-foreground` on paper | 6.99 | ✅ |
+| White on `--verdict-fit` (filled badge) | 5.74 | ✅ |
+| `--verdict-alt` on paper (outlined badge) | 5.89 | ✅ |
+| White on `--verdict-unfit` (filled badge) | 6.10 | ✅ |
 
-On-dark pairs, added with the dark band sections. The first pass failed again:
-`--flag-red` measured **2.91:1** on navy-deep as the hero highlight and
-**2.32:1** as trust-bar icons, both under even the 3:1 large-text and UI floor.
-Hence `--flag-red-light`.
+On dark. Red no longer appears on the bands at all, so the `--flag-red-light`
+pairs that used to live here are gone with it — the rule and the trust-bar icons
+are white now.
 
-| Pair | Hex | Ratio | |
-|---|---|---|---|
-| White on `--navy-deep` | `#071831` | 17.76 | ✅ |
-| `--flag-red-light` on `--navy-deep` (hero) | `#ef675c` | 5.71 | ✅ |
-| `--flag-red-light` on `--navy` (trust icons) | `#ef675c` | 4.56 | ✅ |
-| `--ink` on `--tint` | `#eff7ff` | 15.18 | ✅ |
-| `--muted-foreground` on `--tint` | | 6.57 | ✅ |
-| `--blue` on `--tint` (eyebrow pill) | | 6.42 | ✅ |
+| Pair | Ratio | |
+|---|---|---|
+| White on `--navy-deep` | 17.74 | ✅ |
+| Rule at white/80 on `--navy-deep` | 11.04 | ✅ |
+| Trust icons at white/85 on `--navy` | 10.05 | ✅ |
+| `--ink` on `--tint` | 15.21 | ✅ |
+| `--muted-foreground` on `--tint` | 6.57 | ✅ |
+| `--blue` on `--tint` (eyebrow pill) | 5.98 | ✅ |
 
 Re-measure whenever a colour token moves. A stated floor that is never measured
 is decoration.
@@ -337,7 +392,7 @@ is decoration.
 - Body text meets WCAG AA (4.5:1); large text and UI meet 3:1.
 - Verdict and status are **never** encoded in color alone — icon plus text label,
   always.
-- Visible focus ring on every interactive element, copper at 2px offset.
+- Visible focus ring on every interactive element, `--blue-bright` at 2px offset.
 - Quiz is fully keyboard navigable; each step moves focus to its heading and
   announces progress via a live region.
 - Comparison tables use real `<th scope>` markup, not styled divs.
@@ -350,6 +405,10 @@ is decoration.
 
 - **Photography.** None in v1. If it earns its way in later it should be
   documentary — actual installations, actual rating plates — never stock.
-- **Dark mode.** Tokens are defined for it. Not a launch priority; the audience
-  skews toward daytime desktop and mobile research.
-- **Source Serif 4.** Revisit once Core Web Vitals are measured on real traffic.
+- **Dark mode.** Removed in V.3. The `.dark` block was never updated in the
+  V.1→V.2 repalette, so its `--blue` still resolved to `#e08e5a` — the dead
+  copper — along with `--accent` and `--ring`. Nothing set `.dark`, so it never
+  rendered; it shipped as a trap for whoever enabled it. If dark mode is wanted
+  later it should be authored fresh against the current palette, not revived.
+- **Source Serif 4.** Closed. V.3 removed the body webfont entirely; adding a
+  serif back would reintroduce the swap surface that removal just bought.

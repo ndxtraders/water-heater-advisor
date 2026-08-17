@@ -28,7 +28,7 @@ export default function TermsPage() {
         <Container width="narrow">
           <h1 className="text-4xl leading-[1.1] sm:text-5xl">Terms</h1>
           <div aria-hidden className="mt-5 h-1 w-14 rounded-full bg-blue" />
-          <p className="mt-6 max-w-measure text-lg leading-relaxed text-muted-foreground">
+          <p className="mt-6 max-w-measure text-lg leading-relaxed text-navy">
             Last updated {UPDATED}.
           </p>
         </Container>

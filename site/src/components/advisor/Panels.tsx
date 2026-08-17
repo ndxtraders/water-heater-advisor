@@ -1,4 +1,4 @@
-import { ArrowRight, Phone, TriangleAlert, type LucideIcon } from "lucide-react";
+import { ArrowRight, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -42,8 +42,9 @@ export function TechnologyCard({
           {name}
         </Link>
       </h3>
-      {/* Short rule under the card title, matching the section headings. */}
-      <div aria-hidden className="mt-2 h-1 w-10 rounded-full bg-blue" />
+      {/* The short rule that used to sit here is gone. The same device already
+          runs under every section heading; repeating it one level down stopped
+          it encoding hierarchy and turned it into texture. */}
 
       <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted-foreground">
         {summary}
@@ -94,42 +95,6 @@ function TechList({
         ))}
       </ul>
     </div>
-  );
-}
-
-/**
- * Emergency short-circuit.
- *
- * This is the only component in the system permitted to use urgency styling,
- * and it exists to solve the one real weakness of the reviewer register: a
- * homeowner standing over a leaking tank at 6am does not want an editorial
- * essay on efficiency.
- *
- * The fix is structural rather than stylistic. Rather than warming up the whole
- * site and diluting its independence, the emergency case gets its own visible
- * exit at the top of the page — and the educational pages below stay calm.
- */
-export function EmergencyBar() {
-  return (
-    <aside className="border-b border-verdict-unfit/25 bg-verdict-unfit-bg">
-      <div className="mx-auto flex w-full max-w-5xl flex-wrap items-center gap-x-4 gap-y-2 px-5 py-3 sm:px-6 lg:px-8">
-        <TriangleAlert
-          aria-hidden
-          className="size-4 shrink-0 text-verdict-unfit"
-          strokeWidth={2.5}
-        />
-        <p className="text-sm font-medium">
-          No hot water right now, or a tank that is leaking?
-        </p>
-        <Link
-          href="/emergency"
-          className="inline-flex min-h-8 items-center gap-1.5 rounded-md text-sm font-semibold text-verdict-unfit underline underline-offset-4 hover:brightness-110"
-        >
-          <Phone aria-hidden className="size-3.5" />
-          Skip the research, get help today
-        </Link>
-      </div>
-    </aside>
   );
 }
 
@@ -232,12 +197,12 @@ export function Callout({
       className={cn(
         "my-8 rounded-lg border-l-[3px] py-5 pl-6 pr-6",
         tone === "warn"
-          ? "border-l-status-warn bg-status-warn-bg/60"
+          ? "border-l-ink bg-muted/70"
           : "border-l-blue bg-muted/50",
       )}
     >
       <p className="mb-1.5 font-heading text-lg">{title}</p>
-      <div className="text-[0.9375rem] leading-relaxed text-foreground/80">{children}</div>
+      <div className="text-[0.9375rem] leading-relaxed text-foreground">{children}</div>
     </aside>
   );
 }

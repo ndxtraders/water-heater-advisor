@@ -24,7 +24,7 @@ export default function TankVsTanklessPage() {
             <h1 className="text-4xl leading-tight sm:text-[2.75rem]">
               Tank vs tankless, without the sales pitch
             </h1>
-            <p className="mt-5 max-w-measure text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-5 max-w-measure text-lg leading-relaxed text-navy">
               Tankless is better at some things and worse at others. Which matters depends
               almost entirely on how much hot water your household uses at once, and on
               what your house needs before a tankless unit can be fitted at all.

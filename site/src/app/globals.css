@@ -1,8 +1,5 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 @import "shadcn/tailwind.css";
-
-@custom-variant dark (&:is(.dark *));
 
 /* ---------------------------------------------------------------------------
    Water Heater Advisor design tokens.
@@ -12,6 +9,10 @@
    decorative hue in this system. A site that tints things because they look
    nice has already spent the signal it needs in order to say "this option is
    wrong for your house."
+
+   V.3 tightened that rule rather than loosening it. Green and amber are gone.
+   What is left is blue, red, ink and paper, and the third channel — filled
+   versus outlined — now carries the load that a fourth and fifth hue used to.
    --------------------------------------------------------------------------- */
 
 @theme inline {
@@ -50,17 +51,13 @@
   --color-flag-red: var(--flag-red);
   --color-flag-red-light: var(--flag-red-light);
 
-  /* Verdict scale — the recommendation output. Always paired with icon + label. */
+  /* Verdict scale — the recommendation output. Icon + label + fill, always. */
   --color-verdict-fit: var(--verdict-fit);
   --color-verdict-fit-bg: var(--verdict-fit-bg);
   --color-verdict-alt: var(--verdict-alt);
   --color-verdict-alt-bg: var(--verdict-alt-bg);
   --color-verdict-unfit: var(--verdict-unfit);
   --color-verdict-unfit-bg: var(--verdict-unfit-bg);
-
-  /* Rebate / data freshness */
-  --color-status-warn: var(--status-warn);
-  --color-status-warn-bg: var(--status-warn-bg);
 
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
@@ -86,18 +83,23 @@
      rule is most of what separates this from looking like the companies it
      refers work to, which matters commercially and under CSLB.
 
-     Previous palette was warm cream plus copper. Correctly called out as
-     reading like an AI company rather than a homeowner utility. The cream is
-     gone; paper is now a near-neutral white. */
+     V.3 finally enforces it. Red had leaked into accent rules and trust-bar
+     icons on the dark bands, which is decoration by any honest reading and is
+     also what made the red/white/blue register read loud rather than quiet. */
   --ink: oklch(0.24 0.03 255);
   --paper: oklch(0.995 0.001 250);
 
   --navy: oklch(0.29 0.07 258);
 
   /* Interactive blue. Two values: the base is text-safe on white, the bright
-     one is for hover and non-text UI where the 3:1 floor applies. */
-  --blue: oklch(0.47 0.15 258);
-  --blue-bright: oklch(0.58 0.16 256);
+     one is for hover and non-text UI where the 3:1 floor applies.
+
+     Hue moved from 258 to 254 in V.3. Measured against the category — J. Hart
+     sits at CSS hue 207 and Aim High at 211, where this was 215 — the old
+     value read a shade indigo. Same lightness, so every contrast pair below
+     holds: 6.36:1 as link text on paper, 6.47:1 white-on-blue for the button. */
+  --blue: oklch(0.484 0.135 253.6);
+  --blue-bright: oklch(0.591 0.145 251.5);
 
   /* Rationed. Emergency and "not a fit". Never a CTA, never decoration.
      Two values, for the same reason there are two blues: the base is the
@@ -121,26 +123,30 @@
   --n-900: oklch(0.21 0.028 255);
 
   /* Verdict scale -------------------------------------------------------
-     Deliberately desaturated. Saturated green/red is the palette of a sales
-     comparison chart; muted is the palette of an assessment.
+     Three states, two hues, one fill rule.
 
-     "Fit" green means *suits your house*, not *environmentally good*. The
-     verdict scale is orthogonal to technology — a gas storage tank can and
-     often should come back green. */
-  /* Green is a *verdict*, not a brand colour, and it is the answer to "which
-     green should the site use for type": this one, and only here. A green used
-     for headings or links would collide with the one place green has to mean
-     something, and would also start signalling "eco", which a
-     technology-neutral advisor cannot afford. */
-  --verdict-fit: oklch(0.48 0.10 162);
-  --verdict-fit-bg: oklch(0.96 0.025 162);
-  --verdict-alt: oklch(0.50 0.02 255);
-  --verdict-alt-bg: oklch(0.96 0.005 255);
+     V.1 and V.2 encoded "recommended" as green. Green is gone, for two
+     reasons that point the same way. It was the one hue in the palette that
+     belonged to no other part of the system, and on a technology-neutral
+     advisor it quietly argues "eco" — which a site that has to be able to
+     recommend a gas storage tank cannot afford to have its own palette
+     contradicting.
+
+     What replaces it is not another hue but the fill rule already proven in
+     RebateStatus: a filled badge is a claim, an outlined badge is not. So
+     "recommended" and "not a fit" are filled and carry the site's two colours,
+     while "worth considering" is the outline — visibly a weaker statement,
+     which is exactly what it is.
+
+     Fit blue is deliberately lighter and more cyan than --blue so that a
+     verdict never reads as a link. Measured: 5.74:1 white-on-fit,
+     6.1:1 white-on-unfit, 5.89:1 for the outlined alternative on paper. */
+  --verdict-fit: oklch(0.507 0.111 240.1);
+  --verdict-fit-bg: oklch(0.957 0.015 229);
+  --verdict-alt: oklch(0.5 0.02 256.3);
+  --verdict-alt-bg: oklch(0.96 0.005 247.9);
   --verdict-unfit: var(--flag-red);
-  --verdict-unfit-bg: oklch(0.965 0.02 27);
-
-  --status-warn: oklch(0.54 0.12 65);
-  --status-warn-bg: oklch(0.965 0.035 80);
+  --verdict-unfit-bg: oklch(0.964 0.018 30.3);
 
   /* shadcn surface mapping */
   --background: var(--paper);
@@ -154,9 +160,8 @@
   --secondary: var(--n-100);
   --secondary-foreground: var(--ink);
   --muted: var(--n-100);
-  /* 0.46, not 0.52. Secondary text carries most of the explanatory copy on this
-     site, so it is body text in every sense that matters and measured 3.81:1 at
-     the lighter value. */
+  /* Reserved for captions, source lines and stamps. It is no longer carrying
+     body copy — see the base layer, where prose runs at full ink. */
   --muted-foreground: oklch(0.46 0.018 255);
   --accent: var(--blue);
   --accent-foreground: oklch(1 0 0);
@@ -166,18 +171,31 @@
   --ring: var(--blue-bright);
 
   /* Type ----------------------------------------------------------------
-     v1 used a serif for headings, on the theory that it would separate the site
-     from the geometric-sans contractor pages in the SERP. It did — but it
-     separated it in the wrong direction, reading as an editorial publication
-     rather than as something a homeowner uses to make a decision.
+     Three roles, and the third one is the point.
 
-     Now: Plus Jakarta Sans for headings at extrabold, Inter for body. Same
-     family of choices a well-built local service site makes, because that is
-     the register homeowners trust for this kind of task. The independence comes
-     from what the page *says* and from the sourcing UI, not from the typeface. */
-  --font-heading: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+     Headings: Archivo. An American grotesque with signage and newspaper
+     lineage, which reads civic and declarative — the register of something
+     that renders a verdict. It replaces Plus Jakarta Sans, which fixed V.1's
+     serif problem correctly but is the geometric sans every template reaches
+     for, and so argued for nothing in particular.
+
+     Body: the system stack. Inter was the largest single asset on the site at
+     47.3KB and is very nearly indistinguishable from SF Pro on the phones that
+     make up half this audience. Removing it also removes the largest webfont
+     swap surface on the page, which is where layout shift actually comes from.
+
+     Data: IBM Plex Mono. This token was defined and unused for two versions.
+     The site's real subject matter is specification — permit line items, model
+     numbers, GPM figures, rebate program names, checked dates — and setting
+     that layer in mono is what makes the sourcing UI read as apparatus rather
+     than as fine print. It is the cheapest character the palette can buy. */
+  --font-heading: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono:
+    var(--font-plex-mono), ui-monospace, "SF Mono", SFMono-Regular, Menlo,
+    Consolas, monospace;
 
   /* 0.5rem base, and cards go further (rounded-2xl). Squared reads documentary;
      softly rounded reads like a product someone maintains. */
@@ -189,38 +207,6 @@
   --tint: oklch(0.972 0.014 250);
   --tint-strong: oklch(0.945 0.024 250);
   --navy-deep: oklch(0.21 0.055 258);
-}
-
-.dark {
-  --background: oklch(0.17 0.015 250);
-  --foreground: oklch(0.96 0.004 250);
-  --card: oklch(0.21 0.018 250);
-  --card-foreground: oklch(0.96 0.004 250);
-  --popover: oklch(0.21 0.018 250);
-  --popover-foreground: oklch(0.96 0.004 250);
-  --primary: oklch(0.96 0.004 250);
-  --primary-foreground: oklch(0.21 0.018 250);
-  --secondary: oklch(0.27 0.018 250);
-  --secondary-foreground: oklch(0.96 0.004 250);
-  --muted: oklch(0.27 0.018 250);
-  --muted-foreground: oklch(0.72 0.01 250);
-  --accent: oklch(0.68 0.13 50);
-  --accent-foreground: oklch(0.17 0.015 250);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 18%);
-  --ring: oklch(0.68 0.13 50);
-
-  --blue: oklch(0.72 0.12 52);
-  --blue-bright: oklch(0.78 0.12 55);
-
-  --verdict-fit: oklch(0.72 0.11 168);
-  --verdict-fit-bg: oklch(0.28 0.04 168);
-  --verdict-alt: oklch(0.72 0.02 250);
-  --verdict-alt-bg: oklch(0.27 0.018 250);
-  --verdict-unfit: oklch(0.7 0.14 25);
-  --verdict-unfit-bg: oklch(0.29 0.05 25);
-  --status-warn: oklch(0.78 0.13 75);
-  --status-warn-bg: oklch(0.29 0.05 75);
 }
 
 @layer base {
@@ -239,10 +225,32 @@
   h3,
   h4 {
     @apply font-heading text-foreground;
-    font-weight: 800;
     line-height: 1.12;
     text-wrap: balance;
+  }
+
+  /* Weight is a hierarchy axis, not a constant. Every heading ran at 800
+     through V.2, which left size doing all the work alone and made long
+     technology pages read as a wall of display type. Tracking scales with it:
+     -0.028em is right at a 3rem hero and visibly too tight at 1.25rem. */
+  h1 {
+    font-weight: 800;
+    letter-spacing: -0.028em;
+  }
+
+  h2 {
+    font-weight: 800;
     letter-spacing: -0.022em;
+  }
+
+  h3 {
+    font-weight: 700;
+    letter-spacing: -0.014em;
+  }
+
+  h4 {
+    font-weight: 700;
+    letter-spacing: -0.008em;
   }
 
   /* Long-form explanation is the product. Tight leading on a 900-word
@@ -252,9 +260,20 @@
   }
 
   /* Prices in a comparison table that do not align are a legibility bug, not a
-     stylistic preference. */
+     stylistic preference. The system stack carries tabular figures on every
+     platform that matters, so this survives the removal of Inter. */
   .tabular {
     font-variant-numeric: tabular-nums;
+  }
+
+  /* The apparatus layer. Checked dates, model numbers, permit line items and
+     cost figures. Mono is doing semantic work here — it marks the difference
+     between what the site is telling you and what the site is citing. */
+  .apparatus {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.9em;
+    letter-spacing: -0.01em;
   }
 
   :focus-visible {
@@ -271,5 +290,80 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Print.
+
+   The real user story: a homeowner takes the verdict and the itemised cost
+   breakdown to the contractor who is quoting the job. That is the independence
+   claim doing work in the room where the sale actually happens, and nobody in
+   this category prints well.
+
+   Everything that persuades comes out. Everything that is evidence stays, and
+   every source note keeps its URL and its checked date.
+   --------------------------------------------------------------------------- */
+@media print {
+  @page {
+    margin: 16mm;
+  }
+
+  :root {
+    --tint: #fff;
+    --tint-strong: #fff;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+    line-height: 1.45;
+  }
+
+  /* Chrome, navigation and anything asking for the sale. */
+  header,
+  footer,
+  nav,
+  [data-print="hide"],
+  .print-hide {
+    display: none !important;
+  }
+
+  /* Bands flatten to paper; ink inverts so a navy section does not print as a
+     solid block of toner. */
+  [class*="bg-navy"],
+  [class*="bg-tint"],
+  [class*="bg-muted"] {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: #000 !important;
+    page-break-after: avoid;
+  }
+
+  /* Evidence must not be split across a page boundary. */
+  table,
+  figure,
+  [data-print="keep"] {
+    page-break-inside: avoid;
+  }
+
+  /* A printed citation with no URL is not a citation. */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.82em;
+    word-break: break-all;
+  }
+
+  /* Cards lose their fills and keep a hairline, so the structure survives
+     without spending ink on surfaces. */
+  [class*="rounded"] {
+    box-shadow: none !important;
   }
 }
