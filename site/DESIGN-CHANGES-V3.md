@@ -17,8 +17,9 @@ and flagged as **[CALL]**.
   - Recommended → filled `#0f6c9e`, white text (lighter, cyan-leaning; not the link blue)
   - Worth considering → outlined, no fill
   - Not a fit → filled `#c2181d`, white text
-- [x] **A4** Delete `--status-warn` amber. RESERVED becomes filled-with-dashed-border, reusing
-  the same vocabulary instead of introducing a fourth hue.
+- [x] **A4** Delete `--status-warn` amber. RESERVED becomes a *solid outline* in ink — the claim
+  is real, the offer is not open — leaving the dashed outline to mean "unverified". Reuses the
+  fill vocabulary instead of introducing a fourth hue. Four non-rebate usages remapped; see below.
 - [x] **A5** Strip decorative red: `AccentRule tone="dark"`, the two hardcoded copies in
   `Hero.tsx` and `methodology`, and the `TrustBar` icons. Red survives on `/emergency` and
   "Not a fit" only.
@@ -31,7 +32,8 @@ and flagged as **[CALL]**.
 - [x] **B1** Drop Inter. Body runs the system stack. (47.3KB, the largest font file on the site.)
 - [x] **B2 [CALL]** Plus Jakarta Sans → **Archivo** for headings. American grotesque with signage
   lineage; reads civic and declarative rather than friendly-geometric, and Jakarta is the default
-  every AI-assisted build reaches for. 14.1KB vs 26.6KB. *Reverting = swap one `next/font` import.*
+  every AI-assisted build reaches for. As built: 34.9KB vs Jakarta's 26.6KB — Archivo costs
+  8KB more than Jakarta; the saving is Inter's. *Reverting = swap one `next/font` import.*
 - [x] **B3** Add **IBM Plex Mono** and wire the `--font-mono` token, which is currently defined
   and unused. Carries the apparatus layer: checked dates, source citations, cost figures,
   model numbers.
@@ -39,12 +41,13 @@ and flagged as **[CALL]**.
   instead of size doing all the work alone.
 - [x] **B5** Letter-spacing scales with size. `-0.022em` is right at 3rem and wrong at 1.25rem.
 
-Net font payload: 73.9KB → 23.9KB.
+Net font payload: **73.9KB → 43.9KB**, measured from both built outputs. (An earlier
+estimate of 23.9KB was wrong — see Results.)
 
 ## C. Signature — the sourcing UI
 
-The design doc calls this "the cheapest durable advantage the site has." It currently renders as
-12px grey and reads as a disclaimer.
+The design doc calls this "the cheapest durable advantage the site has." It rendered as 12px
+grey and read as a disclaimer.
 
 - [x] **C1** Rebuild `SourceNote`: left rule, source name in ink, checked date in mono. It should
   read as apparatus, not apology.
