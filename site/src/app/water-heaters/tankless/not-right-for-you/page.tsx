@@ -1,6 +1,7 @@
 import { ArrowRight, Check } from "lucide-react";
 import type { Metadata } from "next";
 
+import { ConversionRunsDiagram } from "@/components/advisor/ConversionRunsDiagram";
 import { Callout, DecisionPath } from "@/components/advisor/Panels";
 import { SourceNote } from "@/components/advisor/Status";
 import { VerdictBadge } from "@/components/advisor/Verdict";
@@ -126,6 +127,16 @@ export default function NotRightForYouPage() {
               <ArrowRight aria-hidden className="size-4" />
             </ButtonLink>
           </div>
+        </Container>
+      </Section>
+
+      {/* The dark band above makes the argument — the answer depends on your gas
+          line, your venting route and where the unit sits. This is that answer,
+          drawn. All four costs are runs, and run length is what separates two
+          identical houses by thousands. */}
+      <Section>
+        <Container width="narrow">
+          <ConversionRunsDiagram />
         </Container>
       </Section>
 
