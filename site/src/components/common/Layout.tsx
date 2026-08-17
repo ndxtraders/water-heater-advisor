@@ -117,15 +117,15 @@ export function Eyebrow({
 /**
  * Short rule beneath a section heading.
  *
- * Lifted from the J. Hart pattern, where it is red. Here it is blue, because
- * red is reserved for emergency and "not a fit" and a decorative red rule under
- * every heading would spend exactly the signal the verdict system depends on.
- * The device survives the translation; the colour does not.
+ * Lifted from the J. Hart pattern, where it is red. Here it is blue. Not because
+ * red is forbidden — §3 no longer says that — but because a rule under every
+ * heading is the definition of decoration, and decoration is the one thing red
+ * should not be spent on. The device survives the translation; the colour does
+ * not.
  *
- * That argument was written in V.2 and then contradicted two lines below it:
- * the dark variant rendered in flag red, which is the same decorative spend on
- * the bands where it is most visible. V.3 makes the dark rule white. Red now
- * appears on /emergency and on "Not a fit", and nowhere else on the site.
+ * That argument was written in V.2 and then contradicted two lines below it: the
+ * dark variant rendered in flag red, which is the same decorative spend on the
+ * bands where it is most visible. V.3 makes the dark rule white.
  */
 export function AccentRule({
   align = "left",

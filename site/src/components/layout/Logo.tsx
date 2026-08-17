@@ -8,11 +8,11 @@ import { cn } from "@/lib/utils";
  * recommended setting standing between them.
  *
  * The point of drawing it this way is that it makes the site's two colours
- * *mean* something. Red anywhere on this site is rationed — it carries emergency
- * and "Not a fit" and nothing else, which is the argument AccentRule makes for
- * why the rules under headings are blue. A logo with a decorative red word in it
- * would spend that signal on every page. Here red is not decoration: it is the
- * hot end of a temperature scale, and it stays a hairline.
+ * *mean* something. Red here is not decoration and not a brand accent: it is the
+ * hot end of a temperature scale, encoding a physical quantity the way it does
+ * on a tap. That is the bar red has to clear on this site (§3) — not scarcity,
+ * but carrying real meaning. A logo with a red word in it for patriotic flavour
+ * would not clear it; this does.
  *
  * 120°F is the midpoint for a real reason rather than a layout convenience.
  * Below it, water sits in the range where Legionella grows; above it, tap water

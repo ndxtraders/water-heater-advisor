@@ -100,37 +100,42 @@ This is not minimalism for its own sake. A site that colors things because they
 look nice cannot then use color to say "this option is wrong for your house" —
 the signal is already spent.
 
-### Brand: red, white and blue — with red rationed
+### Brand: red, white and blue
 
 Red, white and blue is this category's visual language and the trust register
-American homeowners already read. The site borrows it. The question is *how*,
-and the answer is the single most important rule in the palette:
+American homeowners already read. The site borrows it. Blue carries the brand
+and does the most work; red is the accent.
 
-> **Blue carries the brand. Red is rationed to two jobs: emergency, and "not a
-> fit."**
+> **Blue leads. Red is used where it earns its place — and it earns its place
+> more often than a rule can predict.**
 
-On a plumber's site red is the primary — the logo, the banner, the CALL NOW
-button. Doing the same here would make the site look like the companies it
-refers work to, which is a positioning problem and a CSLB problem at once. Used
-sparingly against navy, the same red reads as a warning system rather than a
-sales voice, and it stays available for the one moment it genuinely needs to
-shout.
+Earlier revisions of this document stated a hard rule: red was rationed to
+emergency and "not a fit," *nothing else*. That was over-tight. It was written
+as a guard against one real failure mode — a plumber's site makes red the
+primary, on the logo and the banner and the CALL NOW button, and copying that
+would make this site look like the companies it refers work to. That risk is
+genuine. But it argues for restraint and judgment, not a two-item allowlist, and
+the allowlist was getting enforced against uses that plainly worked, like the
+hot half of the set-point mark.
 
-**The one amendment to that rule is the logo,** and it is an amendment rather
-than an exception because of *why* the red is there. In the set-point mark the
-red ticks are the hot end of a temperature scale — the colour is encoding a
-physical quantity, the way it does on a tap or a thermostat, not decorating a
-brand. It is also spent at hairline weight on six 2.5px strokes, so the total
-red area in the header is a fraction of a single word set in red would be. The
-test the mark has to keep passing: with the logo on screen, the `EmergencyBar`
-must still be the loudest red on the page. It is.
+The judgment to apply instead:
+
+- **Red should mean something** — heat, urgency, a negative verdict, a hard stop.
+  Where it encodes a real quantity or state, use it. The rule it replaces is
+  "don't spend red on decoration," not "don't spend red."
+- **The `EmergencyBar` should stay the loudest red on any page it appears on.**
+  This is the one thing worth checking by eye, because it is the one red with a
+  safety job. Loudest means most prominent, not most exclusive.
+- **Red is not the CTA colour.** Primary actions stay blue. This is the part of
+  the old rule that was actually load-bearing — a red CTA is the specific tell
+  that makes a referral site read as a contractor's site.
 
 ```
 --ink         oklch(0.24 0.03 255)     #15202d   Body and headings.
 --navy        oklch(0.29 0.07 258)     #132b4d   Brand. Wordmark, nav, footer, lead paragraphs.
 --blue        oklch(0.484 0.135 253.6) #1a5fa8   Links, primary CTA, focus.
 --blue-bright oklch(0.591 0.145 251.5) #2f80d0   Hover and non-text UI only.
---flag-red    oklch(0.52 0.20 27)      #c2181d   Emergency, "not a fit", and the hot half of the set-point mark.
+--flag-red    oklch(0.52 0.20 27)      #c2181d   Accent. Heat, urgency, "not a fit". Not for primary CTAs.
 --paper       oklch(0.995 0.001 250)   #fdfdfe   Page background. Near-neutral white.
 ```
 
