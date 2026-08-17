@@ -141,7 +141,18 @@ worse than a thin menu.
    routing data, and it also resolves four unverified items at once: local
    parts stock by brand, who holds manufacturer status, real conversion
    pricing, and emergency premium.
-5. **California counsel review.** Referral structure, the percentage-of-job fee,
+5. **`/repair-or-replace` as its own page.** Approved, deliberately not built
+   yet. The content already exists as a section on `/emergency`, anchored at
+   `/emergency#repair-or-replace`, and it carries the leak-source diagram. The
+   case for lifting it out: "repair or replace water heater", "is my water
+   heater worth fixing" and "water heater leaking from the bottom" are a
+   distinct search intent from an emergency, and somebody researching calmly
+   will not self-select into a page framed around panic. Today `/emergency` is
+   reachable from exactly one place — the EmergencyBar — and appears in no nav
+   and no footer column. When built: keep `/emergency` linking to it for the
+   urgent path, give it its own title and metadata, and add it to the footer's
+   *Decide* column, where it is arguably the most-searched of the four entries.
+6. **California counsel review.** Referral structure, the percentage-of-job fee,
    TCPA consent flow, privacy. Flagged in `REVENUE-MODEL.md`. Needed before
    money changes hands.
 
