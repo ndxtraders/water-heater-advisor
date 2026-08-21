@@ -29,6 +29,7 @@ export const site = {
    * problem here than a thin menu. Add entries as the pages land.
    */
   nav: [
+    { label: "Resources", href: "/resources" },
     { label: "Technologies", href: "/water-heaters" },
     { label: "Brands", href: "/brands" },
     { label: "Locations", href: "/local" },
