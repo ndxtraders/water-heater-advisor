@@ -29,7 +29,7 @@ export const site = {
    * problem here than a thin menu. Add entries as the pages land.
    */
   nav: [
-    { label: "Compare", href: "/compare/tank-vs-tankless" },
+    { label: "Technologies", href: "/water-heaters" },
     { label: "Brands", href: "/brands" },
     { label: "Locations", href: "/local" },
     { label: "Choosing an installer", href: "/installers/how-to-choose" },
@@ -37,6 +37,7 @@ export const site = {
 
   footer: {
     decide: [
+      { label: "All four technologies", href: "/water-heaters" },
       { label: "Tank vs tankless", href: "/compare/tank-vs-tankless" },
       { label: "When tankless is wrong", href: "/water-heaters/tankless/not-right-for-you" },
       { label: "Find my system", href: "/quiz" },

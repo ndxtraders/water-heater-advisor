@@ -146,8 +146,11 @@ export default function TankVsTanklessPage() {
             <ButtonLink href="/quiz" size="lg">
               Work out which one suits my home
             </ButtonLink>
-            <ButtonLink href="/compare/tankless-vs-heat-pump" variant="secondary" size="lg">
-              Now compare against a heat pump
+            {/* Was pointing at /compare/tankless-vs-heat-pump, which has never
+                existed. The technologies hub now runs the four-way comparison
+                including the heat pump, so it answers the same question. */}
+            <ButtonLink href="/water-heaters" variant="secondary" size="lg">
+              Now bring the heat pump into it
             </ButtonLink>
           </div>
 
