@@ -17,6 +17,7 @@ import { TURLOCK, meanInletF } from "@/lib/market";
 import type { TechId } from "@/lib/quiz/engine";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/local/california/turlock" },
   title: "Water heaters in Turlock, California",
   description:
     "Turlock runs on TID electricity and PG&E gas, so the gas versus electric question " +

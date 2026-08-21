@@ -8,6 +8,7 @@ import { Container, Eyebrow, Prose, Section } from "@/components/common/Layout";
 import { ButtonLink } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/compare/navien-vs-rinnai" },
   title: "Navien vs Rinnai gas tankless",
   description:
     "Both publish a headline near 11 GPM. At a mild Central Valley winter they are 0.12 " +

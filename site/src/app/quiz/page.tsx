@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import QuizFlow from "./QuizFlow";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/quiz" },
   title: "Which water heater is right for my home?",
   description:
     "Ten questions about your home and household. Get a system recommendation, a size, " +

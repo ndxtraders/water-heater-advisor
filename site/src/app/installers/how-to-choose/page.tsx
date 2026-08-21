@@ -14,6 +14,7 @@ import {
 import { ButtonLink } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/installers/how-to-choose" },
   title: "How to choose a water heater installer",
   description:
     "How to check a California contractor's licence, what a complete quote contains, " +

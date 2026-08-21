@@ -15,6 +15,7 @@ import {
 import type { TechId } from "@/lib/quiz/engine";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/brands" },
   title: "Water heater brands",
   description:
     "Which brands make which technologies, what we have verified about each, and why " +

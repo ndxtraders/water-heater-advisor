@@ -11,6 +11,7 @@ import { TECHNOLOGIES } from "@/lib/quiz/engine";
 import { TECHNOLOGY_CONTENT, TECH_SLUGS } from "@/lib/technologies";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/water-heaters" },
   title: "Water heater technologies compared",
   description:
     "The four technologies worth considering, what each costs to buy and to run, and " +

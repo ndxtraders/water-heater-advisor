@@ -8,6 +8,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { MARKETS } from "@/lib/market";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/local" },
   title: "Local water heater guidance by market",
   description:
     "Rebates, permits, utility rates and local conditions, researched per market. " +

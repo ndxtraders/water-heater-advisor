@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Container, Prose, Section } from "@/components/common/Layout";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/terms" },
   title: "Terms",
   description:
     "What Water Heater Advisor is, what it is not, and the limits of the guidance " +

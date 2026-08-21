@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   ArrowRight,
   Flame,
@@ -119,6 +120,17 @@ const HERO_HEADING = "Which water heater is right for your home?";
 // the next action obvious.
 const HERO_SUBHEADING =
   "Answer a few simple questions and get personalized recommendations in 2 minutes.";
+
+/**
+ * The homepage needs its own canonical like every other route.
+ *
+ * It cannot be inherited from the root layout: a canonical set there would be
+ * inherited by every page that does not override it, pointing the whole site at
+ * "/". So each route declares its own, resolved against `metadataBase`.
+ */
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   return (

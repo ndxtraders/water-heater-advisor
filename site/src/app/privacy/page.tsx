@@ -4,6 +4,7 @@ import { Callout } from "@/components/advisor/Panels";
 import { Container, Prose, Section } from "@/components/common/Layout";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacy" },
   title: "Privacy",
   description:
     "What Water Heater Advisor collects, why the quiz is anonymous until you ask " +

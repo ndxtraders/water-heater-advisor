@@ -8,6 +8,7 @@ import { Container, Eyebrow, Prose, Section, SectionHeading } from "@/components
 import { ButtonLink } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/brands/noritz" },
   title: "Noritz water heaters",
   description:
     "Noritz makes gas tankless and nothing else. Who that suits, where it does not, " +

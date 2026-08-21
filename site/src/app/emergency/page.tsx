@@ -15,6 +15,7 @@ import {
 import { ButtonLink } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/emergency" },
   title: "Water heater leaking or no hot water",
   description:
     "What to shut off first, whether it can be repaired, and how to decide between a " +

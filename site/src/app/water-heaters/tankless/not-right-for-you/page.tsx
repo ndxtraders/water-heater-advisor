@@ -15,6 +15,7 @@ import {
 import { ButtonLink } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/water-heaters/tankless/not-right-for-you" },
   title: "When tankless is not your best choice",
   description:
     "Six situations where a tankless water heater is the wrong purchase, written by " +

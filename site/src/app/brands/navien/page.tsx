@@ -8,6 +8,7 @@ import { Container, Eyebrow, Prose, Section, SectionHeading } from "@/components
 import { ButtonLink } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/brands/navien" },
   title: "Navien water heaters",
   description:
     "Who Navien tankless water heaters suit, where they do not, and what to confirm " +

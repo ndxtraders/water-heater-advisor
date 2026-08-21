@@ -5,6 +5,7 @@ import { TechnologyPage, techBySlug } from "@/components/advisor/TechnologyPage"
 const tech = techBySlug("tankless");
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/water-heaters/tankless" },
   title: tech.title,
   description: tech.metaDescription,
 };

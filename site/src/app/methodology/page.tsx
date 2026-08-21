@@ -15,6 +15,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { INDEPENDENCE_POLICY } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/methodology" },
   title: "How we make recommendations",
   description:
     "Our recommendation method, our conflicts of interest, and the rule that keeps " +

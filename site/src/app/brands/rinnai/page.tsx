@@ -8,6 +8,7 @@ import { Container, Eyebrow, Prose, Section, SectionHeading } from "@/components
 import { ButtonLink } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/brands/rinnai" },
   title: "Rinnai water heaters",
   description:
     "Who Rinnai tankless and heat pump water heaters suit, where they do not, and what " +

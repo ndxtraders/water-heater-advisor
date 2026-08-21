@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import MatchForm from "./MatchForm";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/match" },
   title: "Get introduced to a local installer",
   description:
     "One local installer suited to your specific job, with your recommendation " +

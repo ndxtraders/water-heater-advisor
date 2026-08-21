@@ -8,6 +8,7 @@ import { Container, Eyebrow, Prose, Section, SectionHeading } from "@/components
 import { ButtonLink } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/local/california/modesto" },
   title: "Water heaters in Modesto, California",
   description:
     "Modesto water heater costs, permits, utility rebates and local conditions. " +

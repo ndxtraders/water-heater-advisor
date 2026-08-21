@@ -7,6 +7,7 @@ import { Container, Eyebrow, Prose, Section } from "@/components/common/Layout";
 import { ButtonLink } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/compare/tank-vs-tankless" },
   title: "Tank vs tankless water heater",
   description:
     "An honest comparison of storage tank and tankless water heaters, including the " +
