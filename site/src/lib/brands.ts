@@ -110,3 +110,89 @@ export function productLinesFor(brand: BrandId) {
 export const UNVERIFIED: string[] = research.unverified.map((u) =>
   typeof u === "string" ? u : ((u as { item?: string }).item ?? JSON.stringify(u)),
 );
+
+export type BrandPageStatus = "published" | "researched" | "thin";
+
+export interface BrandEntry {
+  id: BrandId;
+  name: string;
+  /** Null until the page exists. The index renders those as plain cards. */
+  href: string | null;
+  status: BrandPageStatus;
+  /** One line of positioning. What the brand is for, not what it claims. */
+  positioning: string;
+  /** Technologies, in the reader's words rather than the engine's ids. */
+  makes: string[];
+}
+
+/**
+ * The brand directory.
+ *
+ * `status` is the honest part. The research dataset covers all six brands for
+ * product lines, warranties and routing signals, but its *selection rules* are
+ * heavily skewed: Navien, Noritz and Rinnai carry enough to say when a homeowner
+ * should and should not pick them, while A. O. Smith and Bradford White
+ * currently carry none at all.
+ *
+ * That gap decides what may be published. A brand page whose whole job is
+ * "worth shortlisting if / look elsewhere if" cannot be written from a spec
+ * sheet, and writing one anyway would produce exactly the confident, sourceless
+ * brand page this site exists to be better than. So "thin" is recorded here
+ * rather than quietly papered over, and the index says so on the card.
+ */
+export const BRAND_DIRECTORY: BrandEntry[] = [
+  {
+    id: "navien",
+    name: "Navien",
+    href: "/brands/navien",
+    status: "published",
+    positioning:
+      "Condensing gas tankless with recirculation built into the unit rather than bolted on. Since the NWP500 line, heat pumps too.",
+    makes: ["Gas tankless", "Heat pump"],
+  },
+  {
+    id: "rinnai",
+    name: "Rinnai",
+    href: null,
+    status: "researched",
+    positioning:
+      "The other name most homeowners have heard for gas tankless. Sells heat pumps as well, and states plainly that it does not make electric tankless.",
+    makes: ["Gas tankless", "Heat pump"],
+  },
+  {
+    id: "noritz",
+    name: "Noritz",
+    href: null,
+    status: "researched",
+    positioning:
+      "Gas tankless only, and the strongest Central Valley parts position of the six. A specialist rather than a full-range manufacturer.",
+    makes: ["Gas tankless"],
+  },
+  {
+    id: "rheem",
+    name: "Rheem",
+    href: null,
+    status: "researched",
+    positioning:
+      "Full range, tanks through heat pumps, and widely stocked. Its 120V heat pump option can change whether a conversion is feasible at all.",
+    makes: ["Gas tank", "Electric tank", "Gas tankless", "Electric tankless", "Heat pump"],
+  },
+  {
+    id: "ao-smith",
+    name: "A. O. Smith",
+    href: null,
+    status: "thin",
+    positioning:
+      "Full range, and the largest catalogue in the dataset. Also has a current 120V heat pump option worth knowing about on a difficult conversion.",
+    makes: ["Gas tank", "Electric tank", "Gas tankless", "Electric tankless", "Heat pump"],
+  },
+  {
+    id: "bradford-white",
+    name: "Bradford White",
+    href: null,
+    status: "thin",
+    positioning:
+      "Contractor channel only, so it is never the box you priced at a big box store. Full range, though its electric tankless is point-of-use rather than whole-home.",
+    makes: ["Gas tank", "Electric tank", "Gas tankless", "Heat pump"],
+  },
+];
