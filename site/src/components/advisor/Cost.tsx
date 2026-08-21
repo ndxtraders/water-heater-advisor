@@ -48,7 +48,9 @@ export function CostBreakdown({
       </div>
 
       <table className="w-full border-collapse text-left">
-        <caption className="sr-only">{title} — itemised cost ranges</caption>
+        {/* Comma, not an em-dash. This caption is read aloud, which makes it
+            user-facing copy and puts it under the site's em-dash ban. */}
+        <caption className="sr-only">{title}, itemised cost ranges</caption>
         <thead className="sr-only">
           <tr>
             <th scope="col">Item</th>

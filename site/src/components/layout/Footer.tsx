@@ -4,7 +4,7 @@ import { INDEPENDENCE_POLICY, site } from "@/lib/site";
 
 const COLUMNS = [
   { heading: "Making the decision", links: site.footer.decide },
-  { heading: "Modesto, California", links: site.footer.local },
+  { heading: "Local markets", links: site.footer.local },
   { heading: "About this site", links: site.footer.about },
 ] as const;
 
@@ -19,8 +19,10 @@ export default function Footer() {
                 {col.heading}
               </h2>
               <ul className="space-y-2">
+                {/* Keyed by label, not href: two About entries point at
+                    /methodology on purpose, and keying by href collided. */}
                 {col.links.map((link) => (
-                  <li key={link.href}>
+                  <li key={link.label}>
                     <Link
                       href={link.href}
                       className="text-sm text-foreground/75 hover:text-blue hover:underline hover:underline-offset-4"
