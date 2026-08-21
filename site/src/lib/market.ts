@@ -83,3 +83,36 @@ export function riseExplanation(market: Market = MODESTO): string {
     `but your installer should confirm it, because a unit sized for July runs cold in January.`
   );
 }
+
+/**
+ * Turlock, Stanislaus County.
+ *
+ * The reason Turlock is the second market is not its size. It is that a Turlock
+ * house buys electricity from Turlock Irrigation District and gas from PG&E,
+ * which means the gas-versus-electric question has a real local answer rather
+ * than a statewide one. See `lib/energy.ts`.
+ *
+ * Inlet temperature is inherited from the Modesto model and carries the same
+ * "modelled" confidence, for the same reason: nobody has measured it. Turlock's
+ * supply is a blend of fifteen groundwater wells and Tuolumne River surface
+ * water bought through the Stanislaus Regional Water Authority, so the real
+ * figure almost certainly moves by service zone as well as by season.
+ */
+export const TURLOCK: Market = {
+  slug: "turlock",
+  city: "Turlock",
+  state: "California",
+  climate: {
+    winterInletF: 55,
+    summerInletF: 72,
+    setpointF: 120,
+    confidence: "modelled",
+    basis:
+      "Central Valley groundwater blended with Tuolumne River surface water, modelled seasonally from the Modesto record. Not measured locally.",
+  },
+};
+
+/** Mean of the seasonal inlet figures. The annual energy case, not the sizing case. */
+export function meanInletF(market: Market): number {
+  return (market.climate.winterInletF + market.climate.summerInletF) / 2;
+}
