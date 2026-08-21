@@ -20,6 +20,7 @@ import {
   SectionHeading,
 } from "@/components/common/Layout";
 import { ButtonLink } from "@/components/ui/Button";
+import { SiteSchema } from "@/components/common/SiteSchema";
 
 const TECHNOLOGIES = [
   {
@@ -135,6 +136,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      <SiteSchema />
       <HeroSplit
         tagline={HERO_TAGLINE}
         heading={HERO_HEADING}
@@ -180,8 +182,8 @@ export default function HomePage() {
         <Container>
           <SectionHeading
             eyebrow="Start here"
-            title="The question is not which tankless to buy"
-            lead="It is which kind of water heating makes sense for your house. Four options cover almost every home, and the honest answer depends on things most articles never ask you about."
+            title="What kind of water heating makes sense for your house?"
+            lead="Four options cover almost every home, and the best answer depends on your home and current situation."
           />
           <div className="grid gap-6 sm:grid-cols-2">
             {TECHNOLOGIES.map((tech) => (

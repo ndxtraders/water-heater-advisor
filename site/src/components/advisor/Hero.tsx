@@ -172,7 +172,7 @@ interface TrustItem {
 const DEFAULT_ITEMS: TrustItem[] = [
   { icon: ShieldCheck, label: "We do not install anything" },
   { icon: FileSearch, label: "Every figure sourced and dated" },
-  { icon: UserRoundCheck, label: "One installer, not four" },
+  { icon: UserRoundCheck, label: "One vetted installer, not four" },
   { icon: CalendarCheck, label: "Recommendation before contact details" },
 ];
 
