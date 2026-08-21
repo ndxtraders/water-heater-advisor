@@ -30,9 +30,8 @@ export const site = {
    */
   nav: [
     { label: "Compare", href: "/compare/tank-vs-tankless" },
-    { label: "Brands", href: "/brands/navien" },
-    { label: "Modesto", href: "/local/california/modesto" },
-    { label: "Turlock", href: "/local/california/turlock" },
+    { label: "Brands", href: "/brands" },
+    { label: "Locations", href: "/local" },
     { label: "Choosing an installer", href: "/installers/how-to-choose" },
   ],
 
@@ -46,14 +45,14 @@ export const site = {
     // different rebate territories, which is the whole reason the site
     // localises by utility rather than by city name.
     local: [
+      { label: "All locations", href: "/local" },
       { label: "Modesto, on MID", href: "/local/california/modesto" },
       { label: "Turlock, on TID", href: "/local/california/turlock" },
-      { label: "Choosing an installer", href: "/installers/how-to-choose" },
     ],
     about: [
       { label: "How we make recommendations", href: "/methodology" },
       { label: "How we get paid", href: "/methodology" },
-      { label: "Navien", href: "/brands/navien" },
+      { label: "All brands", href: "/brands" },
     ],
   },
 } as const;
