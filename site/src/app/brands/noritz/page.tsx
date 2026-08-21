@@ -22,6 +22,8 @@ export const metadata: Metadata = {
  * for Noritz rules out three of the four technologies the quiz can recommend.
  */
 const CHECKED = "7 Aug 2026";
+/** Later desk pass. See research/BRAND-VERIFICATION-2026-08-20.md. */
+const VERIFIED = "20 Aug 2026";
 
 export default function NoritzPage() {
   return (
@@ -199,6 +201,12 @@ export default function NoritzPage() {
                 value:
                   "Strong, and the best of the six brands we track. PACE Supply in Ripon appears in the manufacturer directory, and Noritz's own support store shows active genuine parts inventory. On a brand that lives or dies on how fast a part arrives, this is the row that matters most.",
                 meta: <SourceNote source="Noritz contractor directory and parts store" checked={CHECKED} />,
+              },
+              {
+                label: "Consumer financing",
+                value:
+                  "None found at manufacturer level. Any payment plan on a Noritz quote will be your installer's own arrangement, so compare it on its own terms rather than treating it as a manufacturer benefit.",
+                meta: <SourceNote source="Noritz public product and programme pages" checked={VERIFIED} />,
               },
               {
                 label: "Known failure modes",

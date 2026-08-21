@@ -219,7 +219,8 @@ export default function RinnaiPage() {
               },
               {
                 label: "Consumer financing",
-                value: "Available at manufacturer level.",
+                value:
+                  "Available at manufacturer level, which makes Rinnai one of only two brands in our set where that is true today. Worth asking about, and worth comparing against whatever your installer offers rather than assuming the manufacturer programme is the cheaper of the two.",
                 meta: <SourceNote source="Rinnai consumer financing" checked={CHECKED} />,
               },
             ]}

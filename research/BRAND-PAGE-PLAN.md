@@ -125,6 +125,13 @@ pages specifically:
 - Which local contractors hold which manufacturer status
 - Model-level water hardness limits and descaling intervals
 
+**Update, 20 August 2026.** A desk pass closed the financing items and
+reclassified one of these. Bradford White's public Contractor Finder carries no
+Factory Trained designation at all, so that status is **not publicly verifiable**
+rather than merely unchecked, and under our standing rule we can never publish it
+from that source. Navien's locator is behind a data-sharing consent gate and
+stays open. See `BRAND-VERIFICATION-2026-08-20.md`.
+
 Almost all of that falls out of **the contractor conversations already sitting at
 item 4 of STARTHERE's next actions**. Five to ten local companies, asked which
 brands they stock, which they refuse to touch, and what they actually carry on

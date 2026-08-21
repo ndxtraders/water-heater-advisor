@@ -30,6 +30,8 @@ export const metadata: Metadata = {
  * without notice.
  */
 const CHECKED = "7 Aug 2026";
+/** Later desk pass. See research/BRAND-VERIFICATION-2026-08-20.md. */
+const VERIFIED = "20 Aug 2026";
 
 export default function NavienPage() {
   return (
@@ -167,11 +169,13 @@ export default function NavienPage() {
               },
               {
                 label: "Consumer financing",
-                value: (
-                  <div className="flex flex-wrap items-center gap-2">
-                    <RebateStatus state="verify" />
-                    <span>Not confirmed at manufacturer level.</span>
-                  </div>
+                value:
+                  "None at manufacturer level in the United States. Navien runs a financing programme called NaviLend, but it is a Canadian programme launched with a Canadian lender, and Navien's US rebates and credits page carries no financing at all. Articles that list Navien financing as a US homeowner benefit are reading a Canadian announcement. Any financing on your quote will be your installer's own.",
+                meta: (
+                  <SourceNote
+                    source="Navien US rebates and credits page, and the NaviLend Canada launch announcement"
+                    checked={VERIFIED}
+                  />
                 ),
               },
             ]}
