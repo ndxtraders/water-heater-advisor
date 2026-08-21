@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
 import { formatResourceDate, type ResourceArticle } from "@/lib/resources";
 import { site } from "@/lib/site";
 
-type HubTone = "urgent" | "paper" | "tint" | "cost";
+type HubTone = "urgent" | "paper" | "tint";
 
 interface HubLink {
   href: string;
@@ -50,10 +50,6 @@ const pathways: HubPathway[] = [
     ],
     links: [
       { href: "/emergency", label: "Water-heater emergency guide" },
-      {
-        href: "/resources/water-heater-failure-warning-signs",
-        label: "How do I know my water heater is going bad?",
-      },
       {
         href: "/resources/running-out-of-hot-water",
         label: "Why am I running out of hot water?",
@@ -107,7 +103,6 @@ const pathways: HubPathway[] = [
         href: "/resources/water-heater-recovery-time",
         label: "How long does a water heater take to heat up?",
       },
-      { href: "/water-heaters", label: "Compare the four water-heater technologies" },
       { href: "/compare/tank-vs-tankless", label: "Tank versus tankless" },
       {
         href: "/water-heaters/tankless/not-right-for-you",
@@ -139,7 +134,7 @@ const pathways: HubPathway[] = [
       { href: "/installers/how-to-choose", label: "How to choose a water-heater installer" },
       { href: "/local", label: "Local guidance by utility territory" },
     ],
-    tone: "cost",
+    tone: "paper",
     transitionAfter:
       "If the current system stays, protect its remaining service life and understand its maintenance needs.",
   },
@@ -196,14 +191,12 @@ const panelStyles: Record<HubTone, string> = {
   urgent: "bg-card",
   paper: "bg-card",
   tint: "bg-tint",
-  cost: "bg-card",
 };
 
 const labelStyles: Record<HubTone, string> = {
   urgent: "text-flag-red",
   paper: "text-blue",
   tint: "text-blue",
-  cost: "text-flag-red",
 };
 
 function HubResourceLink({ link, tone }: { link: HubLink; tone: HubTone }) {
@@ -218,7 +211,7 @@ function HubResourceLink({ link, tone }: { link: HubLink; tone: HubTone }) {
           aria-hidden
           className={cn(
             "size-4 shrink-0 transition-transform group-hover:translate-x-0.5",
-            tone === "urgent" || tone === "cost" ? "text-flag-red" : "text-blue",
+            tone === "urgent" ? "text-flag-red" : "text-blue",
           )}
         />
       </Link>
@@ -236,7 +229,6 @@ function DecisionPanel({ pathway }: { pathway: HubPathway }) {
         "scroll-mt-24 border-y border-border p-6 sm:p-8 lg:p-10",
         panelStyles[pathway.tone],
         pathway.tone === "urgent" && "border-l-4 border-l-flag-red",
-        pathway.tone === "cost" && "border-t-2 border-t-flag-red",
       )}
     >
       <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(22rem,1.1fr)] lg:gap-14">
@@ -245,7 +237,7 @@ function DecisionPanel({ pathway }: { pathway: HubPathway }) {
             <span
               className={cn(
                 "mt-0.5 inline-flex size-10 shrink-0 items-center justify-center rounded-md",
-                pathway.tone === "urgent" || pathway.tone === "cost"
+                pathway.tone === "urgent"
                   ? "bg-flag-red/10 text-flag-red"
                   : "bg-blue/10 text-blue",
               )}
@@ -269,7 +261,7 @@ function DecisionPanel({ pathway }: { pathway: HubPathway }) {
           </div>
         </div>
 
-        <ul className="self-center lg:border-l lg:border-border lg:pl-10">
+        <ul className="lg:border-l lg:border-border lg:pl-10">
           {pathway.links.map((link) => (
             <HubResourceLink key={`${link.href}-${link.label}`} link={link} tone={pathway.tone} />
           ))}
@@ -378,14 +370,28 @@ export function ResourcesHubPage({ article }: { article: ResourceArticle }) {
 
         <nav aria-label="Resource decision topics" className="border-y border-border bg-card">
           <Container width="wide" className="px-0 sm:px-8">
-            <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+            {/*
+              Rules come from a 1px grid gap over a border-coloured background,
+              not from per-cell borders.
+
+              The previous version fought nth-child arithmetic at three
+              breakpoints and lost: `lg:[&:nth-child(3n)]:border-r` and
+              `lg:last:border-r-0` have equal specificity and both match cell
+              six, so the strip rendered a rule hanging off its right end with
+              none at its left. At 2 columns, cells two and four put borders
+              exactly on the viewport edge.
+
+              A gap only ever falls *between* cells, so this is correct at every
+              column count with no cancelling classes.
+            */}
+            <ul className="grid grid-cols-2 gap-px bg-border sm:grid-cols-3 lg:grid-cols-6">
               {pathways.map((pathway) => (
-                <li key={pathway.id} className="border-b border-r border-border last:border-r-0 sm:[&:nth-child(3n)]:border-r-0 lg:border-b-0 lg:[&:nth-child(3n)]:border-r lg:last:border-r-0">
+                <li key={pathway.id} className="bg-card">
                   <a
                     href={`#${pathway.id}`}
                     className={cn(
-                      "group flex min-h-20 items-center justify-between gap-3 border-t-2 px-4 py-4 text-sm font-semibold text-navy transition-colors hover:bg-tint hover:text-blue sm:px-5",
-                      pathway.tone === "urgent" || pathway.tone === "cost" ? "border-t-flag-red" : "border-t-blue",
+                      "group flex h-full min-h-20 items-center justify-between gap-3 border-t-2 px-4 py-4 text-sm font-semibold text-navy transition-colors hover:bg-tint hover:text-blue sm:px-5",
+                      pathway.tone === "urgent" ? "border-t-flag-red" : "border-t-blue",
                     )}
                   >
                     <span>{pathway.label}</span>
