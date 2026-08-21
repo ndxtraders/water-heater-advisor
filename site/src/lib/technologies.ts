@@ -74,7 +74,7 @@ export const TECHNOLOGY_CONTENT: Record<string, TechContent> = {
       "If your unit sits in a garage with a drain nearby, that risk is an inconvenience. If it sits above a finished room or against drywall you care about, it is worth pricing a pan, an alarm and a shutoff at the same time as the unit.",
     ],
     runningCost:
-      "The most expensive of the four to run in Turlock, at roughly $439 a year in fuel on our model. That is the number every other technology on this page is trying to beat, and it is worth holding in your head as you read them.",
+      "The most expensive of the four to run in Turlock, at roughly $458 a year in fuel on our model. That is the number every other technology on this page is trying to beat, and it is worth holding in your head as you read them.",
     askInstaller: [
       "Is this a straight swap, or does anything have to move?",
       "Does the existing flue meet current code?",
@@ -114,12 +114,12 @@ export const TECHNOLOGY_CONTENT: Record<string, TechContent> = {
     ],
     catchTitle: "The headline flow figure is not what you will get",
     theCatch: [
-      "Tankless units are advertised at the flow they achieve across a small temperature rise, and a Central Valley winter asks for a large one. Water arrives around 55°F and you want it at 120°F, which is a 65°F rise. Both of the flagship units we hold data for advertise near 11 gallons a minute and deliver close to 6 at that condition.",
-      "Six gallons a minute is a real amount of hot water, roughly two showers at once with a little to spare. It is simply not eleven, and a unit sized on eleven runs cold the first cold morning two taps open together. Ask for the flow at your design rise in writing before you sign anything.",
-      "The second thing the pitch tends to skip is the fuel saving. In Turlock a condensing tankless unit saves around $156 a year against a gas tank, and a conversion costs a few thousand more than a straight tank swap. Tankless earns its price on endless hot water and floor space. It does not earn it on the gas bill.",
+      "Tankless units are advertised at the flow they achieve across a small temperature rise, and a Central Valley winter asks for a large one. Incoming water runs somewhere between 45°F and 55°F through the winter and you want it at 120°F, so the rise you need is 65°F to 75°F. Both of the flagship units we hold data for advertise near 11 gallons a minute and deliver somewhere around 5.2 to 6.0 at that condition.",
+      "Six gallons a minute is a real amount of hot water, roughly two showers at once with a little to spare. Five is closer to one shower and a sink. Neither is eleven, and a unit sized on eleven runs cold the first cold morning two taps open together. Ask for the flow at your design rise in writing before you sign anything, and make sure the rise they quote is the cold end rather than the mild one.",
+      "The second thing the pitch tends to skip is the fuel saving. In Turlock a condensing tankless unit saves around $163 a year against a gas tank, and a conversion costs a few thousand more than a straight tank swap. Tankless earns its price on endless hot water and floor space. It does not earn it on the gas bill.",
     ],
     runningCost:
-      "About $283 a year in fuel on our Turlock model, the cheapest of the two gas options and roughly $156 a year better than a gas tank. Divide that into the conversion premium before you treat it as a saving.",
+      "About $296 a year in fuel on our Turlock model, the cheapest of the two gas options and roughly $163 a year better than a gas tank. Divide that into the conversion premium before you treat it as a saving.",
     askInstaller: [
       "What flow does this model give at my winter design rise?",
       "Will this run on my existing gas line, or does it need upsizing?",
@@ -159,12 +159,12 @@ export const TECHNOLOGY_CONTENT: Record<string, TechContent> = {
     ],
     catchTitle: "The panel decides this, not the technology",
     theCatch: [
-      "On our Turlock numbers a heat pump saves roughly $290 to $330 a year against a gas tank. Real money, and not the fortune the category advertises. On fuel alone that does not pay back a four thousand dollar job quickly.",
-      "What changes the arithmetic is the rebate and the electrical. After the TID $1,000 conversion rebate, a straightforward heat pump conversion lands within a few hundred dollars of simply replacing the gas tank, which makes the running saving close to free. Add a dedicated circuit and the payback stretches to three to seven years. Add a panel upgrade and it runs from about six years out to twenty.",
+      "On our Turlock numbers a heat pump saves roughly $300 to $346 a year against a gas tank. Real money, and not the fortune the category advertises. On fuel alone that does not pay back a four thousand dollar job quickly.",
+      "What changes the arithmetic is the rebate and the electrical. After the TID $1,000 conversion rebate, a straightforward heat pump conversion lands within a few hundred dollars of simply replacing the gas tank, which makes the running saving close to free. Add a dedicated circuit and the payback stretches to as much as seven years. Add a panel upgrade and it runs from about five years out to twenty.",
       "So what settles this is your electrical panel rather than any abstract comparison of the technologies. Find out what capacity it has left and how far it sits from the garage, and get that checked before you get attached to either option.",
     ],
     runningCost:
-      "Between about $108 and $152 a year in Turlock, depending which TID tier your household lands in. That is roughly a third of what a gas tank costs to run and a quarter of an electric resistance tank.",
+      "Between about $112 and $159 a year in Turlock, depending which TID tier your household lands in. That is roughly a third of what a gas tank costs to run and a quarter of an electric resistance tank.",
     askInstaller: [
       "What capacity does my panel have left, and what does a circuit cost from there?",
       "Will this space give it enough air, or does it need ducting?",
@@ -204,12 +204,12 @@ export const TECHNOLOGY_CONTENT: Record<string, TechContent> = {
     ],
     catchTitle: "Switching from gas to this will cost you money",
     theCatch: [
-      "This is the case worth being blunt about. On our Turlock model an electric resistance tank costs between about $403 and $570 a year to run, against roughly $439 for the gas tank it would replace. At the bottom TID tier you break about even, and at the top tier you are around $130 a year worse off.",
+      "This is the case worth being blunt about. On our Turlock model an electric resistance tank costs between about $421 and $595 a year to run, against roughly $458 for the gas tank it would replace. At the bottom TID tier you come out a little ahead, and at the top tier you are around $137 a year worse off.",
       "When people say electrification saves money, the saving is coming from the efficiency of the heat pump rather than from the price of electricity. Swapping a gas tank for a resistance tank captures none of that and gives up the cheaper fuel.",
       "Where it does make sense: replacing an existing electric tank, or any space that physically cannot host a heat pump. Those are real situations and this is a perfectly good product for them. It is simply not an upgrade from gas.",
     ],
     runningCost:
-      "Between about $403 and $570 a year in Turlock depending on your TID tier, which makes it the most expensive of the four to run and the only one that can cost more than the gas tank it replaced.",
+      "Between about $421 and $595 a year in Turlock depending on your TID tier, which makes it the most expensive of the four to run and the only one that can cost more than the gas tank it replaced.",
     askInstaller: [
       "Would a heat pump fit this space, and what would it cost here?",
       "Is the existing circuit adequate for this unit?",

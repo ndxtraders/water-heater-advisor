@@ -71,7 +71,7 @@ export default function TurlockPage() {
 
             <p>
               <strong>The heat pump wins, and by less than the category advertises.</strong>{" "}
-              Against a standard gas tank it saves somewhere around $290 to $330 a year.
+              Against a standard gas tank it saves somewhere around $300 to $346 a year.
               That is real money and it is not a fortune. On fuel alone it does not pay
               back a four thousand dollar job quickly, which means the TID rebate below is
               doing more work in the first few years than the efficiency is. Anyone
@@ -81,14 +81,14 @@ export default function TurlockPage() {
             <p>
               <strong>Electric on its own is not the cheaper fuel here.</strong> Swap a gas
               tank for a plain resistance electric tank in Turlock and at the bottom TID
-              tier you break about even, while at the top tier you are roughly $130 a year
+              tier you break about even, while at the top tier you are roughly $137 a year
               worse off than the tank you replaced. When people say electrification saves
               money, the saving is coming from the efficiency of the heat pump rather than
               from the price of TID electricity.
             </p>
 
             <p>
-              <strong>Tankless saves about $156 a year on gas.</strong> A tank to tankless
+              <strong>Tankless saves about $163 a year on gas.</strong> A tank to tankless
               conversion costs a few thousand dollars more than a straight tank swap, so
               do that division before you commit. Tankless earns its price on endless hot
               water and on the floor space it gives back. In Turlock it does not earn its
@@ -276,7 +276,7 @@ export default function TurlockPage() {
               },
               {
                 label: "Incoming water temperature",
-                value: `Modelled at ${TURLOCK.climate.winterInletF}°F in winter and ${TURLOCK.climate.summerInletF}°F in summer, inherited from our Modesto record. This is an assumption, not a measurement, and it matters because tankless sizing depends on it directly. One reading from the water provider would settle it.`,
+                value: `Modelled at ${TURLOCK.climate.winterInletF[0]}°F to ${TURLOCK.climate.winterInletF[1]}°F through the winter and about ${TURLOCK.climate.summerInletF}°F in summer, inherited from our Modesto record. We publish a range rather than a point because mains temperature moves with the weather and with which source the system is drawing from. Sizing uses the cold end. This is modelled, not measured, and one set of readings from the water provider would settle it.`,
                 meta: (
                   <p className="mt-2 text-xs text-muted-foreground">
                     Status: modelled, not measured. Stated here rather than buried because
@@ -411,15 +411,15 @@ export default function TurlockPage() {
               Then apply the TID $1,000. That lands the heat pump between roughly two
               hundred dollars cheaper and four hundred and fifty dollars dearer than
               replacing the gas tank. On a straightforward job the rebate very nearly
-              cancels the price difference, and the $300 a year that follows is close to
+              cancels the price difference, and the $320 a year that follows is close to
               free money.
             </p>
             <p>
               That is the good case, and it depends entirely on one thing: whether the
               electrical is already there. Add a dedicated 240V circuit at $400 to $1,800
-              and the payback stretches to roughly three to seven years. Add a panel
-              upgrade at $1,500 to $4,000 on top of that and it runs from about six years
-              out to twenty, and twenty years is most of the unit&rsquo;s life. Same
+              and the payback stretches to as much as seven years. Add a panel upgrade at
+              $1,500 to $4,000 on top of that and it runs from about five years out to
+              twenty, and twenty years is most of the unit&rsquo;s life. Same
               house, same rebate, same rates, and a completely different answer.
             </p>
             <p>

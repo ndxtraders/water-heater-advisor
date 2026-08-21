@@ -77,17 +77,18 @@ export default function RinnaiPage() {
           <Callout title="The 11.1 figure is not the flow you will get" tone="warn">
             <p>
               The RX199 is advertised at 11.1 gallons per minute. Rinnai&rsquo;s own sizing
-              guide puts the same unit at roughly <strong>6.0 GPM</strong> once the
-              incoming water is around 55°F and you want it delivered at 120°F, which is
-              the Central Valley winter case. The headline figure describes a much smaller
-              temperature rise than any house here actually asks for in January.
+              guide puts the same unit between <strong>5.2 and 6.0 GPM</strong> once the
+              incoming water is somewhere in its winter range of 45°F to 55°F and you want
+              it delivered at 120°F. The headline figure describes a much smaller
+              temperature rise than any house here asks for in January.
             </p>
             <p className="mt-4">
-              Six gallons a minute is a useful amount of hot water. Roughly two showers at
-              once, with a little to spare. The trouble is only that it is not eleven, and
-              sizing a house on eleven is how people end up with a unit that runs cold
-              when two taps open on a cold morning. Ask your installer for the flow at
-              your design rise, in writing.
+              Six gallons a minute is a useful amount of hot water, roughly two showers at
+              once with a little to spare. Five is closer to one shower and a sink. The
+              trouble is only that neither one is eleven, and sizing a house on eleven is
+              how people end up with a unit that runs cold when two taps open on a cold
+              morning. Ask your installer for the flow at your design rise, in writing, and
+              check they have used the cold end of the range rather than the mild one.
             </p>
           </Callout>
         </Container>
@@ -114,13 +115,14 @@ export default function RinnaiPage() {
                   <div className="space-y-2">
                     <p>
                       RX199 and RXP199 are rated 11.1 GPM at the headline condition. At a
-                      120°F setpoint the same unit delivers about 5.7 GPM from 52°F
-                      incoming water, 6.2 GPM from 57°F, and 8.1 GPM from 72°F.
+                      120°F setpoint the same unit delivers about 5.0 GPM from 42°F
+                      incoming water, 5.7 GPM from 52°F, 6.2 GPM from 57°F and 8.1 GPM
+                      from 72°F.
                     </p>
                     <p className="rounded-lg border-l-2 border-verdict-alt bg-muted px-4 py-3 text-[0.9375rem]">
-                      Size on the winter figure. A unit sized on the summer number runs
-                      cold in January, and that is the single most common tankless sizing
-                      mistake.
+                      Size on the cold end of the winter range, not its middle. A unit
+                      sized on the summer number runs cold in January, and a unit sized on
+                      a mild January runs cold in a hard one.
                     </p>
                   </div>
                 ),

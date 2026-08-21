@@ -12,9 +12,18 @@
  */
 
 export interface MarketClimate {
-  /** Coldest month incoming mains temperature, °F. The sizing case. */
-  winterInletF: number;
-  /** Warmest month incoming mains temperature, °F. Context only. */
+  /**
+   * Coldest month incoming mains temperature, °F, as a **range**.
+   *
+   * A range rather than a point because the honest answer is a range. Mains
+   * temperature moves with the weather, with depth of bury, and with which
+   * source the system is drawing from that week. Publishing one number implied
+   * a precision nobody has, and it implied it at the warm end, which is the
+   * wrong end to be wrong at when the site's own rule is to size on the coldest
+   * case.
+   */
+  winterInletF: [number, number];
+  /** Warmest month incoming mains temperature, °F. Context only, so a point. */
   summerInletF: number;
   /** Delivery temperature a tankless unit is set to. */
   setpointF: number;
@@ -48,7 +57,7 @@ export const MODESTO: Market = {
   city: "Modesto",
   state: "California",
   climate: {
-    winterInletF: 55,
+    winterInletF: [45, 55],
     summerInletF: 72,
     setpointF: 120,
     confidence: "modelled",
@@ -57,9 +66,24 @@ export const MODESTO: Market = {
   },
 };
 
-/** Sizing always uses the winter case. A unit sized for July runs cold in January. */
+/** The coldest end of the winter range. The number sizing must survive. */
+export function designInletF(market: Market = MODESTO): number {
+  return market.climate.winterInletF[0];
+}
+
+/**
+ * Sizing always uses the coldest case, which is the cold end of the winter
+ * range rather than its midpoint. A unit sized for July runs cold in January,
+ * and a unit sized for a mild January runs cold in a hard one.
+ */
 export function designRiseF(market: Market = MODESTO): number {
-  return market.climate.setpointF - market.climate.winterInletF;
+  return market.climate.setpointF - designInletF(market);
+}
+
+/** The winter rise as a range, mild end first. For pages that show both ends. */
+export function winterRiseRangeF(market: Market = MODESTO): [number, number] {
+  const [lo, hi] = market.climate.winterInletF;
+  return [market.climate.setpointF - hi, market.climate.setpointF - lo];
 }
 
 export function summerRiseF(market: Market = MODESTO): number {
@@ -73,14 +97,17 @@ export function summerRiseF(market: Market = MODESTO): number {
  * a homeowner should buy and they have no way to check it themselves.
  */
 export function riseExplanation(market: Market = MODESTO): string {
-  const winter = designRiseF(market);
+  const [lo, hi] = market.climate.winterInletF;
+  const [mildRise, coldRise] = winterRiseRangeF(market);
   const summer = summerRiseF(market);
   return (
-    `We size on the coldest case. In ${market.city} we assume incoming water around ` +
-    `${market.climate.winterInletF}°F in winter and about ${market.climate.summerInletF}°F ` +
-    `in summer, against a ${market.climate.setpointF}°F setting. That is a ${winter}°F rise ` +
-    `in winter and roughly ${summer}°F in summer. You do not need to know any of this, ` +
-    `but your installer should confirm it, because a unit sized for July runs cold in January.`
+    `We size on the coldest case. In ${market.city} incoming water runs somewhere around ` +
+    `${lo}°F to ${hi}°F through the winter and about ${market.climate.summerInletF}°F in ` +
+    `summer, against a ${market.climate.setpointF}°F setting. That is a ${mildRise}°F to ` +
+    `${coldRise}°F rise in winter and roughly ${summer}°F in summer, and we size against ` +
+    `the ${coldRise}°F end. You do not need to know any of this, but your installer should ` +
+    `confirm it for your address, because a unit sized for July runs cold in January and a ` +
+    `unit sized for a mild January runs cold in a hard one.`
   );
 }
 
@@ -103,7 +130,7 @@ export const TURLOCK: Market = {
   city: "Turlock",
   state: "California",
   climate: {
-    winterInletF: 55,
+    winterInletF: [45, 55],
     summerInletF: 72,
     setpointF: 120,
     confidence: "modelled",
@@ -112,9 +139,18 @@ export const TURLOCK: Market = {
   },
 };
 
-/** Mean of the seasonal inlet figures. The annual energy case, not the sizing case. */
+/**
+ * Mean inlet across the year. The annual **energy** case, not the sizing case.
+ *
+ * Uses the midpoint of the winter range rather than its cold end, because
+ * annual consumption is driven by a typical winter and not by the worst week of
+ * one. Sizing and energy genuinely want different numbers out of the same
+ * record, which is why they are separate functions.
+ */
 export function meanInletF(market: Market): number {
-  return (market.climate.winterInletF + market.climate.summerInletF) / 2;
+  const [lo, hi] = market.climate.winterInletF;
+  const typicalWinter = (lo + hi) / 2;
+  return (typicalWinter + market.climate.summerInletF) / 2;
 }
 
 /**

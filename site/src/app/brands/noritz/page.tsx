@@ -115,10 +115,10 @@ export default function NoritzPage() {
                   <div className="space-y-2">
                     <p>
                       The EZ111 is rated 11.1 GPM at a 30°F rise. At a 60°F rise the same
-                      unit gives 6.5 GPM, and at 70°F it gives 5.6 GPM. A Central Valley
-                      winter asks for roughly a 65°F rise, which puts it near{" "}
-                      <strong>6.0 GPM</strong>. The smaller EZ98 gives 5.7 GPM at a 60°F
-                      rise and the EZ71 gives 5.2 GPM.
+                      unit gives 6.5 GPM, at 70°F it gives 5.6 GPM and at 80°F it gives
+                      4.9 GPM. A Central Valley winter asks for a 65°F to 75°F rise, which
+                      puts it between <strong>5.3 and 6.1 GPM</strong>. The smaller EZ98
+                      gives 5.7 GPM at a 60°F rise and the EZ71 gives 5.2 GPM.
                     </p>
                     <p className="rounded-lg border-l-2 border-verdict-alt bg-muted px-4 py-3 text-[0.9375rem]">
                       Note what that means across the line. At the winter design condition

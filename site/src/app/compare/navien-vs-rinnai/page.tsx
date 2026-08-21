@@ -10,8 +10,8 @@ import { ButtonLink } from "@/components/ui/Button";
 export const metadata: Metadata = {
   title: "Navien vs Rinnai gas tankless",
   description:
-    "Both publish a headline near 11 GPM. At a Central Valley winter they are 0.12 GPM " +
-    "apart, so the decision sits everywhere else. Warranty, recirculation, venting and service.",
+    "Both publish a headline near 11 GPM. At a mild Central Valley winter they are 0.12 " +
+    "GPM apart, so the decision sits everywhere else. Warranty, recirculation and service.",
 };
 
 /**
@@ -67,7 +67,9 @@ export default function NavienVsRinnaiPage() {
             </p>
             <p className="mt-4">
               Converted to one basis, a Central Valley winter with water arriving around
-              55°F and delivered at 120°F, which is a 65°F rise:
+              55°F and delivered at 120°F, which is a 65°F rise. That is the mild end of
+              our winter range, and it is the only end both manufacturers publish data
+              for:
             </p>
             <ul className="mt-4 space-y-1.5 pl-5 text-[0.9375rem] [&_li]:list-disc">
               <li>
@@ -82,6 +84,14 @@ export default function NavienVsRinnaiPage() {
               and they finish within a rounding error of each other. Anyone selling you one
               of these over the other on flow is selling you a difference that is not
               there.
+            </p>
+            <p className="mt-4">
+              At the cold end of our winter range, water arriving at 45°F for a 75°F rise,
+              the comparison stops being possible. Rinnai&rsquo;s guide continues down and
+              puts the RX199 near 5.2 GPM. Navien&rsquo;s published table for the
+              NPE-240A2 stops at a 67°F rise, so we will not extrapolate it. That is worth
+              knowing in its own right: one of the two tells you what happens on your
+              coldest morning and the other does not.
             </p>
           </Callout>
           <SourceNote
@@ -102,8 +112,15 @@ export default function NavienVsRinnaiPage() {
                 cells: ["11.2 GPM at a 35°F rise", "11.1 GPM at the headline condition"],
               },
               {
-                label: "Flow at a Central Valley winter",
+                label: "Flow at a mild Central Valley winter",
                 cells: ["About 5.9 GPM at a 65°F rise", "About 6.0 GPM from 55°F water"],
+              },
+              {
+                label: "Flow at a cold one",
+                cells: [
+                  { value: "no", note: "Published table stops at a 67°F rise" },
+                  { value: "yes", note: "About 5.2 GPM from 45°F water" },
+                ],
               },
               {
                 label: "How flow is published",
