@@ -116,3 +116,57 @@ export const TURLOCK: Market = {
 export function meanInletF(market: Market): number {
   return (market.climate.winterInletF + market.climate.summerInletF) / 2;
 }
+
+/**
+ * Hub-facing description of a market.
+ *
+ * Separate from `Market` on purpose. `Market` holds the physical assumptions the
+ * quiz engine reasons over; this holds what a reader needs to pick a city off an
+ * index. Keeping them apart means adding a market to the directory cannot
+ * accidentally change a recommendation.
+ */
+export interface MarketEntry {
+  market: Market;
+  href: string;
+  /** The electric utility, which is what actually defines the territory. */
+  electricUtility: string;
+  electricUtilityShort: string;
+  gasUtility: string;
+  /** Why this market is not the one next door. One sentence, no marketing. */
+  distinctive: string;
+  checked: string;
+}
+
+/**
+ * Every market with a published page.
+ *
+ * The order is publication order rather than population, because a reader
+ * scanning this list is looking for their own city and the second entry is not
+ * more important than the first.
+ *
+ * A city only belongs here once its page exists. The site's standing rule is
+ * that navigation never points at a route that has not been built, and an index
+ * of places we have not researched would be the most damaging place to break it.
+ */
+export const MARKETS: MarketEntry[] = [
+  {
+    market: MODESTO,
+    href: "/local/california/modesto",
+    electricUtility: "Modesto Irrigation District",
+    electricUtilityShort: "MID",
+    gasUtility: "PG&E",
+    distinctive:
+      "The first market, and the one the whole method was built against. Itemised local job costs, online permitting, and the reason we will not publish a single average price.",
+    checked: "7 Aug 2026",
+  },
+  {
+    market: TURLOCK,
+    href: "/local/california/turlock",
+    electricUtility: "Turlock Irrigation District",
+    electricUtilityShort: "TID",
+    gasUtility: "PG&E",
+    distinctive:
+      "Two utilities in one house, so the gas versus electric question has a real answer here. Published rates, a worked fuel comparison, and the strongest rebate position we have found anywhere.",
+    checked: "20 Aug 2026",
+  },
+];
