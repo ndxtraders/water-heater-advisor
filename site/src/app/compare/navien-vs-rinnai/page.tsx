@@ -223,12 +223,12 @@ export default function NavienVsRinnaiPage() {
               awkward retrofit that is worth having in advance.
             </p>
             <p>
-              On local service the position reverses. Rinnai&rsquo;s own directory listed
-              at least one Modesto ACE PRO on our check date, while no Modesto company was
+              On local service the position reverses. At least one Modesto company held
+              Rinnai ACE PRO status on our check date, while no Modesto company was
               confirmed as holding Navien Service Specialist status. Neither manufacturer
-              requires programme membership to install, so treat it as a serviceability
-              signal rather than a rule, and check both locators for your own postcode
-              before you weigh it.
+              requires programme membership to install, so this is a signal about how well
+              the brand is supported locally rather than a rule about who may fit it, and
+              on that signal Rinnai is ahead here.
             </p>
             <p>
               Their recirculation designs differ as well. The NPE-A2 ships with a buffer

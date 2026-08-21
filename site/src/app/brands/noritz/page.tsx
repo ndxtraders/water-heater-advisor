@@ -180,13 +180,13 @@ export default function NoritzPage() {
               {
                 label: "Installer programme",
                 value:
-                  "PROCard Select and VIP, plus a public Noritz Contractor Finder. We found no blanket requirement that an installer hold a programme status, but it is a useful serviceability signal.",
+                  "PROCard Select and VIP. We found no blanket requirement that an installer hold a programme status, so treat it as a signal that the brand is serviced in an area rather than as a rule about who may fit it.",
                 meta: <SourceNote source="Noritz PROCard and Contractor Finder" checked={CHECKED} />,
               },
               {
                 label: "Local programme coverage",
                 value:
-                  "Noritz's Modesto area directory showed multiple installers and servicers on our check date, with partner tenure labels and at least one company explicitly labelled Noritz trained. We are not naming companies here: a directory entry is a snapshot, and a listing is not a recommendation from us. Check the finder for the current list.",
+                  "The deepest local coverage of the three tankless brands we cover. On our check date the Modesto area showed multiple installers and servicers, partner tenure labels, and at least one company carrying an explicit Noritz trained designation. Combined with the parts position below, that is the strongest argument on this page. We do not publish company names, because a directory entry is a snapshot and a listing is not a recommendation from us.",
                 meta: (
                   <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
                     We will not describe any installer as authorised, certified or trained

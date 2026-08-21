@@ -147,17 +147,27 @@ export default function NavienPage() {
                 meta: <SourceNote source="Navien NSS programme page" checked={CHECKED} />,
               },
               {
-                label: "Which Modesto companies hold NSS",
+                label: "Local programme coverage",
                 value: (
-                  <div className="flex flex-wrap items-center gap-2">
-                    <RebateStatus state="verify" />
-                    <span>Not yet confirmed for any specific local company.</span>
+                  <div className="space-y-2">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <RebateStatus state="verify" />
+                      <span>Not established for the Modesto area.</span>
+                    </div>
+                    <p>
+                      Navien&rsquo;s installer list cannot be read without first agreeing
+                      that Navien may share your details with installers, so we have not
+                      confirmed whether any local company holds NSS. Read that as unknown
+                      rather than as evidence either way. Rinnai and Noritz both publish
+                      theirs openly, and both show local coverage.
+                    </p>
                   </div>
                 ),
                 meta: (
                   <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
                     We will not describe any installer as authorised, certified or trained
-                    until that exact status appears in Navien&rsquo;s own directory.
+                    unless that exact status appears in the manufacturer&rsquo;s own
+                    current directory.
                   </p>
                 ),
               },

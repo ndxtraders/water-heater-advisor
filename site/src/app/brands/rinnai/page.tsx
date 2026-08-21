@@ -191,13 +191,13 @@ export default function RinnaiPage() {
               {
                 label: "Installer programme",
                 value:
-                  "Rinnai PRO and ACE PRO. We found no blanket requirement that an installer hold either, but it is a useful serviceability signal, and Rinnai runs a public locator you can check for your own postcode.",
+                  "Rinnai PRO and ACE PRO. We found no blanket requirement that an installer hold either, so treat programme status as a signal that the brand is serviced in an area rather than as a rule about who may fit it.",
                 meta: <SourceNote source="Rinnai Find a PRO locator" checked={CHECKED} />,
               },
               {
                 label: "Local programme coverage",
                 value:
-                  "Rinnai's own directory listed at least one Modesto company as an ACE PRO on our check date. We are not naming it, because a directory entry is a snapshot and because a listing is not a recommendation from us. Check the locator for the current list.",
+                  "Programme coverage exists in the Modesto area. At least one local company held ACE PRO status on our check date, which is the useful part: it says the brand is serviced here rather than shipped in and left to a generalist. We do not publish company names, because a directory entry is a snapshot and a listing is not a recommendation from us.",
                 meta: (
                   <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
                     We will not describe any installer as authorised, certified or trained
