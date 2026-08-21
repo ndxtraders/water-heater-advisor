@@ -60,6 +60,41 @@ export const site = {
 } as const;
 
 /**
+ * Emergency routing: OFF.
+ *
+ * The EmergencyBar promises "Skip the research, get help today". That is a
+ * promise about capacity, not about content, and right now we cannot keep it:
+ * no partner installer has agreed to take emergency work and there is no
+ * monitored phone line or intake path behind it.
+ *
+ * Making that promise to somebody standing over a leaking tank at 6am, on the
+ * one surface built for exactly that person, is the single worst place on the
+ * site to be writing a cheque we cannot cash. So the bar is hidden until the
+ * capacity is real.
+ *
+ * ## Turning it back on
+ *
+ * Set this to `true`. That is the whole change, and it restores the bar on
+ * every route except /emergency itself.
+ *
+ * Flip it only when BOTH of these are true:
+ *
+ *   1. At least one partner installer has agreed to take emergency work, and
+ *      knows leads will arrive that way.
+ *   2. A phone number or intake path is live and answered during the hours the
+ *      wording implies. "Today" means today.
+ *
+ * If the wording changes to something softer that does not promise same-day
+ * help, this flag can go and the bar can simply ship. The flag exists because
+ * the current wording is a commitment.
+ *
+ * /emergency stays published either way. Its safety guidance is useful with or
+ * without anybody to route to, and it is reachable from the quiz and from
+ * search. Only the site-wide interrupt is gated.
+ */
+export const EMERGENCY_ROUTING_LIVE = false;
+
+/**
  * The editorial promise, rendered in the footer and referenced on the results
  * page. It is a commercial policy before it is a piece of copy: contractor
  * payment may affect *which eligible installer* receives an introduction, and

@@ -4,6 +4,8 @@ import { Phone, TriangleAlert } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { EMERGENCY_ROUTING_LIVE } from "@/lib/site";
+
 /**
  * Emergency short-circuit.
  *
@@ -24,8 +26,22 @@ import { usePathname } from "next/navigation";
  *
  * It now lives in the root layout and hides itself on /emergency, so it covers
  * every route including ones that do not exist yet.
+ *
+ * ## Currently hidden
+ *
+ * The bar is gated behind `EMERGENCY_ROUTING_LIVE` in `lib/site.ts`, which is
+ * false. The wording promises same-day help and there is nobody to route that
+ * person to yet. See that flag for what has to be true before it comes back.
+ *
+ * The gate is a wrapper rather than an early return inside the body, so the
+ * `usePathname` hook below stays unconditional.
  */
 export default function EmergencyBar() {
+  if (!EMERGENCY_ROUTING_LIVE) return null;
+  return <EmergencyRoutingBar />;
+}
+
+function EmergencyRoutingBar() {
   const pathname = usePathname();
 
   // Already there. Offering the exit from inside the exit is noise.
