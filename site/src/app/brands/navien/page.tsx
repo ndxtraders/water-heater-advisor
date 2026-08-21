@@ -91,7 +91,7 @@ export default function NavienPage() {
             lead="Warranty terms, model lines and installer programmes change without notice, and they vary by model, registration and installation type. Rather than publish a number that quietly goes stale, each row shows its own state."
           />
           <LocalDataPanel
-            title="Navien — brand record"
+            title="The Navien brand record"
             rows={[
               {
                 label: "Technologies made",

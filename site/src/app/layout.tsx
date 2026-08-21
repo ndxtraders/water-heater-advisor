@@ -41,12 +41,12 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.tagline}`,
+    default: `${site.name}: ${site.tagline}`,
     template: `%s | ${site.name}`,
   },
   description:
     "Independent guidance on water heater replacement, tankless conversion and heat " +
-    "pump water heaters — then an introduction to a local installer who handles that work.",
+    "pump water heaters, then an introduction to a local installer who handles that work.",
 };
 
 export default function RootLayout({
