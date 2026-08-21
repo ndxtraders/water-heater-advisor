@@ -153,8 +153,8 @@ export const BRAND_DIRECTORY: BrandEntry[] = [
   {
     id: "rinnai",
     name: "Rinnai",
-    href: null,
-    status: "researched",
+    href: "/brands/rinnai",
+    status: "published",
     positioning:
       "The other name most homeowners have heard for gas tankless. Sells heat pumps as well, and states plainly that it does not make electric tankless.",
     makes: ["Gas tankless", "Heat pump"],
@@ -162,8 +162,8 @@ export const BRAND_DIRECTORY: BrandEntry[] = [
   {
     id: "noritz",
     name: "Noritz",
-    href: null,
-    status: "researched",
+    href: "/brands/noritz",
+    status: "published",
     positioning:
       "Gas tankless only, and the strongest Central Valley parts position of the six. A specialist rather than a full-range manufacturer.",
     makes: ["Gas tankless"],

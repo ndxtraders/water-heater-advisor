@@ -138,7 +138,7 @@ export default function BrandsHubPage() {
         <Container width="narrow">
           <SectionHeading
             title="The six brands"
-            lead="One page is written. The rest carry research but not yet a page, and rather than link you to something that does not exist, each card says where it stands."
+            lead="Three pages are written, and all three are gas tankless brands, because that is where the research is deepest and where the brand choice genuinely changes the outcome. The other three carry research but not yet a page, and rather than link you to something that does not exist, each card says where it stands."
           />
 
           <div className="grid gap-5 sm:grid-cols-2">
