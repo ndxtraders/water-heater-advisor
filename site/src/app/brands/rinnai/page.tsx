@@ -230,6 +230,18 @@ export default function RinnaiPage() {
       <Section>
         <Container width="narrow">
           <Prose>
+            <h2>Navien or Rinnai</h2>
+            <p>
+              We converted both manufacturers&rsquo; published flow tables onto one basis,
+              because they are not published in the same units, and at a Central Valley
+              winter the two headline models land 0.12 GPM apart.{" "}
+              <Link href="/compare/navien-vs-rinnai">
+                The full head to head is here
+              </Link>
+              , including the two different ways that shared 15 year warranty gets cut
+              short.
+            </p>
+
             <h2>Rinnai or Noritz</h2>
             <p>
               These are the two most common gas tankless shortlists in this market after

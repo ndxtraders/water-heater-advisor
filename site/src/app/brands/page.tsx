@@ -115,6 +115,18 @@ export default function BrandsHubPage() {
             checked={RESEARCH_CHECKED_AT}
           />
 
+          <Callout title="Two of these are closer than their spec sheets suggest">
+            <p>
+              Navien and Rinnai publish flow in different units, so their headline figures
+              cannot be compared by eye. Converted onto one basis, at a Central Valley
+              winter, the two flagship models finish 0.12 gallons a minute apart.{" "}
+              <Link href="/compare/navien-vs-rinnai">
+                The head to head walks through what actually separates them
+              </Link>
+              .
+            </p>
+          </Callout>
+
           <Callout title="Electric tankless is missing on purpose" tone="warn">
             <p>
               Three of the six sell one, and they are not the same product. Rheem and

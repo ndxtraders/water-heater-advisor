@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { Callout, DecisionPath, LocalDataPanel } from "@/components/advisor/Panels";
 import { RebateStatus, SourceNote } from "@/components/advisor/Status";
@@ -181,6 +182,17 @@ export default function NavienPage() {
       <Section>
         <Container width="narrow">
           <Prose>
+            <h2>Navien or Rinnai</h2>
+            <p>
+              The comparison most people arrive wanting. Both publish a headline near 11
+              GPM and both land near 6 GPM at a Central Valley winter, so the flow question
+              is a dead heat and the decision sits elsewhere.{" "}
+              <Link href="/compare/navien-vs-rinnai">
+                We converted the numbers and laid out the rest
+              </Link>
+              .
+            </p>
+
             <h2>Ask your installer these before committing to the brand</h2>
             <ul>
               <li>How many of these have you installed in the last year?</li>
