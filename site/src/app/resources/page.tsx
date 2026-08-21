@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { ResourcePage } from "@/components/resources/ResourcePage";
+import { ResourcesHubPage } from "@/components/resources/ResourcesHubPage";
 import { getResourceBySlug } from "@/lib/resources";
 
 export const dynamic = "force-static";
@@ -22,5 +22,5 @@ export function generateMetadata(): Metadata {
 export default function ResourcesPage() {
   const resource = getResourceBySlug("/resources");
   if (!resource) notFound();
-  return <ResourcePage article={resource} />;
+  return <ResourcesHubPage article={resource} />;
 }

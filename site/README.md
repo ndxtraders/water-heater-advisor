@@ -42,6 +42,9 @@ Three rules follow, and they are load-bearing:
 1. **Colour carries meaning or it does not appear.** No decorative hue anywhere.
    A site that tints things because they look nice has spent the signal it needs
    in order to say "this option is wrong for your house."
+   Red is primarily used for emergencies or "not a fit," and for important
+   areas where red can call out key distinctions without necessarily carrying
+   a negative connotation.
 2. **Verdicts are never colour alone.** Icon plus word plus colour, always.
 3. **Volatile claims show their source and check date.** Rebates, code, pricing,
    local data. This is the cheapest durable advantage available — a plumber's

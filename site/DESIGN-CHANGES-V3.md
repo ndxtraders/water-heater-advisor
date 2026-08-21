@@ -20,9 +20,11 @@ and flagged as **[CALL]**.
 - [x] **A4** Delete `--status-warn` amber. RESERVED becomes a *solid outline* in ink — the claim
   is real, the offer is not open — leaving the dashed outline to mean "unverified". Reuses the
   fill vocabulary instead of introducing a fourth hue. Four non-rebate usages remapped; see below.
-- [x] **A5** Strip decorative red: `AccentRule tone="dark"`, the two hardcoded copies in
-  `Hero.tsx` and `methodology`, and the `TrustBar` icons. Red survives on `/emergency` and
-  "Not a fit" only.
+- [x] **A5** Strip the decorative red used in this pass: `AccentRule tone="dark"`, the two
+  hardcoded copies in `Hero.tsx` and `methodology`, and the `TrustBar` icons. This historical
+  cleanup is not a two-use allowlist. Current guidance: red is primarily used for emergencies
+  or "not a fit," and for important areas where it can call out key distinctions without
+  necessarily carrying a negative connotation.
 - [x] **A6** Delete `IconChip tone="green"` and its one usage. Green leaves the palette entirely.
 - [x] **A7** Body text to a readable black: `Prose` from `foreground/85` to full `--ink`, lead
   paragraphs from `--muted-foreground` to `--navy`. Muted is kept for captions and stamps only.

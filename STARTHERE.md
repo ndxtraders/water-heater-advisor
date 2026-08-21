@@ -101,7 +101,7 @@ worse than a thin menu.
 
 | Decision | Why |
 |---|---|
-| **Blue primary, red rationed** | Red is emergency and "not a fit" only. Never a CTA. On a plumber's site red is the logo; that is the difference. |
+| **Blue primary, red purposeful** | Red is primarily used for emergencies or "not a fit," and for important areas where red can call out key distinctions without necessarily carrying a negative connotation. Primary CTAs remain blue. |
 | **Green is a verdict colour, never type** | A green heading would collide with the one place green must mean something, and starts signalling "eco" on a technology-neutral site. |
 | **Sans headings, not serif** | v1 used a serif and read as an editorial magazine. Corrected against a real local plumbing site. |
 | **10% of completed job, $150 floor, $600 cap** | See `site/REVENUE-MODEL.md`. The cap is anti-fraud, not a concession — misreporting incentive scales with job size. |

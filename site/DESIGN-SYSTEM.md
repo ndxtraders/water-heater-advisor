@@ -77,7 +77,7 @@ and surface treatment.
 
 | Pattern | Why not |
 |---|---|
-| **Red as the CTA colour** | Red is the contractor tell. Kept for emergency and "not a fit" only — see §3. |
+| **Red as the default CTA colour** | Red is primarily used for emergencies or "not a fit," and for important areas where it can call out key distinctions without necessarily carrying a negative connotation. Primary CTAs remain blue — see §3. |
 | **`animate-pulse-subtle` on CTAs** | Pure urgency persuasion. The whole thesis is that this site does not do that. |
 | **Testimonials, star ratings, review counts** | Not a service business. Also a CSLB problem. |
 | **Hero photography of crew and vans** | There is no crew. Showing one implies we perform the work. |
@@ -105,6 +105,10 @@ the signal is already spent.
 Red, white and blue is this category's visual language and the trust register
 American homeowners already read. The site borrows it. Blue carries the brand
 and does the most work; red is the accent.
+
+Red is primarily used for emergencies or "not a fit," and for important areas
+where red can call out key distinctions without necessarily carrying a negative
+connotation.
 
 > **Blue leads. Red is used where it earns its place — and it earns its place
 > more often than a rule can predict.**

@@ -10,9 +10,11 @@
    nice has already spent the signal it needs in order to say "this option is
    wrong for your house."
 
-   V.3 tightened that rule rather than loosening it. Green and amber are gone.
-   What is left is blue, red, ink and paper, and the third channel — filled
-   versus outlined — now carries the load that a fourth and fifth hue used to.
+   Green and amber are gone. What is left is blue, red, ink and paper, and the
+   third channel — filled versus outlined — now carries the load that a fourth
+   and fifth hue used to. Red is primarily used for emergencies or "not a fit,"
+   and for important areas where it can call out key distinctions without
+   necessarily carrying a negative connotation.
    --------------------------------------------------------------------------- */
 
 @theme inline {
@@ -72,20 +74,17 @@
 
 :root {
   /* Brand ---------------------------------------------------------------
-     Navy, white and a reserved flag red. Red/white/blue is the category's
+     Navy, white and a purposeful flag red. Red/white/blue is the category's
      visual language and the trust cue American homeowners already read, so the
      site borrows the register — but it borrows it the way a public information
      source would, not the way a contractor's van does.
 
-     The distinction is where red goes. On a plumber's site red is the primary:
-     the logo, the banner, the CALL NOW button. Here red is rationed to two
-     jobs only, emergency and "not a fit". Navy carries the brand. That single
-     rule is most of what separates this from looking like the companies it
-     refers work to, which matters commercially and under CSLB.
-
-     V.3 finally enforces it. Red had leaked into accent rules and trust-bar
-     icons on the dark bands, which is decoration by any honest reading and is
-     also what made the red/white/blue register read loud rather than quiet. */
+     The distinction is how red is used. On a plumber's site red is often the
+     primary sales device: the logo, the banner, the CALL NOW button. Here red
+     is primarily used for emergencies or "not a fit," and for important areas
+     where it can call out key distinctions without necessarily carrying a
+     negative connotation. Navy still carries the brand, and primary CTAs stay
+     blue. */
   --ink: oklch(0.24 0.03 255);
   --paper: oklch(0.995 0.001 250);
 
@@ -101,11 +100,13 @@
   --blue: oklch(0.484 0.135 253.6);
   --blue-bright: oklch(0.591 0.145 251.5);
 
-  /* Rationed. Emergency and "not a fit". Never a CTA, never decoration.
-     Two values, for the same reason there are two blues: the base is the
-     text-safe red on white, and it measured 2.91:1 against navy — below even
-     the 3:1 large-text floor. Anything red sitting on a dark band uses the
-     light variant. */
+  /* Purposeful accent. Primarily emergency and "not a fit," plus important
+     distinctions where red communicates a real state or contrast without
+     necessarily being negative. It is not the default CTA color or a generic
+     decorative flourish. Two values, for the same reason there are two blues:
+     the base is the text-safe red on white, and it measured 2.91:1 against
+     navy — below even the 3:1 large-text floor. Anything red sitting on a dark
+     band uses the light variant. */
   --flag-red: oklch(0.52 0.20 27);
   --flag-red-light: oklch(0.68 0.17 27);
 
