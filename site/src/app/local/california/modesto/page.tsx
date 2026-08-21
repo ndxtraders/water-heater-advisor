@@ -51,7 +51,7 @@ export default function ModestoPage() {
           <div className="space-y-4">
             <IncentiveRow
               name="Turlock Irrigation District, heat pump water heater"
-              detail="This is a gas or propane to electric conversion rebate for a qualifying ENERGY STAR heat pump unit. If you already have an electric tank, this specific programme is not the one that applies to you."
+              detail="This is a gas or propane to electric conversion rebate for a qualifying ENERGY STAR heat pump unit. If you already have an electric tank, this specific programme is not the one that applies to you. A slice of eastern Modesto sits inside TID territory, and the full qualifying conditions live on our Turlock page."
               amount="$1,000"
               state="active"
               source="TID residential gas-to-electric rebate application, 2026"
@@ -83,7 +83,14 @@ export default function ModestoPage() {
               different rebate territories. That difference can move a heat pump from
               marginal to obviously worth it. Any calculator that treats the greater
               Modesto area as one market is guessing, which is why we ask for your
-              postcode rather than your city.
+              postcode rather than your city.{" "}
+              <Link
+                href="/local/california/turlock"
+                className="text-blue underline underline-offset-4"
+              >
+                The Turlock page shows what that difference is worth in dollars
+              </Link>
+              , because TID publishes both the rates and the rebates.
             </p>
           </Callout>
         </Container>
@@ -281,8 +288,11 @@ export default function ModestoPage() {
           <p className="mt-6 text-sm text-muted-foreground">
             Expanding beyond Modesto? We localise by utility territory rather than by
             city, which is why{" "}
-            <Link href="/local/california" className="text-blue underline underline-offset-4">
-              nearby markets get their own research
+            <Link
+              href="/local/california/turlock"
+              className="text-blue underline underline-offset-4"
+            >
+              Turlock gets its own research
             </Link>{" "}
             rather than a find and replace.
           </p>

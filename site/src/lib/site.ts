@@ -32,6 +32,7 @@ export const site = {
     { label: "Compare", href: "/compare/tank-vs-tankless" },
     { label: "Brands", href: "/brands/navien" },
     { label: "Modesto", href: "/local/california/modesto" },
+    { label: "Turlock", href: "/local/california/turlock" },
     { label: "Choosing an installer", href: "/installers/how-to-choose" },
   ],
 
@@ -41,9 +42,12 @@ export const site = {
       { label: "When tankless is wrong", href: "/water-heaters/tankless/not-right-for-you" },
       { label: "Find my system", href: "/quiz" },
     ],
+    // Two markets now, and they are not interchangeable: MID and TID are
+    // different rebate territories, which is the whole reason the site
+    // localises by utility rather than by city name.
     local: [
-      { label: "Modesto overview", href: "/local/california/modesto" },
-      { label: "Modesto rebates and permits", href: "/local/california/modesto" },
+      { label: "Modesto, on MID", href: "/local/california/modesto" },
+      { label: "Turlock, on TID", href: "/local/california/turlock" },
       { label: "Choosing an installer", href: "/installers/how-to-choose" },
     ],
     about: [
