@@ -15,6 +15,7 @@ import {
 } from "@/lib/energy";
 import { TURLOCK, meanInletF } from "@/lib/market";
 import type { TechId } from "@/lib/quiz/engine";
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/local/california/turlock" },
@@ -31,7 +32,10 @@ export default function TurlockPage() {
     <>
       <Section className="pb-0 pt-12 sm:pb-0 sm:pt-16">
         <Container width="narrow">
-          <DecisionPath current="Local rules" />
+          <Breadcrumb trail={[{ label: "Locations", href: "/local" }, { label: "California" }, { label: "Turlock" }]} />
+          <div className="mt-6">
+            <DecisionPath current="Local rules" />
+          </div>
           <div className="mt-8">
             <Eyebrow>Turlock, California</Eyebrow>
             <h1 className="text-4xl leading-tight sm:text-[2.75rem]">

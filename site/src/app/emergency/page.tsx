@@ -13,6 +13,7 @@ import {
   SectionHeading,
 } from "@/components/common/Layout";
 import { ButtonLink } from "@/components/ui/Button";
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/emergency" },
@@ -60,6 +61,8 @@ export default function EmergencyPage() {
           until the water is off. */}
       <section className="border-b border-flag-red/20 bg-verdict-unfit-bg py-12 sm:py-16">
         <Container width="narrow">
+          <Breadcrumb trail={[{ label: "Water heater emergency" }]} />
+          <div className="mt-6" />
           <span className="inline-flex items-center gap-2 rounded-full bg-flag-red/10 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-flag-red">
             <AlertTriangle aria-hidden className="size-3.5" />
             Do this first

@@ -6,6 +6,7 @@ import { Callout, DecisionPath, LocalDataPanel } from "@/components/advisor/Pane
 import { CheckedStamp, RebateStatus, SourceNote } from "@/components/advisor/Status";
 import { Container, Eyebrow, Prose, Section, SectionHeading } from "@/components/common/Layout";
 import { ButtonLink } from "@/components/ui/Button";
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/local/california/modesto" },
@@ -22,7 +23,10 @@ export default function ModestoPage() {
     <>
       <Section className="pb-0 pt-12 sm:pb-0 sm:pt-16">
         <Container width="narrow">
-          <DecisionPath current="Local rules" />
+          <Breadcrumb trail={[{ label: "Locations", href: "/local" }, { label: "California" }, { label: "Modesto" }]} />
+          <div className="mt-6">
+            <DecisionPath current="Local rules" />
+          </div>
           <div className="mt-8">
             <Eyebrow>Modesto, California</Eyebrow>
             <h1 className="text-4xl leading-tight sm:text-[2.75rem]">

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Callout, DecisionPath } from "@/components/advisor/Panels";
 import { SourceNote } from "@/components/advisor/Status";
 import { VerdictBadge } from "@/components/advisor/Verdict";
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container, Eyebrow, Prose, Section, SectionHeading } from "@/components/common/Layout";
 import { ButtonLink } from "@/components/ui/Button";
 import { BRAND_DIRECTORY, brandsMaking } from "@/lib/brands";
@@ -40,7 +41,15 @@ export function TechnologyPage({ tech }: { tech: TechContent }) {
     <>
       <Section className="pb-0 pt-12 sm:pb-0 sm:pt-16">
         <Container width="narrow">
-          <DecisionPath current="Technology" />
+          <Breadcrumb
+            trail={[
+              { label: "Technologies", href: "/water-heaters" },
+              { label: tech.name },
+            ]}
+          />
+          <div className="mt-6">
+            <DecisionPath current="Technology" />
+          </div>
           <div className="mt-8">
             <Eyebrow>Technologies</Eyebrow>
             <h1 className="text-4xl leading-tight sm:text-[2.75rem]">{tech.h1}</h1>

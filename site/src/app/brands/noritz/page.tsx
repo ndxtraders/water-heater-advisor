@@ -6,6 +6,7 @@ import { SourceNote } from "@/components/advisor/Status";
 import { VerdictBadge } from "@/components/advisor/Verdict";
 import { Container, Eyebrow, Prose, Section, SectionHeading } from "@/components/common/Layout";
 import { ButtonLink } from "@/components/ui/Button";
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/brands/noritz" },
@@ -31,7 +32,10 @@ export default function NoritzPage() {
     <>
       <Section className="pb-0 pt-12 sm:pb-0 sm:pt-16">
         <Container width="narrow">
-          <DecisionPath current="Technology" />
+          <Breadcrumb trail={[{ label: "Brands", href: "/brands" }, { label: "Noritz" }]} />
+          <div className="mt-6">
+            <DecisionPath current="Technology" />
+          </div>
           <div className="mt-8">
             <Eyebrow>Brands</Eyebrow>
             <h1 className="text-4xl leading-tight sm:text-[2.75rem]">Noritz</h1>

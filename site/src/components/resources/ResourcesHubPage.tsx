@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import { Fragment } from "react";
 
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container, Eyebrow, Section } from "@/components/common/Layout";
 import { ButtonLink } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
@@ -307,22 +308,6 @@ function DecisionTransition({
   );
 }
 
-function ResourceBreadcrumb() {
-  return (
-    <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
-      <ol className="flex items-center gap-2">
-        <li>
-          <Link href="/" className="hover:text-blue hover:underline">
-            Home
-          </Link>
-        </li>
-        <li aria-hidden>/</li>
-        <li aria-current="page">Resources</li>
-      </ol>
-    </nav>
-  );
-}
-
 export function ResourcesHubPage({ article }: { article: ResourceArticle }) {
   const schema = {
     "@context": "https://schema.org",
@@ -342,7 +327,7 @@ export function ResourcesHubPage({ article }: { article: ResourceArticle }) {
 
       <Section className="pb-0 pt-10 sm:pt-14">
         <Container width="wide">
-          <ResourceBreadcrumb />
+          <Breadcrumb trail={[{ label: "Resources" }]} />
           <div className="mt-8 grid gap-10 pb-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.75fr)] lg:items-end lg:pb-16">
             <div>
               <Eyebrow icon={BookOpen}>Homeowner library</Eyebrow>

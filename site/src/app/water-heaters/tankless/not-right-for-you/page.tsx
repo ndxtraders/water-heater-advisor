@@ -13,6 +13,7 @@ import {
   SectionHeading,
 } from "@/components/common/Layout";
 import { ButtonLink } from "@/components/ui/Button";
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/water-heaters/tankless/not-right-for-you" },
@@ -67,7 +68,10 @@ export default function NotRightForYouPage() {
     <>
       <Section className="pb-0 pt-12 sm:pb-0 sm:pt-16">
         <Container width="narrow">
-          <DecisionPath current="Technology" />
+          <Breadcrumb trail={[{ label: "Technologies", href: "/water-heaters" }, { label: "Gas tankless", href: "/water-heaters/tankless" }, { label: "When it is the wrong buy" }]} />
+          <div className="mt-6">
+            <DecisionPath current="Technology" />
+          </div>
           <div className="mt-8">
             <VerdictBadge verdict="unfit" label="The case against" />
             <h1 className="mt-4 text-4xl leading-[1.1] sm:text-5xl">

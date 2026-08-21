@@ -6,6 +6,7 @@ import { CheckedStamp } from "@/components/advisor/Status";
 import { Container, Eyebrow, Prose, Section, SectionHeading } from "@/components/common/Layout";
 import { ButtonLink } from "@/components/ui/Button";
 import { MARKETS } from "@/lib/market";
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/local" },
@@ -20,7 +21,10 @@ export default function LocalHubPage() {
     <>
       <Section className="pb-0 pt-12 sm:pb-0 sm:pt-16">
         <Container width="narrow">
-          <DecisionPath current="Local rules" />
+          <Breadcrumb trail={[{ label: "Locations" }]} />
+          <div className="mt-6">
+            <DecisionPath current="Local rules" />
+          </div>
           <div className="mt-8">
             <Eyebrow>Local guidance</Eyebrow>
             <h1 className="text-4xl leading-tight sm:text-[2.75rem]">
@@ -153,12 +157,38 @@ export default function LocalHubPage() {
             </p>
           </Prose>
 
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/quiz" size="lg">
+        </Container>
+      </Section>
+
+      <Section tone="dark" className="py-14 sm:py-20">
+        <Container width="wide">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+            <div>
+              <p className="apparatus text-xs font-medium uppercase tracking-[0.08em] text-white/65">
+                Local where it matters
+              </p>
+              <h2 className="mt-3 max-w-[24ch] text-3xl text-white sm:text-4xl">
+                Most of the answer is the same everywhere. We ask for the part that is not
+              </h2>
+              <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/75">
+                Sizing, feasibility and technology do not change between one Central
+                Valley city and the next. Your postcode does, because rebates and rates
+                follow utility territory, so that is the one local thing the quiz asks
+                for.
+              </p>
+              <p className="mt-4 max-w-2xl leading-relaxed text-white/75">
+                When you are ready to collect quotes,{" "}
+                <Link
+                  href="/installers/how-to-choose"
+                  className="font-medium text-white underline decoration-white/40 underline-offset-4 hover:decoration-white"
+                >
+                  choosing an installer
+                </Link>{" "}
+                covers what to ask and what a good answer sounds like.
+              </p>
+            </div>
+            <ButtonLink href="/quiz" size="lg" className="w-full sm:w-auto">
               Find the right system for my home
-            </ButtonLink>
-            <ButtonLink href="/installers/how-to-choose" variant="secondary" size="lg">
-              How to choose an installer
             </ButtonLink>
           </div>
         </Container>

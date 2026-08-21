@@ -1,6 +1,7 @@
 import { BookOpen, CalendarCheck, CircleAlert, Scale } from "lucide-react";
 import Link from "next/link";
 
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container, Eyebrow, Section } from "@/components/common/Layout";
 import { ResourceMarkdown } from "@/components/resources/ResourceMarkdown";
 import {
@@ -13,33 +14,13 @@ import { site } from "@/lib/site";
 function ResourceBreadcrumb({ article }: { article: ResourceArticle }) {
   const isHub = article.slug === "/resources";
   return (
-    <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
-      <ol className="flex flex-wrap items-center gap-2">
-        <li>
-          <Link href="/" className="hover:text-blue hover:underline">
-            Home
-          </Link>
-        </li>
-        <li aria-hidden>/</li>
-        <li>
-          {isHub ? (
-            <span aria-current="page">Resources</span>
-          ) : (
-            <Link href="/resources" className="hover:text-blue hover:underline">
-              Resources
-            </Link>
-          )}
-        </li>
-        {!isHub ? (
-          <>
-            <li aria-hidden>/</li>
-            <li aria-current="page" className="max-w-[32rem] text-foreground">
-              {article.title}
-            </li>
-          </>
-        ) : null}
-      </ol>
-    </nav>
+    <Breadcrumb
+      trail={
+        isHub
+          ? [{ label: "Resources" }]
+          : [{ label: "Resources", href: "/resources" }, { label: article.title }]
+      }
+    />
   );
 }
 

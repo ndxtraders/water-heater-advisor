@@ -1,5 +1,6 @@
 import { ArrowRight, BadgeCheck, FileText, Phone, Wrench } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { Callout, DecisionPath } from "@/components/advisor/Panels";
 import { SourceNote } from "@/components/advisor/Status";
@@ -12,6 +13,7 @@ import {
   SectionHeading,
 } from "@/components/common/Layout";
 import { ButtonLink } from "@/components/ui/Button";
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/installers/how-to-choose" },
@@ -58,7 +60,10 @@ export default function HowToChoosePage() {
     <>
       <Section className="pb-0 pt-12 sm:pb-0 sm:pt-16">
         <Container width="narrow">
-          <DecisionPath current="Installer" />
+          <Breadcrumb trail={[{ label: "Choosing an installer" }]} />
+          <div className="mt-6">
+            <DecisionPath current="Installer" />
+          </div>
           <div className="mt-8">
             <h1 className="text-4xl leading-[1.1] sm:text-5xl">
               How to choose a water heater installer
@@ -161,20 +166,69 @@ export default function HowToChoosePage() {
             </p>
           </Prose>
 
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/quiz" size="lg">
+          <Prose className="mt-12">
+            <h2>Know these before you call anybody</h2>
+            <p>
+              Asking three companies to quote three different systems produces three
+              numbers you cannot compare. The reading below is what makes a quote
+              readable, and each page takes a few minutes.
+            </p>
+            <ul>
+              <li>
+                <Link href="/water-heaters">Which technology suits the house</Link>,
+                because it is decided by your space, your panel and your peak demand
+                rather than by preference
+              </li>
+              <li>
+                <Link href="/brands">Which brands make it</Link>, and why local service
+                coverage matters more than the badge
+              </li>
+              <li>
+                <Link href="/local">What is true in your utility territory</Link>, since
+                rebates and permit rules follow the utility rather than the city
+              </li>
+              <li>
+                <Link href="/compare/tank-vs-tankless">Tank versus tankless</Link>, the
+                version of this decision that goes wrong most expensively
+              </li>
+            </ul>
+          </Prose>
+        </Container>
+      </Section>
+
+      {/* Was the site's most disconnected page: 661 words and two internal
+          destinations, sitting directly in front of the decision it is meant to
+          inform. */}
+      <Section tone="dark" className="py-14 sm:py-20">
+        <Container width="wide">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+            <div>
+              <p className="apparatus text-xs font-medium uppercase tracking-[0.08em] text-white/65">
+                Before you collect quotes
+              </p>
+              <h2 className="mt-3 max-w-[24ch] text-3xl text-white sm:text-4xl">
+                Give three contractors the same question
+              </h2>
+              <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/75">
+                The quiz gives you the technology, a size direction, a cost range and the
+                options your house rules out. Take that to a quote and the numbers you
+                get back are comparable.
+              </p>
+              <p className="mt-4 max-w-2xl leading-relaxed text-white/75">
+                <Link
+                  href="/methodology"
+                  className="font-medium text-white underline decoration-white/40 underline-offset-4 hover:decoration-white"
+                >
+                  How we choose who to introduce
+                </Link>{" "}
+                covers the conflicts policy and who gets paid what.
+              </p>
+            </div>
+            <ButtonLink href="/quiz" size="lg" className="w-full sm:w-auto">
               Work out what you need first
               <ArrowRight aria-hidden className="size-4" />
             </ButtonLink>
-            <ButtonLink href="/methodology" variant="secondary" size="lg">
-              How we choose who to introduce
-            </ButtonLink>
           </div>
-          <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-            Work out the technology before you shortlist contractors. Asking three
-            companies to quote three different systems produces three numbers you cannot
-            compare.
-          </p>
         </Container>
       </Section>
     </>

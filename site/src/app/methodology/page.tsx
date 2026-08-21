@@ -13,6 +13,7 @@ import {
 } from "@/components/common/Layout";
 import { ButtonLink } from "@/components/ui/Button";
 import { INDEPENDENCE_POLICY } from "@/lib/site";
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/methodology" },
@@ -72,6 +73,8 @@ export default function MethodologyPage() {
     <>
       <Section className="pb-0 pt-12 sm:pb-0 sm:pt-16">
         <Container width="narrow">
+          <Breadcrumb trail={[{ label: "How we make recommendations" }]} />
+          <div className="mt-6" />
           <h1 className="text-4xl leading-[1.1] sm:text-5xl">
             How we make recommendations, and how we get paid
           </h1>

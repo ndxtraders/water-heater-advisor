@@ -9,6 +9,7 @@ import { TURLOCK_RATES, annualFuelCost, usdRange } from "@/lib/energy";
 import { TURLOCK } from "@/lib/market";
 import { TECHNOLOGIES } from "@/lib/quiz/engine";
 import { TECHNOLOGY_CONTENT, TECH_SLUGS } from "@/lib/technologies";
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/water-heaters" },
@@ -25,7 +26,10 @@ export default function TechnologiesHubPage() {
     <>
       <Section className="pb-0 pt-12 sm:pb-0 sm:pt-16">
         <Container width="narrow">
-          <DecisionPath current="Technology" />
+          <Breadcrumb trail={[{ label: "Technologies" }]} />
+          <div className="mt-6">
+            <DecisionPath current="Technology" />
+          </div>
           <div className="mt-8">
             <Eyebrow>Technologies</Eyebrow>
             <h1 className="text-4xl leading-tight sm:text-[2.75rem]">
@@ -211,12 +215,30 @@ export default function TechnologiesHubPage() {
             </ul>
           </Prose>
 
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/quiz" size="lg">
-              Answer a few questions and we will narrow it
-            </ButtonLink>
-            <ButtonLink href="/brands" variant="secondary" size="lg">
-              Then look at brands
+        </Container>
+      </Section>
+
+      {/* The close gets a dark band of its own. Ending on a pair of buttons
+          against the same paper the reading was set on made the most important
+          action the quietest thing on the page. */}
+      <Section tone="dark" className="py-14 sm:py-20">
+        <Container width="wide">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+            <div>
+              <p className="apparatus text-xs font-medium uppercase tracking-[0.08em] text-white/65">
+                Narrow it to one
+              </p>
+              <h2 className="mt-3 max-w-[22ch] text-3xl text-white sm:text-4xl">
+                Three questions decide this, and they are about your house
+              </h2>
+              <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/75">
+                Where the unit lives, what your electrical panel has left, and how much
+                hot water you need at the same moment. The quiz asks those and rules out
+                what your house cannot take, before it asks anything about you.
+              </p>
+            </div>
+            <ButtonLink href="/quiz" size="lg" className="w-full sm:w-auto">
+              Find the right system for my home
             </ButtonLink>
           </div>
         </Container>

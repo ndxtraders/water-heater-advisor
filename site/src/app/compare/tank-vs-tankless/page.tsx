@@ -5,6 +5,7 @@ import { ComparisonTable } from "@/components/advisor/Comparison";
 import { Callout, DecisionPath } from "@/components/advisor/Panels";
 import { Container, Eyebrow, Prose, Section } from "@/components/common/Layout";
 import { ButtonLink } from "@/components/ui/Button";
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/compare/tank-vs-tankless" },
@@ -19,7 +20,10 @@ export default function TankVsTanklessPage() {
     <>
       <Section className="pb-0 pt-12 sm:pb-0 sm:pt-16">
         <Container width="narrow">
-          <DecisionPath current="Technology" />
+          <Breadcrumb trail={[{ label: "Compare" }, { label: "Tank vs tankless" }]} />
+          <div className="mt-6">
+            <DecisionPath current="Technology" />
+          </div>
           <div className="mt-8">
             <Eyebrow>Comparison</Eyebrow>
             <h1 className="text-4xl leading-tight sm:text-[2.75rem]">
