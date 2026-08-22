@@ -2,19 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { CostBreakdown } from "@/components/advisor/Cost";
+import { FuelTable, IncentiveRow } from "@/components/advisor/Local";
 import { Callout, DecisionPath, LocalDataPanel } from "@/components/advisor/Panels";
-import { CheckedStamp, RebateStatus, SourceNote } from "@/components/advisor/Status";
+import { CheckedStamp, SourceNote } from "@/components/advisor/Status";
 import { Container, Eyebrow, Prose, Section, SectionHeading } from "@/components/common/Layout";
 import { ButtonLink } from "@/components/ui/Button";
-import {
-  DAILY_DRAW_GALLONS,
-  EFFICIENCY,
-  TURLOCK_RATES,
-  annualFuelCost,
-  usdRange,
-} from "@/lib/energy";
-import { TURLOCK, meanInletF } from "@/lib/market";
-import type { TechId } from "@/lib/quiz/engine";
+import { DAILY_DRAW_GALLONS, TID_PGE_RATES } from "@/lib/energy";
+import { TURLOCK } from "@/lib/market";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 
 export const metadata: Metadata = {
@@ -69,7 +63,22 @@ export default function TurlockPage() {
             lead="One house, one household's worth of hot water, four ways of making it. The only things changing from row to row are the technology and the price of the fuel it runs on."
           />
 
-          <FuelTable />
+          <FuelTable
+            market={TURLOCK}
+            rates={TID_PGE_RATES}
+            title="Yearly fuel cost, Turlock rates"
+            note={
+              <p>
+                The electric rows carry a range because TID prices in tiers and water
+                heating is a marginal load stacked on top of whatever else the house is
+                drawing. A Central Valley home running air conditioning through a July
+                afternoon is already past the cheap tiers before the water heater switches
+                on. The gas row is a single figure because we hold one published bundled
+                average, which is a weaker piece of evidence and is shown as it is rather
+                than dressed up as a range.
+              </p>
+            }
+          />
 
           <Prose className="mt-10">
             <h3>The three things this table says</h3>
@@ -134,6 +143,7 @@ export default function TurlockPage() {
               amount="$500"
               state="active"
               source="Turlock Irrigation District residential rebate programme"
+              checked={CHECKED}
             />
             <IncentiveRow
               name="TID rebate, gas or propane converted to heat pump"
@@ -141,30 +151,35 @@ export default function TurlockPage() {
               amount="$1,000"
               state="active"
               source="Turlock Irrigation District gas-to-electric rebate application"
+              checked={CHECKED}
             />
             <IncentiveRow
               name="California HEEHRA, single family"
               detail="Fully reserved statewide. Northern California projects that were not approved are being waitlisted against funding that may or may not appear. Articles still describing this as money you can apply for today are out of date."
               state="reserved"
               source="California HEEHRA programme status"
+              checked={CHECKED}
             />
             <IncentiveRow
               name="TECH Clean California, single family heat pump water heater"
               detail="Also fully reserved and not taking new reservations."
               state="reserved"
               source="TECH Clean California programme status"
+              checked={CHECKED}
             />
             <IncentiveRow
               name="Federal 25C energy efficient home improvement credit"
               detail="Cannot be claimed for property placed in service after 31 December 2025. A great deal of water heater writing still quotes the old 30 percent figure as though it were current."
               state="expired"
               source="IRS guidance on the Energy Efficient Home Improvement Credit"
+              checked={CHECKED}
             />
             <IncentiveRow
               name="GoGreen Home financing"
               detail="Financing rather than a rebate, so it lowers the monthly cost rather than the price. TID customers can take part because the programme was extended to customers of publicly owned utilities. We have not confirmed current rates or eligibility ourselves."
               state="verify"
               source="GoGreen Home programme, California"
+              checked={CHECKED}
             />
           </div>
 
@@ -490,120 +505,5 @@ export default function TurlockPage() {
         </Container>
       </Section>
     </>
-  );
-}
-
-/**
- * The fuel comparison.
- *
- * Kept in this file rather than lifted into `components/advisor` because
- * Turlock is the only market with both published rates in hand. It moves out
- * when a second market earns it.
- */
-const ROWS: { id: TechId; name: string }[] = [
-  { id: "gas-tank", name: "Gas storage tank" },
-  { id: "gas-tankless", name: "Gas tankless, condensing" },
-  { id: "electric-tank", name: "Electric resistance tank" },
-  { id: "heat-pump", name: "Heat pump water heater" },
-];
-
-function FuelTable() {
-  return (
-    <div data-print="keep" className="rounded-lg border border-border bg-card">
-      <div className="border-b border-border px-4 py-5 sm:px-6">
-        <h3 className="text-xl">Yearly fuel cost, Turlock rates</h3>
-        <p className="mt-1.5 text-sm text-muted-foreground">
-          {/* Cents, because that is the unit TID publishes and $0.1338 makes a
-              reader count decimal places to compare two numbers. */}
-          {TURLOCK_RATES.electricUtility} electricity at{" "}
-          {(TURLOCK_RATES.kWh[0] * 100).toFixed(2)}¢ to{" "}
-          {(TURLOCK_RATES.kWh[1] * 100).toFixed(2)}¢ per kWh.{" "}
-          {TURLOCK_RATES.gasUtility} gas at ${TURLOCK_RATES.therm.toFixed(3)} per therm.
-        </p>
-      </div>
-
-      <table className="w-full border-collapse text-left">
-        <caption className="sr-only">
-          Estimated yearly fuel cost by water heater technology at Turlock rates
-        </caption>
-        <thead>
-          <tr className="border-b border-border">
-            <th scope="col" className="py-3 pl-4 pr-3 text-sm font-medium text-muted-foreground sm:pl-6">
-              Technology
-            </th>
-            <th scope="col" className="py-3 pr-3 text-right text-sm font-medium text-muted-foreground">
-              Energy bought
-            </th>
-            <th scope="col" className="py-3 pr-4 text-right text-sm font-medium text-muted-foreground sm:pr-6">
-              Cost a year
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {ROWS.map(({ id, name }) => {
-            const cost = annualFuelCost(id, TURLOCK);
-            return (
-              <tr key={id} className="border-b border-border/70 last:border-0">
-                <th scope="row" className="py-3.5 pl-4 pr-3 text-left font-normal align-top sm:pl-6">
-                  <span className="text-[0.9375rem]">{name}</span>
-                  <span className="mt-0.5 block text-xs text-muted-foreground">
-                    {EFFICIENCY[id].basis}. Rated {EFFICIENCY[id].uef.toFixed(2)}.
-                  </span>
-                </th>
-                <td className="apparatus py-3.5 pr-3 text-right align-top whitespace-nowrap text-muted-foreground">
-                  {cost.purchased}
-                </td>
-                <td className="apparatus py-3.5 pr-4 text-right align-top whitespace-nowrap font-semibold sm:pr-6">
-                  {usdRange(cost.range)}
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-
-      <p className="border-t border-border px-4 py-4 text-sm leading-relaxed text-muted-foreground sm:px-6">
-        The electric rows carry a range because TID prices in tiers and water heating is a
-        marginal load stacked on top of whatever else the house is drawing. A Central
-        Valley home running air conditioning through a July afternoon is already past the
-        cheap tiers before the water heater switches on. The gas row is a single figure
-        because we hold one published bundled average, which is a weaker piece of evidence
-        and is shown as it is rather than dressed up as a range. Assumes{" "}
-        {DAILY_DRAW_GALLONS} gallons a day at {TURLOCK_RATES.setpointF}°F against a{" "}
-        {meanInletF(TURLOCK)}°F yearly mean incoming temperature, and a non-CARE gas
-        household. On CARE, read every gas figure here as roughly a fifth lower, which
-        narrows the gap to the heat pump without closing it.
-      </p>
-    </div>
-  );
-}
-
-function IncentiveRow({
-  name,
-  detail,
-  amount,
-  state,
-  source,
-}: {
-  name: string;
-  detail: string;
-  amount?: string;
-  state: "active" | "reserved" | "expired" | "verify";
-  source: string;
-}) {
-  return (
-    <article className="rounded-lg border border-border bg-card p-5 sm:p-6">
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <h3 className="max-w-md text-lg leading-snug">{name}</h3>
-        <div className="flex items-center gap-3">
-          {amount ? <span className="tabular text-lg font-semibold">{amount}</span> : null}
-          <RebateStatus state={state} />
-        </div>
-      </div>
-      <p className="mt-2.5 max-w-measure text-[0.9375rem] leading-relaxed text-muted-foreground">
-        {detail}
-      </p>
-      <SourceNote source={source} checked={CHECKED} />
-    </article>
   );
 }

@@ -140,6 +140,108 @@ export const TURLOCK: Market = {
 };
 
 /**
+ * Wave 1: Stockton, Tracy, Merced, Patterson.
+ *
+ * Every one of these inherits Modesto's modelled inlet range, and none of them
+ * has measured it. The expansion research is explicit on the point and it is
+ * worth restating here, because it is the assumption most likely to be quietly
+ * upgraded to a fact by a later editor: all four cities sit in California
+ * Building Climate Zone 12, and **climate zone does not give you an inlet
+ * temperature**. It describes air, not mains water, and mains water answers to
+ * source, depth of bury and season instead.
+ *
+ * So the confidence stays `modelled` everywhere below, the basis line says what
+ * the supply actually is, and the pages say so on screen. One set of readings
+ * from any of these water providers would upgrade the record for that city and
+ * nothing else.
+ */
+
+/**
+ * Stockton, San Joaquin County.
+ *
+ * The one city on the site with more than one retail *water* provider, which is
+ * why the record's basis line names a system rather than a blend. The City
+ * system runs groundwater considerably harder than either surface source, and a
+ * Cal Water address is a different system again.
+ */
+export const STOCKTON: Market = {
+  slug: "stockton",
+  city: "Stockton",
+  state: "California",
+  climate: {
+    winterInletF: [45, 55],
+    summerInletF: 72,
+    setpointF: 120,
+    confidence: "modelled",
+    basis:
+      "Modelled from the Modesto record. Stockton has more than one retail water provider and the City system mixes groundwater with two surface sources, so a measured figure would likely differ by provider as well as by season.",
+  },
+};
+
+/**
+ * Tracy, San Joaquin County.
+ *
+ * The widest verified source split in the candidate set: treated surface water
+ * at 23 mg/L against well water running to 390. Inlet temperature almost
+ * certainly moves with that same source question, which is a second reason the
+ * figure below is modelled rather than measured.
+ */
+export const TRACY: Market = {
+  slug: "tracy",
+  city: "Tracy",
+  state: "California",
+  climate: {
+    winterInletF: [45, 55],
+    summerInletF: 72,
+    setpointF: 120,
+    confidence: "modelled",
+    basis:
+      "Modelled from the Modesto record. Tracy blends treated surface water with well water in proportions that vary by address, and surface and groundwater do not arrive at the same temperature.",
+  },
+};
+
+/**
+ * Merced, Merced County.
+ *
+ * An all-groundwater municipal system, which makes the modelled figure a little
+ * less shaky here than in the blended cities: groundwater temperature is the
+ * steadier of the two inputs across a year.
+ */
+export const MERCED: Market = {
+  slug: "merced",
+  city: "Merced",
+  state: "California",
+  climate: {
+    winterInletF: [45, 55],
+    summerInletF: 72,
+    setpointF: 120,
+    confidence: "modelled",
+    basis:
+      "Modelled from the Modesto record. The City system is supplied entirely by wells in the Merced Groundwater Subbasin, and groundwater swings less across a year than a surface blend does.",
+  },
+};
+
+/**
+ * Patterson, Stanislaus County, on the Westside.
+ *
+ * TID electricity and PG&E gas, the same pairing as Turlock, which is why
+ * Patterson can run the fuel arithmetic. Its water is nothing like Turlock's.
+ */
+export const PATTERSON: Market = {
+  slug: "patterson",
+  city: "Patterson",
+  state: "California",
+  climate: {
+    winterInletF: [45, 55],
+    summerInletF: 72,
+    setpointF: 120,
+    confidence: "modelled",
+    basis:
+      "Modelled from the Modesto record. Patterson draws entirely on the lower aquifer of the Delta-Mendota Subbasin, which is a different source from anything else on the site and has not been measured for temperature.",
+  },
+};
+
+/**
  * Mean inlet across the year. The annual **energy** case, not the sizing case.
  *
  * Uses the midpoint of the winter range rather than its cold end, because
@@ -168,6 +270,25 @@ export interface MarketEntry {
   electricUtility: string;
   electricUtilityShort: string;
   gasUtility: string;
+  /**
+   * Overrides the index's "X electricity, Y gas" line.
+   *
+   * Half the markets on this site cannot answer "who sells you electricity"
+   * with one name. Stockton and Tracy have a generation supplier and a separate
+   * delivery utility on one bill; Merced's answer depends on the address. A
+   * single string flattens all of that into a claim the site cannot support,
+   * so the ambiguous markets write their own line.
+   */
+  electricLine?: string;
+  /**
+   * The utility territory the market belongs to, used to group the index.
+   *
+   * The site's whole expansion argument is that territory beats city name, and
+   * an index sorted by city quietly argues the opposite. Grouping by territory
+   * also does real work for the reader who has not yet realised their city is
+   * the wrong unit to search on.
+   */
+  territory: string;
   /** Why this market is not the one next door. One sentence, no marketing. */
   distinctive: string;
   checked: string;
@@ -191,6 +312,7 @@ export const MARKETS: MarketEntry[] = [
     electricUtility: "Modesto Irrigation District",
     electricUtilityShort: "MID",
     gasUtility: "PG&E",
+    territory: "Modesto Irrigation District",
     distinctive:
       "The first market, and the one the whole method was built against. Itemised local job costs, online permitting, and the reason we will not publish a single average price.",
     checked: "7 Aug 2026",
@@ -201,8 +323,56 @@ export const MARKETS: MarketEntry[] = [
     electricUtility: "Turlock Irrigation District",
     electricUtilityShort: "TID",
     gasUtility: "PG&E",
+    territory: "Turlock Irrigation District",
     distinctive:
       "Two utilities in one house, so the gas versus electric question has a real answer here. Published rates, a worked fuel comparison, and the strongest rebate position we have found anywhere.",
     checked: "20 Aug 2026",
+  },
+  {
+    market: PATTERSON,
+    href: "/local/california/patterson",
+    electricUtility: "Turlock Irrigation District",
+    electricUtilityShort: "TID",
+    gasUtility: "PG&E",
+    territory: "Turlock Irrigation District",
+    distinctive:
+      "The same two utilities as Turlock and the same fuel arithmetic, running against the hardest municipal water we have found anywhere on the site. The rebate and the water pull in opposite directions.",
+    checked: "21 Aug 2026",
+  },
+  {
+    market: STOCKTON,
+    href: "/local/california/stockton",
+    electricUtility: "Ava Community Energy generation, PG&E delivery",
+    electricUtilityShort: "Ava and PG&E",
+    gasUtility: "PG&E",
+    electricLine: "Ava generation on a PG&E bill, PG&E gas",
+    territory: "Ava Community Energy and PG&E",
+    distinctive:
+      "Two companies on one electricity bill, and more than one water company in one city. The largest market we cover and the one where an address settles the most.",
+    checked: "21 Aug 2026",
+  },
+  {
+    market: TRACY,
+    href: "/local/california/tracy",
+    electricUtility: "Ava Community Energy generation, PG&E delivery",
+    electricUtilityShort: "Ava and PG&E",
+    gasUtility: "PG&E",
+    electricLine: "Ava generation on a PG&E bill, PG&E gas",
+    territory: "Ava Community Energy and PG&E",
+    distinctive:
+      "The city's own report puts one water source seventeen times harder than the other, and the permit price turns on a single word in how the job is written up.",
+    checked: "21 Aug 2026",
+  },
+  {
+    market: MERCED,
+    href: "/local/california/merced",
+    electricUtility: "Merced Irrigation District or PG&E, by address",
+    electricUtilityShort: "Merced ID or PG&E",
+    gasUtility: "PG&E",
+    electricLine: "Merced Irrigation District or PG&E by address, PG&E gas",
+    territory: "Merced Irrigation District and PG&E",
+    distinctive:
+      "Which company sells you electricity depends on the address, not the city, and the rebate that follows has a condition most homeowners fail without knowing it.",
+    checked: "21 Aug 2026",
   },
 ];

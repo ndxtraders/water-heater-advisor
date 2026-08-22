@@ -5,8 +5,25 @@ import { Callout, DecisionPath } from "@/components/advisor/Panels";
 import { CheckedStamp } from "@/components/advisor/Status";
 import { Container, Eyebrow, Prose, Section, SectionHeading } from "@/components/common/Layout";
 import { ButtonLink } from "@/components/ui/Button";
-import { MARKETS } from "@/lib/market";
+import { MARKETS, type MarketEntry } from "@/lib/market";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
+
+/**
+ * Markets grouped by territory, in first-published order within each group.
+ *
+ * Derived rather than hand-maintained so that adding a market to `MARKETS` puts
+ * it in the right group automatically. An index that has to be updated in two
+ * places is an index that eventually disagrees with itself.
+ */
+const TERRITORIES: { territory: string; markets: MarketEntry[] }[] = MARKETS.reduce(
+  (groups, entry) => {
+    const existing = groups.find((g) => g.territory === entry.territory);
+    if (existing) existing.markets.push(entry);
+    else groups.push({ territory: entry.territory, markets: [entry] });
+    return groups;
+  },
+  [] as { territory: string; markets: MarketEntry[] }[],
+);
 
 export const metadata: Metadata = {
   alternates: { canonical: "/local" },
@@ -53,38 +70,58 @@ export default function LocalHubPage() {
         <Container width="narrow">
           <SectionHeading
             title="Markets we have researched"
-            lead="Each one carries its own rebate status, permit rules, utility rates and local conditions, and each figure on those pages carries a source and the date we last checked it."
+            lead="Grouped by the utility territory they sit in, because that is the thing that actually decides the answer. Each market carries its own rebate status, permit rules and local conditions, and each figure on those pages carries a source and the date we last checked it."
           />
 
-          <div className="space-y-5">
-            {MARKETS.map((entry) => (
-              <article
-                key={entry.href}
-                className="group relative rounded-2xl border border-border bg-card p-6 shadow-[0_1px_3px_rgba(11,33,67,0.06)] transition-[transform,box-shadow] duration-150 ease-out hover:-translate-y-1 hover:shadow-[0_12px_28px_-8px_rgba(11,33,67,0.16)] sm:p-7"
-              >
-                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
-                  <h3 className="text-2xl">
-                    <Link href={entry.href} className="after:absolute after:inset-0">
-                      {entry.market.city}
-                    </Link>
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {entry.market.state}
-                  </p>
+          {/*
+            Grouped rather than listed.
+
+            A flat list of cities quietly argues that the city is the unit,
+            which is the opposite of what this page says in its own headline.
+            Grouping also does real work for the reader who has not yet realised
+            that their city is the wrong thing to be searching on: seeing
+            Patterson filed under Turlock Irrigation District explains the site's
+            whole model faster than the paragraph above it does.
+          */}
+          <div className="space-y-12">
+            {TERRITORIES.map(({ territory, markets }) => (
+              <div key={territory}>
+                <h3 className="apparatus mb-4 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                  {territory}
+                </h3>
+                <div className="space-y-5">
+                  {markets.map((entry) => (
+                    <article
+                      key={entry.href}
+                      className="group relative rounded-2xl border border-border bg-card p-6 shadow-[0_1px_3px_rgba(11,33,67,0.06)] transition-[transform,box-shadow] duration-150 ease-out hover:-translate-y-1 hover:shadow-[0_12px_28px_-8px_rgba(11,33,67,0.16)] sm:p-7"
+                    >
+                      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+                        <h4 className="font-heading text-2xl">
+                          <Link href={entry.href} className="after:absolute after:inset-0">
+                            {entry.market.city}
+                          </Link>
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          {entry.market.state}
+                        </p>
+                      </div>
+
+                      <p className="mt-1.5 text-sm font-medium text-blue">
+                        {entry.electricLine ??
+                          `${entry.electricUtilityShort} electricity, ${entry.gasUtility} gas`}
+                      </p>
+
+                      <p className="mt-3 max-w-measure text-[0.9375rem] leading-relaxed text-muted-foreground">
+                        {entry.distinctive}
+                      </p>
+
+                      <div className="mt-5">
+                        <CheckedStamp date={entry.checked} />
+                      </div>
+                    </article>
+                  ))}
                 </div>
-
-                <p className="mt-1.5 text-sm font-medium text-blue">
-                  {entry.electricUtilityShort} electricity, {entry.gasUtility} gas
-                </p>
-
-                <p className="mt-3 max-w-measure text-[0.9375rem] leading-relaxed text-muted-foreground">
-                  {entry.distinctive}
-                </p>
-
-                <div className="mt-5">
-                  <CheckedStamp date={entry.checked} />
-                </div>
-              </article>
+              </div>
             ))}
           </div>
 
