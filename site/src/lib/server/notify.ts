@@ -80,7 +80,7 @@ function body(lead: LeadNotification): string {
 async function sendEmail(lead: LeadNotification): Promise<void> {
   const key = process.env.RESEND_API_KEY;
   const to = process.env.LEAD_NOTIFY_EMAIL;
-  const from = process.env.LEAD_FROM_EMAIL;
+  const from = sender();
 
   // Name the missing variables. "Not configured" on its own sends you to the
   // dashboard to compare three values by eye, which is how a single unticked
@@ -252,6 +252,23 @@ function homeownerBody(lead: LeadNotification, rec: Recommendation): string {
   return lines.join("\n");
 }
 
+/**
+ * The From header, with a display name.
+ *
+ * Mail clients show the display name and fall back to the local part of the
+ * address without one - so a bare `results@waterheateradvisor.com` arrives in
+ * Gmail as "Results", which tells a homeowner nothing and looks automated. The
+ * brand name is the thing they need to recognise in a crowded inbox.
+ *
+ * An address already carrying a display name (`Name <a@b.com>`) is passed
+ * through untouched, so this can be overridden entirely from the environment.
+ */
+function sender(): string | null {
+  const from = process.env.LEAD_FROM_EMAIL;
+  if (!from) return null;
+  return from.includes("<") ? from : `Water Heater Advisor <${from}>`;
+}
+
 /** The monitored mailbox. Falls back to the sender if it is unset. */
 function replyTo(): string {
   return process.env.LEAD_NOTIFY_EMAIL || process.env.LEAD_FROM_EMAIL || "";
@@ -271,7 +288,7 @@ export async function sendHomeownerResults(
   rec: Recommendation,
 ): Promise<boolean> {
   const key = process.env.RESEND_API_KEY;
-  const from = process.env.LEAD_FROM_EMAIL;
+  const from = sender();
 
   if (!key || !from) {
     const missing = [!key && "RESEND_API_KEY", !from && "LEAD_FROM_EMAIL"].filter(Boolean);
