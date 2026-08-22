@@ -13,12 +13,15 @@ import { cn } from "@/lib/utils";
  * on a tap. That is the bar red has to clear on this site (§3) — not scarcity,
  * but carrying real meaning.
  *
- * This comment used to finish by naming a red word in the logo as the example of
- * what would fail that bar. The wordmark now sets "Heater" in flag red, at Rev's
- * direction and for contrast rather than for meaning, so that line is gone
- * rather than left standing against the header it describes. The argument for
- * the mark is unaffected: the ticks still encode a scale. The rule is now one
- * with a stated exception instead of an absolute.
+ * The wordmark beside this mark sets "Heater" in the same red, and it clears the
+ * same bar: the red word is the word that means hot. Mark and wordmark encode
+ * one idea in two registers, a scale and a name, which is why the pairing reads
+ * as deliberate rather than as a logo with a colour dropped into it.
+ *
+ * An earlier version of this comment named "a logo with a red word in it" as its
+ * example of what would fail §3. That was too blunt. What fails §3 is red spent
+ * on a word that has nothing to do with heat, which is most of the category's
+ * logotypes and none of this one.
  *
  * 120°F is the midpoint for a real reason rather than a layout convenience.
  * Below it, water sits in the range where Legionella grows; above it, tap water

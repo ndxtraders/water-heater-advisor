@@ -19,11 +19,15 @@ import { site } from "@/lib/site";
  * geometric sans logotype next to a phone number; this should not be mistaken
  * for one before a visitor has read a word.
  *
- * "Heater" runs in flag red at Rev's direction (2026-08-22), for contrast. This
- * is a deliberate exception to the §3 rule that red must carry meaning rather
- * than decorate, and `Logo.tsx` used to cite a red word in the logo as its
- * example of what would fail that bar. That comment has been corrected rather
- * than left to contradict the shipped header.
+ * "Heater" runs in flag red (Rev, 2026-08-22). It was asked for as contrast and
+ * it earns its place on meaning, which is the §3 bar: the red word is the word
+ * that means hot. It is the same encoding the set-point mark makes three inches
+ * to its left, where the hot end of the scale is red for the same reason a tap
+ * is. Read together, mark and wordmark say the same thing twice.
+ *
+ * That is worth stating plainly because the first version of this comment
+ * recorded it as an exception to §3 rather than an instance of it, and the next
+ * person to touch the palette would have inherited the wrong reason.
  *
  * The colour is `--flag-red`, measured at 6.02:1 on paper, which clears AA for
  * normal text. It is deliberately not `--flag-red-light`, which measures 3.06:1
