@@ -4,6 +4,7 @@ import { Archivo, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
 import EmergencyBar from "@/components/advisor/EmergencyBar";
+import UtmCapture from "@/components/analytics/UtmCapture";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import { site } from "@/lib/site";
@@ -58,6 +59,7 @@ export default function RootLayout({
       className={`h-full ${archivo.variable} ${plexMono.variable}`}
     >
       <body className="flex min-h-full flex-col">
+        <UtmCapture />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-blue focus:px-4 focus:py-2 focus:text-white"

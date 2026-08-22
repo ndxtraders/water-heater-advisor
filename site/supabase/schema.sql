@@ -1,3 +1,21 @@
+-- SUPERSEDED. Do not run this file.
+--
+-- Replaced by supabase/migrations/, which is the source of truth for the
+-- database shape. This file is kept as the design record it actually is - the
+-- reasoning in the comments below is still correct and worth reading.
+--
+-- Two reasons not to run it, both fatal in practice:
+--
+--   1. `leads.assigned_partner` references `partners` twelve lines before that
+--      table is created, so a fresh apply dies with
+--      `relation "partners" does not exist` and rolls back everything after it.
+--      This file has therefore never been successfully applied to any database.
+--   2. The anon insert policies at the bottom describe an architecture that no
+--      longer exists. The browser holds no Supabase key; all writes go through
+--      Next.js route handlers using the service role.
+--
+-- See PRD-DATABASE-V.1.md at the repo root for the full account.
+
 -- Water Heater Advisor — database schema
 --
 -- Run in the Supabase SQL editor, or `supabase db push` if you are using the CLI.

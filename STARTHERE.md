@@ -38,26 +38,32 @@ requests at runtime.
 
 ---
 
-## 🔴 BLOCKED — do this first
+## Data capture — live
 
-**Supabase is not provisioned.** No project, no `.env.local`.
+**Supabase is provisioned and connected.** Project `lqxqmucpxcydwoyfeclj`, in the
+`ndxtraders` org. Quiz completions write to `quiz_sessions` and lead submissions
+write to `leads`, both verified end to end on 2026-08-22.
 
-Consequences, both live right now:
+The architecture changed at the same time, and the old description here was
+wrong in a way worth stating plainly: the browser no longer holds a Supabase key
+at all. Writes go through two Next.js route handlers — `/api/quiz-session` and
+`/api/lead` — using the service role, with validation, per-IP rate limiting and
+a ten-minute duplicate check in front of them. All five tables run RLS with
+**zero policies**, deliberately; see `supabase/migrations/*_rls.sql`.
 
-1. `recordSession()` silently no-ops. **Zero quiz data has been captured.** Every
-   completion so far has vanished.
-2. `submitLead()` returns an error every time. **The site cannot capture a
-   single lead.**
+`supabase/schema.sql` is superseded and must not be run. It never applied
+cleanly to any database. `supabase/migrations/` is the source of truth.
 
-The form is real and correct; the pipe is not connected. `supabase/schema.sql`
-runs as-is and creates four tables: `quiz_sessions` (anonymous),
-`leads` (identified, insert-only for anon), `partners`, `job_outcomes`.
+### Still outstanding — needs Rev's accounts
 
-Fix: create the project, paste URL + anon key into `site/.env.local` (see
-`.env.example`). This needs Rev's account and a cost confirmation, so an agent
-cannot do it unattended.
-
-Nothing else is worth building until this is done.
+1. **Resend** and **Twilio** credentials. Until they are set, a lead still saves
+   and the skipped notification is logged; nobody is alerted. See
+   `PRD-DATABASE-V.1.md` §10.
+2. **Vercel environment variables.** `.env.local` is set locally, but production
+   has nothing. The live site still captures nothing until these are added and
+   the project is redeployed.
+3. **Remove `NEXT_PUBLIC_SUPABASE_ANON_KEY` from Vercel** once the cutover is
+   verified in production — not before, so a rollback stays possible.
 
 ---
 

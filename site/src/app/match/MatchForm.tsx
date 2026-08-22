@@ -84,9 +84,14 @@ export default function MatchForm() {
     setBusy(true);
     setError(null);
 
-    // A readable snapshot travels with the lead. When Supabase is configured
-    // the session row holds the structured version, but the contractor-facing
+    // A readable snapshot travels with the lead. When the session row was
+    // written it holds the structured version, but the contractor-facing
     // summary should survive even if that link is missing.
+    //
+    // This deliberately no longer folds the homeowner's own notes into the
+    // summary. Composed into one string the two can never be separated again,
+    // and what the homeowner said in their own words is the more valuable half.
+    // The route stores them in two columns and recombines them for the email.
     const summary = rec
       ? [
           `Recommended: ${rec.primary.name}`,
@@ -97,11 +102,10 @@ export default function MatchForm() {
           rec.ruledOut.length
             ? `Ruled out: ${rec.ruledOut.map((r) => r.technology).join(", ")}`
             : null,
-          notes.trim() ? `Homeowner notes: ${notes.trim()}` : null,
         ]
           .filter(Boolean)
           .join("\n")
-      : notes.trim();
+      : undefined;
 
     const result = await submitLead({
       sessionId: handoff?.sessionId ?? null,
@@ -109,7 +113,11 @@ export default function MatchForm() {
       email: email.trim(),
       phone: phone.trim() || undefined,
       zip,
-      notes: summary,
+      notes: notes.trim() || undefined,
+      recommendationSummary: summary,
+      // Drives the urgent-lead SMS. The engine sets this for the no-hot-water
+      // and leaking-tank paths.
+      urgent: rec?.urgent ?? false,
       consent,
       consentText: CONSENT_TEXT,
     });

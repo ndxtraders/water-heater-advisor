@@ -1,76 +1,65 @@
-import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-
 import type { Recommendation } from "@/lib/quiz/engine";
 import type { Answers } from "@/lib/quiz/questions";
+import { readUtm } from "@/lib/quiz/utm";
 
 /**
- * Supabase access.
+ * The browser's half of the data layer.
  *
- * The anon key is public by design — it ships to the browser and anyone can
- * read it out of the bundle. Everything that keeps data safe lives in the row
- * level security policies in `supabase/schema.sql`, where the anon role has
- * insert and nothing else. Do not add a select policy to make a dashboard
- * easier; build the dashboard server side with the service role instead.
+ * There is no Supabase client here and no Supabase key in the bundle. Both
+ * functions post to a Next.js route handler, which writes to Postgres with the
+ * service role from the server.
+ *
+ * That is the whole point of the arrangement. An anon key shipped to the
+ * browser can be lifted out of the bundle by anyone with devtools, and while
+ * row level security stops them *reading*, an insert policy of `with check
+ * (true)` lets them write forever — unlimited junk rows, no rate limit, no
+ * validation. Moving the write server-side removes that vector rather than
+ * mitigating it, and lets the server validate, rate-limit and de-duplicate
+ * before anything reaches the database.
  */
-let client: SupabaseClient | null = null;
-
-export function supabase(): SupabaseClient | null {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  // Missing config is not fatal. The quiz is useful with or without a backend,
-  // and a homeowner should never lose their recommendation because an
-  // environment variable is absent.
-  if (!url || !key) return null;
-  if (!client) client = createClient(url, key);
-  return client;
-}
 
 /**
  * Record a completed quiz, anonymously, the moment results render.
  *
  * Written before any contact capture and containing no personal data. This is
  * what makes the drop-off funnel measurable: how many people reach a
- * recommendation, and how many of those go on to ask for an installer. Without
- * it the only visible number is submissions, which cannot distinguish a quiz
- * nobody finishes from one that finishes but does not convert.
+ * recommendation, and how many of those go on to ask for an installer.
+ *
+ * Returns null on any failure, and that is never surfaced. The recommendation
+ * on screen is the thing the homeowner came for and it is already correct.
  */
 export async function recordSession(
   answers: Answers,
   rec: Recommendation,
 ): Promise<string | null> {
-  const db = supabase();
-  if (!db) return null;
-
-  const { data, error } = await db
-    .from("quiz_sessions")
-    .insert({
-      answers,
-      zip: answers.zip ?? null,
-      status: answers.status ?? null,
-      current_type: answers.current ?? null,
-      fuel: answers.fuel ?? null,
-      timeline: answers.timeline ?? null,
-      budget_band: answers.budget ?? null,
-      owner_status: answers.owner ?? null,
-      recommended_tech: rec.primary.id,
-      alternative_tech: rec.alternative?.id ?? null,
-      ruled_out: rec.ruledOut,
-      confidence: rec.confidence,
-      lead_score: rec.score,
-      routing_category: rec.category,
-      completed: true,
-      referrer: typeof document !== "undefined" ? document.referrer || null : null,
-    })
-    .select("id")
-    .single();
-
-  if (error) {
-    // Never surface this. The recommendation on screen is the thing the
-    // homeowner came for and it is already correct.
-    console.error("session insert failed", error.message);
+  try {
+    const res = await fetch("/api/quiz-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        answers,
+        // Only the fields the row stores. The full Recommendation object holds
+        // rendered prose the database has no use for.
+        recommendation: {
+          urgent: rec.urgent,
+          primaryId: rec.primary.id,
+          alternativeId: rec.alternative?.id ?? null,
+          ruledOut: rec.ruledOut,
+          confidence: rec.confidence,
+          score: rec.score,
+          category: rec.category,
+        },
+        referrer: typeof document !== "undefined" ? document.referrer || null : null,
+        utm: readUtm(),
+      }),
+    });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { sessionId: string | null };
+    return data.sessionId ?? null;
+  } catch (err) {
+    console.error("session record failed", err);
     return null;
   }
-  return data?.id ?? null;
 }
 
 export interface LeadInput {
@@ -79,19 +68,29 @@ export interface LeadInput {
   email: string;
   phone?: string;
   zip: string;
+  /** The homeowner's own words, raw and unmixed with anything generated. */
   notes?: string;
+  /** Engine-generated summary, stored in its own column. */
+  recommendationSummary?: string;
+  urgent: boolean;
   consent: boolean;
   consentText: string;
 }
 
 /** Written only when someone explicitly asks to be introduced to an installer. */
-export async function submitLead(input: LeadInput): Promise<{ ok: boolean; error?: string }> {
-  const db = supabase();
-  if (!db) {
-    // Homeowner-facing wording. They did not do anything wrong and they should
-    // not be shown our configuration state, but they do need to know the
-    // submission did not land so they can act rather than sit waiting.
-    console.error("submitLead: Supabase is not configured");
+export async function submitLead(
+  input: LeadInput,
+): Promise<{ ok: boolean; error?: string }> {
+  try {
+    const res = await fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(input),
+    });
+    const data = (await res.json()) as { ok: boolean; error?: string };
+    return data;
+  } catch (err) {
+    console.error("lead submit failed", err);
     return {
       ok: false,
       error:
@@ -100,21 +99,4 @@ export async function submitLead(input: LeadInput): Promise<{ ok: boolean; error
         "yours to take straight to a contractor.",
     };
   }
-
-  const { error } = await db.from("leads").insert({
-    session_id: input.sessionId,
-    full_name: input.fullName,
-    email: input.email,
-    phone: input.phone || null,
-    zip: input.zip,
-    notes: input.notes || null,
-    contact_consent: input.consent,
-    // The exact wording consented to, stored alongside the timestamp. A bare
-    // boolean is not defensible if consent is ever challenged.
-    consent_text: input.consentText,
-    consent_at: input.consent ? new Date().toISOString() : null,
-  });
-
-  if (error) return { ok: false, error: error.message };
-  return { ok: true };
 }
