@@ -25,6 +25,39 @@ const TERRITORIES: { territory: string; markets: MarketEntry[] }[] = MARKETS.red
   [] as { territory: string; markets: MarketEntry[] }[],
 );
 
+/**
+ * Counts spelled out, derived rather than typed.
+ *
+ * The copy below used to read "Two markets are published today, both in
+ * Stanislaus County". It was true when it was written and it was wrong by the
+ * time four more markets shipped, which is the failure mode of any sentence
+ * that counts something in prose. Deriving it means the paragraph cannot
+ * disagree with the list directly above it.
+ *
+ * Spelled out because a numeral mid-sentence reads like a spec sheet, and the
+ * fallback keeps the sentence grammatical rather than correct-looking if this
+ * ever passes twelve.
+ */
+const WORDS = [
+  "No",
+  "One",
+  "Two",
+  "Three",
+  "Four",
+  "Five",
+  "Six",
+  "Seven",
+  "Eight",
+  "Nine",
+  "Ten",
+  "Eleven",
+  "Twelve",
+] as const;
+const spell = (n: number) => WORDS[n] ?? String(n);
+
+const MARKET_COUNT = spell(MARKETS.length);
+const TERRITORY_COUNT = spell(TERRITORIES.length).toLowerCase();
+
 export const metadata: Metadata = {
   alternates: { canonical: "/local" },
   title: "Local water heater guidance by market",
@@ -179,16 +212,21 @@ export default function LocalHubPage() {
           <Prose>
             <h2>Your city is not listed</h2>
             <p>
-              Two markets are published today, both in Stanislaus County, so that will be
-              most people reading this. It means we have not done the work for your city
-              yet, and we would rather say so than publish a page with your city name
-              pasted into someone else&rsquo;s research. The quiz does not depend on
-              having a local page for you: the technology, sizing and feasibility
-              questions are identical in every market, and the one genuinely local input
-              it needs, your postcode, it asks for directly.
+              {MARKET_COUNT} markets are published today, across {TERRITORY_COUNT}{" "}
+              utility territories in the Central Valley. That leaves out most of
+              California, so
+              for a lot of people reading this the honest answer is that we have not done
+              the work for your city yet. We would rather say so than publish a page with
+              your city name pasted into someone else&rsquo;s research.
             </p>
             <p>
-              Markets are added by utility territory, working outward from the ones above.{" "}
+              None of that stops the quiz working for you. The technology, sizing and
+              feasibility questions are identical in every market, and the one genuinely
+              local input it needs, your postcode, it asks for directly.
+            </p>
+            <p>
+              Markets are added by utility territory rather than by population, working
+              outward from the ones above.{" "}
               <Link href="/methodology">Our method explains how</Link>, including what we
               will not publish and why.
             </p>
