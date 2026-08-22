@@ -71,8 +71,19 @@ async function sendEmail(lead: LeadNotification): Promise<void> {
   const to = process.env.LEAD_NOTIFY_EMAIL;
   const from = process.env.LEAD_FROM_EMAIL;
 
-  if (!key || !to || !from) {
-    console.warn(`lead ${lead.id} saved, email skipped: Resend is not configured`);
+  // Name the missing variables. "Not configured" on its own sends you to the
+  // dashboard to compare three values by eye, which is how a single unticked
+  // environment goes unnoticed through two deploys.
+  const missing = [
+    !key && "RESEND_API_KEY",
+    !to && "LEAD_NOTIFY_EMAIL",
+    !from && "LEAD_FROM_EMAIL",
+  ].filter(Boolean);
+
+  if (missing.length) {
+    console.warn(
+      `lead ${lead.id} saved, email skipped. Missing: ${missing.join(", ")}`,
+    );
     return;
   }
 
