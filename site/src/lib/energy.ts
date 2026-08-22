@@ -73,7 +73,7 @@ export interface FuelRates {
 }
 
 /**
- * Turlock: TID electricity, PG&E gas.
+ * TID electricity, PG&E gas.
  *
  * TID rates are the 2026 residential schedule. The low bound is the winter
  * first-700 kWh tier, the high bound is the summer above-1,100 kWh tier. The
@@ -84,14 +84,23 @@ export interface FuelRates {
  * CARE household pays $2.205 and should read every gas figure on the page as
  * roughly a fifth lower. Gas commodity prices move, so this needs re-checking
  * on a schedule rather than being treated as settled.
+ *
+ * Named for the territory rather than for Turlock, because the territory is
+ * what the rates belong to. Patterson buys from the same two utilities off the
+ * same two published schedules, so it reads the same card. That is the whole
+ * argument for organising this site by utility rather than by city, expressed
+ * as one shared constant instead of two identical ones drifting apart.
  */
-export const TURLOCK_RATES: FuelRates = {
+export const TID_PGE_RATES: FuelRates = {
   electricUtility: "Turlock Irrigation District",
   gasUtility: "PG&E",
   kWh: [0.1338, 0.1891],
   therm: 2.784,
   setpointF: 120,
 };
+
+/** @deprecated Use {@link TID_PGE_RATES}. Kept while callers migrate. */
+export const TURLOCK_RATES = TID_PGE_RATES;
 
 export interface Efficiency {
   /** Uniform Energy Factor, or its coefficient-of-performance equivalent. */
@@ -155,7 +164,7 @@ export interface FuelCost {
 export function annualFuelCost(
   id: TechId,
   market: Market,
-  rates: FuelRates = TURLOCK_RATES,
+  rates: FuelRates = TID_PGE_RATES,
 ): FuelCost {
   const heat = annualHeatBtu(market, rates);
   const eff = EFFICIENCY[id];

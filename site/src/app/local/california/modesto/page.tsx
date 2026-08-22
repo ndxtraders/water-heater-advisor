@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { CostBreakdown } from "@/components/advisor/Cost";
+import { IncentiveRow } from "@/components/advisor/Local";
 import { Callout, DecisionPath, LocalDataPanel } from "@/components/advisor/Panels";
-import { CheckedStamp, RebateStatus, SourceNote } from "@/components/advisor/Status";
+import { CheckedStamp, SourceNote } from "@/components/advisor/Status";
 import { Container, Eyebrow, Prose, Section, SectionHeading } from "@/components/common/Layout";
 import { ButtonLink } from "@/components/ui/Button";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
@@ -60,25 +61,30 @@ export default function ModestoPage() {
               amount="$1,000"
               state="active"
               source="TID residential gas-to-electric rebate application, 2026"
+              checked={CHECKED}
             />
             <IncentiveRow
               name="Modesto Irrigation District, heat pump water heater"
-              detail="For qualifying heat pump water heater replacements. Confirm current eligibility and funding directly with MID before counting on it."
+              detail="MID's 2026 catalogue pays this to replace an electric tank storage water heater, which is the condition most Modesto homes fail without realising. The unit needs to be ENERGY STAR, rated UEF 2.2 or better, over 40 gallons, and installed outside conditioned living space. One per household, and the application is due within 90 days. If you heat water with gas today, read the TID row above instead and check whether you are in that slice of eastern Modesto."
               amount="$500"
               state="active"
-              source="California Switch Is On incentive listing for MID"
+              source="MID 2026 Home Rebate Catalog"
+              href="https://www.mid.org/wp-content/uploads/MID_Residential_Rebate_Catalog_2026.pdf"
+              checked={CHECKED}
             />
             <IncentiveRow
               name="California HEEHRA, single family"
               detail="The programme exists but statewide funds are committed. New single family projects are being waitlisted rather than funded."
               state="reserved"
               source="California HEEHRA programme status"
+              checked={CHECKED}
             />
             <IncentiveRow
               name="Federal 25C energy efficient home improvement credit"
               detail="Cannot be claimed for property placed in service after 31 December 2025. Many articles still quote the old 30 percent figure."
               state="expired"
               source="IRS guidance on the Energy Efficient Home Improvement Credit"
+              checked={CHECKED}
             />
           </div>
 
@@ -307,32 +313,3 @@ export default function ModestoPage() {
   );
 }
 
-function IncentiveRow({
-  name,
-  detail,
-  amount,
-  state,
-  source,
-}: {
-  name: string;
-  detail: string;
-  amount?: string;
-  state: "active" | "reserved" | "expired" | "verify";
-  source: string;
-}) {
-  return (
-    <article className="rounded-lg border border-border bg-card p-5 sm:p-6">
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <h3 className="max-w-md text-lg leading-snug">{name}</h3>
-        <div className="flex items-center gap-3">
-          {amount ? <span className="tabular text-lg font-semibold">{amount}</span> : null}
-          <RebateStatus state={state} />
-        </div>
-      </div>
-      <p className="mt-2.5 max-w-measure text-[0.9375rem] leading-relaxed text-muted-foreground">
-        {detail}
-      </p>
-      <SourceNote source={source} checked={CHECKED} />
-    </article>
-  );
-}
