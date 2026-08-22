@@ -11,8 +11,14 @@ import { cn } from "@/lib/utils";
  * *mean* something. Red here is not decoration and not a brand accent: it is the
  * hot end of a temperature scale, encoding a physical quantity the way it does
  * on a tap. That is the bar red has to clear on this site (§3) — not scarcity,
- * but carrying real meaning. A logo with a red word in it for patriotic flavour
- * would not clear it; this does.
+ * but carrying real meaning.
+ *
+ * This comment used to finish by naming a red word in the logo as the example of
+ * what would fail that bar. The wordmark now sets "Heater" in flag red, at Rev's
+ * direction and for contrast rather than for meaning, so that line is gone
+ * rather than left standing against the header it describes. The argument for
+ * the mark is unaffected: the ticks still encode a scale. The rule is now one
+ * with a stated exception instead of an absolute.
  *
  * 120°F is the midpoint for a real reason rather than a layout convenience.
  * Below it, water sits in the range where Legionella grows; above it, tap water

@@ -18,13 +18,28 @@ import { site } from "@/lib/site";
  * the mark does the distinguishing. Every plumbing competitor in the SERP is a
  * geometric sans logotype next to a phone number; this should not be mistaken
  * for one before a visitor has read a word.
+ *
+ * "Heater" runs in flag red at Rev's direction (2026-08-22), for contrast. This
+ * is a deliberate exception to the §3 rule that red must carry meaning rather
+ * than decorate, and `Logo.tsx` used to cite a red word in the logo as its
+ * example of what would fail that bar. That comment has been corrected rather
+ * than left to contradict the shipped header.
+ *
+ * The colour is `--flag-red`, measured at 6.02:1 on paper, which clears AA for
+ * normal text. It is deliberately not `--flag-red-light`, which measures 3.06:1
+ * and would fail here: the wordmark is 17px, just under the 18.66px bold
+ * threshold where the 3:1 large-text allowance starts. Re-measure if either
+ * token moves (DESIGN-SYSTEM.md §8).
+ *
+ * "Heater" keeps its own colour through the hover, because a red word that
+ * turns blue on hover reads as a broken link rather than a wordmark.
  */
 function Wordmark() {
   return (
     <Link href="/" className="group inline-flex items-center gap-2.5 font-heading">
       <SetPointMark width={46} className="text-foreground" />
       <span className="text-[1.0625rem] font-extrabold tracking-tight text-navy transition-colors group-hover:text-blue">
-        Water Heater Advisor
+        Water <span className="text-flag-red">Heater</span> Advisor
       </span>
     </Link>
   );
