@@ -15,6 +15,8 @@ import "server-only";
  * Resend and Twilio accounts exist.
  */
 
+import type { Recommendation } from "@/lib/quiz/engine";
+
 export interface LeadNotification {
   id: string;
   fullName: string;
@@ -28,6 +30,8 @@ export interface LeadNotification {
   notes: string | null;
   consentText: string | null;
   consentAt: string | null;
+  /** True when they also asked to be introduced to an installer. */
+  introRequested: boolean;
 }
 
 const PROJECT_REF = "lqxqmucpxcydwoyfeclj";
@@ -43,7 +47,11 @@ function rowLink(id: string): string {
 function subject(lead: LeadNotification): string {
   const score = lead.leadScore === null ? "?" : String(lead.leadScore);
   const tech = lead.recommendedTech ?? "unknown";
-  return `[Lead] ${lead.zip} — ${tech} — score ${score}${lead.urgent ? " — URGENT" : ""}`;
+  // Two intents, two prefixes. A list signup and a homeowner asking to be
+  // called today should not look the same in the inbox, or the second one gets
+  // lost among the first within a month.
+  const tag = lead.introRequested ? "Lead" : "List";
+  return `[${tag}] ${lead.zip} — ${tech} — score ${score}${lead.urgent ? " — URGENT" : ""}`;
 }
 
 function body(lead: LeadNotification): string {
@@ -52,6 +60,9 @@ function body(lead: LeadNotification): string {
     `Email: ${lead.email}`,
     `Phone: ${lead.phone ?? "not given"}`,
     `Zip:   ${lead.zip}`,
+    lead.introRequested
+      ? "\nAsked to be introduced to an installer."
+      : "\nDid NOT ask for an installer. Results email only - do not pass these details to a contractor.",
     lead.urgent ? "\nURGENT — no hot water or a leaking tank. Same-day response decides this job." : "",
     "\n--- Recommendation ---",
     lead.recommendationSummary ?? "none recorded",
@@ -151,4 +162,133 @@ async function sendSms(lead: LeadNotification): Promise<void> {
 /** Never throws. Callers do not need to await it before responding. */
 export async function notifyLead(lead: LeadNotification): Promise<void> {
   await Promise.allSettled([sendEmail(lead), sendSms(lead)]);
+}
+
+
+/* -------------------------------------------------------------------------
+   The homeowner's own copy
+   ------------------------------------------------------------------------- */
+
+const usd = (n: number) => `$${n.toLocaleString("en-US")}`;
+
+/**
+ * What the homeowner actually asked for when they typed their address.
+ *
+ * The recommendation is already on screen by the time they reach the form -
+ * that is the promise the whole site rests on - so a bare copy of it is a weak
+ * reason to hand over an email. What this adds is the part they cannot keep in
+ * their head: the questions to ask and the things to watch for, in their inbox,
+ * at the kitchen table with a contractor standing there.
+ *
+ * Both lists are already computed by the engine and already rendered on the
+ * results page. Nothing new is invented here.
+ */
+function homeownerBody(lead: LeadNotification, rec: Recommendation): string {
+  const lines: string[] = [
+    `${lead.fullName.split(" ")[0] || "Hello"},`,
+    "",
+    "Here is the recommendation from your answers, so you have it in writing.",
+    "",
+    "YOUR RECOMMENDATION",
+    `  System        ${rec.primary.name}`,
+    `  Size          ${rec.sizing}`,
+    `  Expected cost ${usd(rec.costRange[0])} to ${usd(rec.costRange[1])}`,
+    `  Installer     ${rec.installerType}`,
+    `  Confidence    ${rec.confidence}`,
+  ];
+
+  if (rec.alternative) {
+    lines.push(`  Also worth considering: ${rec.alternative.name}`);
+  }
+
+  if (rec.ruledOut.length) {
+    lines.push("", "WHAT WE RULED OUT, AND WHY");
+    for (const r of rec.ruledOut) lines.push(`  ${r.technology} - ${r.reason}`);
+  }
+
+  if (rec.questionsToAsk.length) {
+    lines.push("", "QUESTIONS TO ASK BEFORE YOU SIGN ANYTHING");
+    for (const q of rec.questionsToAsk) lines.push(`  - ${q}`);
+  }
+
+  if (rec.watchFor.length) {
+    lines.push("", "WHAT TO WATCH FOR");
+    for (const w of rec.watchFor) lines.push(`  - ${w}`);
+  }
+
+  if (rec.brandFits.length) {
+    lines.push("", "BRANDS THAT SUIT THIS JOB");
+    for (const b of rec.brandFits) {
+      // Lead with the technology, not the brand name. A brand read on its own
+      // gets filled in from reputation - somebody who knows Navien for tankless
+      // will read "Navien" as tankless even under a heat pump recommendation.
+      lines.push(`  ${b.name} (${rec.primary.name})`);
+      for (const reason of b.reasons) lines.push(`      ${reason}`);
+      if (b.caution) lines.push(`      Worth checking: ${b.caution}`);
+    }
+  }
+
+  lines.push(
+    "",
+    lead.introRequested
+      ? "WHAT HAPPENS NEXT\n  You asked to be introduced to a local installer. We will look at\n  your answers and put you in touch with one contractor who does this\n  specific work, within one working day."
+      : "WHAT HAPPENS NEXT\n  Nothing, unless you want it to. You did not ask to be introduced to\n  an installer, so we have not passed your details to anyone. This\n  recommendation is yours to take to any contractor you like.",
+    "",
+    "We are not a plumbing company and we do not install anything. We are paid",
+    "by the installers we introduce people to, and that never changes what we",
+    "recommend.",
+    "",
+    "Water Heater Advisor",
+    "https://waterheateradvisor.com",
+  );
+
+  return lines.join("\n");
+}
+
+/**
+ * Sends the homeowner their own copy. Returns true when the provider accepted
+ * it, so the caller can record `results_email_sent_at`.
+ *
+ * Same posture as every other send in this file: never throws, never blocks.
+ * Until the sending domain is verified, Resend's shared sender can only deliver
+ * to the account owner, so this will fail for real homeowners and succeed for
+ * nobody else. That failure is logged and the lead is unaffected.
+ */
+export async function sendHomeownerResults(
+  lead: LeadNotification,
+  rec: Recommendation,
+): Promise<boolean> {
+  const key = process.env.RESEND_API_KEY;
+  const from = process.env.LEAD_FROM_EMAIL;
+
+  if (!key || !from) {
+    const missing = [!key && "RESEND_API_KEY", !from && "LEAD_FROM_EMAIL"].filter(Boolean);
+    console.warn(
+      `lead ${lead.id}: homeowner copy not sent. Missing: ${missing.join(", ")}`,
+    );
+    return false;
+  }
+
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from,
+        to: [lead.email],
+        subject: `Your water heater recommendation: ${rec.primary.name}`,
+        text: homeownerBody(lead, rec),
+      }),
+    });
+    if (!res.ok) {
+      console.error(
+        `lead ${lead.id}: homeowner copy failed ${res.status} ${await res.text()}`,
+      );
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.error(`lead ${lead.id}: homeowner copy threw`, err);
+    return false;
+  }
 }

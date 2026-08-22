@@ -76,7 +76,12 @@ export default function MatchForm() {
 
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const zipOk = /^\d{5}$/.test(zip);
-  const canSubmit = fullName.trim().length > 1 && emailOk && zipOk && consent && !busy;
+  // Consent is deliberately NOT part of this. It authorises passing details to
+  // an installer, and requiring it to submit meant everybody still deciding -
+  // most people researching a purchase - left no trace and got nothing back.
+  // They asked for their recommendation; that is reason enough to accept the
+  // form.
+  const canSubmit = fullName.trim().length > 1 && emailOk && zipOk && !busy;
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -144,15 +149,35 @@ export default function MatchForm() {
               className="size-10 text-verdict-fit"
               strokeWidth={2}
             />
-            <h1 className="mt-5 text-3xl">That is with us</h1>
+            <h1 className="mt-5 text-3xl">Check your email</h1>
             <p className="mt-4 leading-relaxed text-foreground">
-              We will look at your answers and introduce you to one local installer who
-              does this specific work. You should hear from us within one working day.
+              Your recommendation is on its way to{" "}
+              <strong className="font-semibold">{email.trim()}</strong>, from Water Heater
+              Advisor. It has the system, the size, the expected cost and the questions
+              worth asking before you sign anything.
             </p>
+            {/* Gmail files most first-contact mail under Promotions, and a new
+                sending domain lands in spam often enough that saying so is more
+                use than a polished sentence that leaves them waiting. */}
             <p className="mt-4 leading-relaxed text-muted-foreground">
-              If you would rather not wait, everything in your recommendation is still
-              yours to take to any contractor you like. That was the point of it.
+              If it is not there in a few minutes, check your <strong>Promotions</strong>{" "}
+              tab, then <strong>Spam</strong> and <strong>Trash</strong>. It sometimes
+              lands in one of those the first time. Marking it &ldquo;not spam&rdquo;
+              means anything we send later reaches you properly.
             </p>
+            {consent ? (
+              <p className="mt-4 leading-relaxed text-foreground">
+                You also asked for an installer introduction. We will look at your
+                answers and put you in touch with one contractor who does this specific
+                work, within one working day.
+              </p>
+            ) : (
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                You did not ask for an installer, so we have not passed your details to
+                anyone. The recommendation is yours to take to any contractor you like.
+                That was the point of it.
+              </p>
+            )}
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/installers/how-to-choose" size="lg">
                 How to check a contractor
@@ -172,12 +197,13 @@ export default function MatchForm() {
     <Section className="pt-12 sm:pt-16">
       <Container width="narrow">
         <h1 className="text-4xl leading-[1.1] sm:text-[2.75rem]">
-          Get introduced to one local installer
+          Get your recommendation by email
         </h1>
         <div aria-hidden className="mt-5 h-1 w-14 rounded-full bg-blue" />
         <p className="mt-6 max-w-measure text-lg leading-relaxed text-navy">
-          One installer suited to this job, not four of them calling you at dinner. You
-          keep your recommendation either way.
+          We will send you everything above in writing, plus the questions worth asking
+          before you sign anything. If you also want an introduction to one local
+          installer, tick the box. That part is optional.
         </p>
 
         {/* Showing exactly what gets sent, before it is sent. Every lead site in
@@ -185,10 +211,11 @@ export default function MatchForm() {
             worst about all of them. */}
         {loaded && rec ? (
           <Card className="mt-9 sm:p-7">
-            <h2 className="text-xl">What we will send them</h2>
+            <h2 className="text-xl">What we will send you</h2>
             <p className="mt-2 text-[0.9375rem] text-muted-foreground">
-              Taken from your answers. It is why a contractor can give you a useful
-              number instead of asking you everything again.
+              Taken from your answers. If you ask for an installer introduction, this is
+              also exactly what they receive - it is why a contractor can give you a
+              useful number instead of asking you everything again.
             </p>
             <dl className="mt-5 space-y-3 border-t border-border pt-5">
               {[
@@ -220,7 +247,7 @@ export default function MatchForm() {
                 })}
             </dl>
             <p className="mt-5 border-t border-border pt-4 text-xs leading-relaxed text-muted-foreground">
-              We do not send anything you have not seen here.
+              We do not send anyone anything you have not seen here.
             </p>
           </Card>
         ) : null}
@@ -297,8 +324,11 @@ export default function MatchForm() {
           </div>
 
           {/* Unchecked by default, and the full wording is visible rather than
-              hidden behind a link. Pre-ticking this would not be consent. */}
+              hidden behind a link. Pre-ticking this would not be consent.
+              Leaving it unticked is a complete, valid submission - they get
+              their recommendation and nobody calls them. */}
           <div className="mt-7 rounded-xl border border-border bg-tint p-5">
+            <p className="mb-3 text-sm font-medium">Optional: want an installer too?</p>
             <label className="flex cursor-pointer gap-3.5">
               <input
                 type="checkbox"
@@ -328,7 +358,7 @@ export default function MatchForm() {
 
           <div className="mt-7">
             <Button type="submit" size="lg" disabled={!canSubmit}>
-              {busy ? "Sending…" : "Introduce me to an installer"}
+              {busy ? "Sending…" : "Send my recommendation"}
               {!busy ? <ArrowRight aria-hidden className="size-4" /> : null}
             </Button>
           </div>

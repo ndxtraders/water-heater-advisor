@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-import { notifyLead } from "@/lib/server/notify";
+import { recommend } from "@/lib/quiz/engine";
+import type { Answers } from "@/lib/quiz/questions";
+import { notifyLead, sendHomeownerResults } from "@/lib/server/notify";
 import { hashIp, logSubmission, overLimit } from "@/lib/server/rate-limit";
 import { serviceClient } from "@/lib/server/supabase";
 
@@ -125,6 +127,9 @@ export async function POST(req: Request) {
       consent_text: input.consentText,
       consent_at: input.consent ? new Date().toISOString() : null,
       urgent: input.urgent,
+      // Consent to be introduced is what separates the two intents. Everyone
+      // who submits wants their recommendation; only some want a contractor.
+      stage: input.consent ? "intro_requested" : "results",
       ip_hash: ipHash,
     })
     .select("id")
@@ -140,19 +145,39 @@ export async function POST(req: Request) {
   // The lead is durable from here. Everything below is best-effort and cannot
   // change what the homeowner sees.
   const leadId = data!.id as string;
+
+  // Recompute the recommendation from the stored answers rather than trusting
+  // the summary string the browser sent. Two reasons: the homeowner's copy has
+  // to match what the engine actually produced, and the client only sends a
+  // short summary - the questions-to-ask and watch-for lists, which are the
+  // reason the email is worth opting into, never leave the server otherwise.
+  let rec: ReturnType<typeof recommend> | null = null;
   let leadScore: number | null = null;
   let recommendedTech: string | null = null;
+
   if (input.sessionId) {
     const { data: session } = await db
       .from("quiz_sessions")
-      .select("lead_score, recommended_tech")
+      .select("answers, lead_score, recommended_tech")
       .eq("id", input.sessionId)
       .maybeSingle();
+
     leadScore = (session?.lead_score as number | null) ?? null;
     recommendedTech = (session?.recommended_tech as string | null) ?? null;
+
+    if (session?.answers) {
+      try {
+        rec = recommend(session.answers as Answers);
+      } catch (err) {
+        // A stored answer set the current engine cannot read is not a reason to
+        // lose the lead. The internal email still goes out with the client's
+        // summary; only the homeowner's copy is skipped.
+        console.error(`lead ${leadId}: could not replay answers`, err);
+      }
+    }
   }
 
-  await notifyLead({
+  const notification = {
     id: leadId,
     fullName: input.fullName,
     email: input.email,
@@ -165,7 +190,25 @@ export async function POST(req: Request) {
     notes: input.notes ?? null,
     consentText: input.consentText,
     consentAt: input.consent ? new Date().toISOString() : null,
-  });
+    introRequested: input.consent,
+  };
+
+  await notifyLead(notification);
+
+  if (rec) {
+    const sent = await sendHomeownerResults(notification, rec);
+    if (sent) {
+      const { error: stampError } = await db
+        .from("leads")
+        .update({ results_email_sent_at: new Date().toISOString() })
+        .eq("id", leadId);
+      if (stampError) {
+        console.error(`lead ${leadId}: could not stamp results_email_sent_at`, stampError.message);
+      }
+    }
+  } else {
+    console.warn(`lead ${leadId}: no replayable session, homeowner copy skipped`);
+  }
 
   return NextResponse.json({ ok: true });
 }
