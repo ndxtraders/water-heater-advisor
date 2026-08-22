@@ -105,7 +105,14 @@ async function sendEmail(lead: LeadNotification): Promise<void> {
         Authorization: `Bearer ${key}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ from, to: [to], subject: subject(lead), text: body(lead) }),
+      body: JSON.stringify({
+        from,
+        to: [to],
+        // Hitting reply on a lead alert should reach the homeowner, not us.
+        reply_to: [lead.email],
+        subject: subject(lead),
+        text: body(lead),
+      }),
     });
     if (!res.ok) {
       console.error(`lead ${lead.id} email failed: ${res.status} ${await res.text()}`);
@@ -245,6 +252,11 @@ function homeownerBody(lead: LeadNotification, rec: Recommendation): string {
   return lines.join("\n");
 }
 
+/** The monitored mailbox. Falls back to the sender if it is unset. */
+function replyTo(): string {
+  return process.env.LEAD_NOTIFY_EMAIL || process.env.LEAD_FROM_EMAIL || "";
+}
+
 /**
  * Sends the homeowner their own copy. Returns true when the provider accepted
  * it, so the caller can record `results_email_sent_at`.
@@ -276,6 +288,11 @@ export async function sendHomeownerResults(
       body: JSON.stringify({
         from,
         to: [lead.email],
+        // The sending domain has no inbox behind it - Resend's receiving
+        // feature would claim the MX records, which would block a real mail
+        // provider on this domain later. Reply-To points at the mailbox that
+        // actually exists, so a homeowner hitting reply is not silently lost.
+        reply_to: [replyTo()],
         subject: `Your water heater recommendation: ${rec.primary.name}`,
         text: homeownerBody(lead, rec),
       }),
